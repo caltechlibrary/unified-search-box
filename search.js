@@ -1,13 +1,13 @@
 /**
- * search.js - embed a simple component for creating a unified search box for the CalTech library.
- * It was inspired by MIT Library's search.js (source repository: https://github.com/mitlibraries-ux/MITlibraries-parent/blob/prod/js/search.js)
+ * search.js - embed a unified search component for the CalTech library.
+ * Inspiration was MIT Library's search (source repository: https://github.com/mitlibraries-ux/MITlibraries-parent/blob/prod/js/search.js)
  *
  * @author R. S. Doiel, <rsdoiel@caltech.edu>
  */
  (function (window, document) {
      var menuElements = [],
         unifiedSearch = document.querySelector(".unified-search") || null,
-        unifiedSearchFilter = document.querySelector(".unified-search-filter"),
+        unifiedSearchFilter = document.querySelector(".unified-search-filter") || null,
         currentElement = unifiedSearch.querySelector(".unified-search li") || null,
         unifiedSearchForm = unifiedSearch.querySelector(".unified-search form") || null;
 
@@ -30,7 +30,39 @@
          return element.removeChild(child);
      }
 
-     function menuHandler(evt) {
+    function menuFilterHandler(evt) {
+        var element = evt.currentTarget,
+        hidden = "",
+        hidden_fields = {},
+        parts = [];
+
+        //FIXME: Need to set a class on selected filter so we have a visible indicator of what was "clicked"
+        console.log("DEBUG menuFilterHandler() event intercepted: " + evt.currentTarget.textContent);
+        evt.preventDefault();
+        hidden = element.getAttribute("data-hidden-fields");
+        if (hidden != null) {
+            if (hidden.indexOf("&") > -1) {
+                parts = hidden.split("&");
+                parts.forEach(function (item, i) {
+                    var kv = item.split("=", 2);
+                    hidden_fields[decodeURI(kv[0])] = decodeURI(kv[1]);
+                });
+            } else {
+                parts = hidden.split("=", 2);
+                hidden_fields[decodeURI(parts[0])] = decodeURI(parts[1]);
+            }
+            // Add the fields to the existing search form.
+            Object.keys(hidden_fields).forEach(function (k, i) {
+                var child = document.createElement("input");
+                child.setAttribute("type", "hidden");
+                child.setAttribute("name", k);
+                child.setAttribute("value", hidden_fields[k]);
+                unifiedSearchForm.appendChild(child);
+            });
+        }
+    }
+
+     function menuResourceHandler(evt) {
          var element = evt.currentTarget,
             label = element.textContent,
             menuItem = menuElements[label],
@@ -73,6 +105,18 @@
          evt.preventDefault();
      }
 
+     function attachFilterHandlers(ul) {
+         var anchors = null,
+            i = 0;
+        if (ul !== null) {
+            anchors = ul.querySelectorAll("a");
+            for (i = 0; i < anchors.length; i += 1) {
+                console.log("DEBUG attaching listener to " + anchors[i].textContent);
+                anchors[i].addEventListener('click', menuFilterHandler, false);
+            }
+        }
+     }
+
      function makeMenuElement(element) {
          var anchor = element.querySelector("A"),
             label = "",
@@ -101,8 +145,9 @@
             console.log("DEBUG action: " + action);
             console.log("DEBUG method: " + method);
             if (action !== "") {
-                anchor.addEventListener('click', menuHandler, false);
+                anchor.addEventListener('click', menuResourceHandler, false);
                 ul = detachChildElement(element, "UL");
+                attachFilterHandlers(ul);
                 console.log("DEBUG after detacted --> element.innerHTML: " + element.innerHTML);
                 if (hidden.trim() !== "") {
                     if (hidden.indexOf("&") > -1) {
