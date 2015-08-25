@@ -22,7 +22,7 @@
      }
 
      // Detaches the selected node and returns the detacted node.
-     function detachSelected(element, selector) {
+     function detachChildElement(element, selector) {
          var child = element.querySelector(selector);
          if (child == null) {
              return null;
@@ -30,35 +30,41 @@
          return element.removeChild(child);
      }
 
-     // Extract a label name based on the first #text node in element.
-     function getIthText(element, i) {
-         if (i == undefined) {
-             i = 0
-         }
-         if (element.textContent) {
-             return element.textContent.split("\n")[i].trim();
-         }
-         return "";
-     }
-
      function menuHandler(evt) {
          var element = evt.currentTarget,
-            label = getIthText(element, 0),
+            label = element.textContent,
             menuItem = menuElements[label],
-            queryBox = document.getElementById("unified-query-box");
+            queryBox = document.getElementById("unified-query-box"),
+            child = null;
 
          console.log("DEBUG event intercepted: " + evt.currentTarget.textContent);
          console.log("DEBUG menu Label: " + label.trim());
          console.log("DEBUG menu item: " + JSON.stringify(menuItem));
+         console.log("DEBUG hidden fields: " + JSON.stringify(menuItem.hidden_fields));
+         console.log("DEBUG hidden field count: " + Object.keys(menuItem.hidden_fields).length)
 
          if (menuItem !== undefined) {
              console.log("DEBUG trying to set unifiedSearchFilter visible.");
-             unifiedSearchFilter.innerHTML = "";
+             detachChildElement(unifiedSearchFilter, "UL");
              if (menuItem.ul !== null) {
-                 unifiedSearchFilter.innerHTML = "<ul>" + menuItem.ul.innerHTML + "</ul>";
+                 unifiedSearchFilter.appendChild(menuItem.ul);
              }
+             // Update Action and method
              unifiedSearchForm.setAttribute("action", menuItem.action);
              unifiedSearchForm.setAttribute("method", menuItem.method);
+             // Remove any stale hidden fields
+             do {
+                 child = detachChildElement(unifiedSearchForm, "input[type=hidden]");
+             }  while (child != null);
+             // Add any additional hidden fields needed
+             Object.keys(menuItem.hidden_fields).forEach(function(field, i) {
+                 var child = document.createElement("input");
+                 child.setAttribute("type", "hidden");
+                 child.setAttribute("name", field);
+                 child.setAttribute("value", menuItem.hidden_fields[field]);
+                 unifiedSearchForm.appendChild(child);
+             })
+
              queryBox.setAttribute("name", menuItem.inputName)
              queryBox.setAttribute("placeholder", menuItem.placeholder);
              console.log("DEBUG form", unifiedSearchForm.action, unifiedSearchForm.method)
@@ -68,28 +74,68 @@
      }
 
      function makeMenuElement(element) {
-         var label = //element.querySelector("label").textContent ||
-                getIthText(element, 0) || "",
-            method = element.getAttribute("data-method") || "",
-            action = element.getAttribute("data-action") || "",
-            placeholder = element.getAttribute("data-placeholder") || "",
-            inputName = element.getAttribute("data-input-name") || "",
-            ul = element.querySelector("UL");
+         var anchor = element.querySelector("A"),
+            label = "",
+            method = "GET",
+            action = "",
+            placeholder = "",
+            inputName = "",
+            ul = null,
+            parts = [],
+            hidden_fields = {},
+            hidden = "",
+            k = "",
+            v = "";
 
-        console.log("DEBUG we need to attach an event handler to " + label);
-        console.log("DEBUG label type: " + typeof label)
-        element.addEventListener('click', menuHandler, false);
-        ul = detachSelected(element, "UL");
-
-        menuElements[label] = {
-             label: label,
-             element: element,
-             method: method,
-             action: action,
-             inputName: inputName,
-             placeholder:placeholder,
-             ul: ul
-        };
+        if (anchor !== null) {
+            label = anchor.textContent || "";
+            method = anchor.getAttribute("data-method") || "GET";
+            action = anchor.getAttribute("data-action") || "";
+            placeholder = anchor.getAttribute("data-placeholder") || "";
+            inputName = anchor.getAttribute("data-input-name") || "";
+            hidden = anchor.getAttribute("data-hidden-fields") || "";
+            console.log("DEBUG element: " + element.nodeName);
+            console.log("DEBUG label type: " + typeof label);
+            console.log("DEBUG attach handler: " + label);
+            console.log("DEBUG anchor.outerHTML: " + anchor.outerHTML);
+            console.log("DEBUG action: " + action);
+            console.log("DEBUG method: " + method);
+            if (action !== "") {
+                anchor.addEventListener('click', menuHandler, false);
+                ul = detachChildElement(element, "UL");
+                console.log("DEBUG after detacted --> element.innerHTML: " + element.innerHTML);
+                if (hidden.trim() !== "") {
+                    if (hidden.indexOf("&") > -1) {
+                        parts = hidden.split("&");
+                        parts.forEach(function (item, i) {
+                            var kv = item.split("="),
+                                k = decodeURI(kv[0]),
+                                v = decodeURI(kv[1]);
+                            if (k != inputName) {
+                                hidden_fields[k] = v;
+                            }
+                        });
+                    } else if (hidden.indexOf("&") > -1) {
+                        parts = hidden.split("=");
+                        k = decodeURI(parts[0]);
+                        v = decodeURI(parts[1]);
+                        hidden_fields[k] = v;
+                    }
+                }
+                console.log("DEBUG hidden_fields from URL: " + JSON.stringify(hidden_fields));
+            }
+            menuElements[label] = {
+                 label: label,
+                 element: element,
+                 method: method,
+                 action: action,
+                 hidden_fields: hidden_fields,
+                 inputName: inputName,
+                 placeholder:placeholder,
+                 ul: ul
+            };
+            console.log("DEBUG", JSON.stringify(menuElements[label], null, "\t"));
+        }
      }
 
 

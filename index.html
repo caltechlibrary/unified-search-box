@@ -4,33 +4,34 @@
     <link href="search.css" rel="stylesheet" />
   </head>
   <body>
-      <p>This is a proof of concept unified search box based on the
-          <a href="https://github.com/mitlibraries-ux/MITlibraries-parent/">MIT Library's implementation</a>.</p>
+      <p>This is a proof of concept unified search box based inspired by <a href="https://github.com/mitlibraries-ux/MITlibraries-parent/">MIT Library's implementation</a>.</p>
       <!-- START: Unified Search Box with JavaScript -->
       <div class="unified-search">
              <div>Search
                 <ul name="unified-search-resources">
-                    <li data-action="http://clas.library.caltech.edu/search/X" data-input-name="SEARCH" data-placeholder="Search for books and journals"><label>Books and Journals</label> <ul class="unified-search-by">
-                        <li><a href="http://clas.library.caltech.edu/">Keyword</a></li>
-                        <li><a href="http://clas.library.caltech.edu/search/t">Title</a></li>
-                        <li><a href="http://clas.library.caltech.edu/search/a">Author</a></li>
-                        <li><a href="http://clas.library.caltech.edu/search/d">Subject</a></li>
-                        <li><a href="http://clas.library.caltech.edu/search/c">Call #</a></li>
-                        <li><a href="http://clas.library.caltech.edu/search/X">Advanced Keyword</a>,
-                        <a href="http://clas.library.caltech.edu/search/q">Author and Title</a>,
-                        <a href="http://clas.library.caltech.edu/search/g">Government Documents</a>,
-                        <a href="http://clas.library.caltech.edu/search/i">ISBN/ISSN</a></li>
-                    </ul></li>
-                    <li data-action="http://clas.caltech.edu/search/t" data-input-name="SEARCH" data-placeholder="Search for articles"><label>Articles</label> <ul>
-                        <li><a href="http://sfx.caltech.edu:8088/caltech/az">e-Journals</a></li>
-                        <li><a href="http://clas.caltech.edu/search/t">Journal</a></li>
+                    <li><a href="http://clas.library.caltech.edu/search/X" data-action="http://clas.library.caltech.edu/search/X" data-input-name="SEARCH" data-placeholder="Search for books and journals">Books and Journals</a>
+                        <ul class="unified-search-by">
+                            <li><a href="http://clas.library.caltech.edu/" data-action="http://clas.library.caltech.edu/search/X" data-hidden-fields="SORT=R">Keyword</a></li>
+                            <li><a href="http://clas.library.caltech.edu/search/t">Title</a></li>
+                            <li><a href="http://clas.library.caltech.edu/search/a">Author</a></li>
+                            <li><a href="http://clas.library.caltech.edu/search/d">Subject</a></li>
+                            <li><a href="http://clas.library.caltech.edu/search/c">Call #</a></li>
+                            <li><a href="http://clas.library.caltech.edu/search/X">Advanced Keyword</a></li>
+                            <li><a href="http://clas.library.caltech.edu/search/q">Author and Title</a></li>
                         </ul></li>
+                    <li><a href="http://clas.caltech.edu/search/t" data-action="http://clas.caltech.edu/search/t" data-input-name="SEARCH" data-placeholder="Search for articles">Articles</a>
+                        <ul>
+                            <li><a href="http://sfx.caltech.edu:8088/caltech/az">e-Journals</a></li>
+                            <li><a href="http://clas.caltech.edu/search/t">Journal</a></li>
+                        </ul></li>
+                    <li><a href="http://google.com/cse?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&q=CalTech+Library+Resources" data-action="http://google.com/cse" data-hidden-fields="cx=005709273917748521174:po9fevg5ksw&ie=UTF-8" data-input-name="q" data-placeholder="search the website">Website</a></li>
                     <li><a href="http://authors.library.caltech.edu">CalTech Authors</a></li>
                     <li><a href="http://clas.caltech.edu/search/c?SEARCH=thesis">CalTech Thesis</a></li>
                     <li><a href="http://clas.caltech.edu/search/r">Course Reserves</a></li>
                     <li><a href="http://clas.caltech.edu/search/?searchtype=X&searcharg=%22Moore-Hufstedtler+Leisure+Reading+Collection%22&SORT=D&extended=0&SUBMIT=Search&searchlimits=&searchorigarg=t">Leisure Reading</a></li>
                     <li><a href="http://clas.caltech.edu/search/d?leisure%20movies">Leisure Movies</a></li>
-                    <li data-action="http://google.com/cse" data-input-name="q" data-placeholder="search the website"><label>Website</label></li>
+                    <li><a href="http://clas.library.caltech.edu/search/g">Government Documents</a></li>
+                    <li><a href="http://clas.library.caltech.edu/search/i">ISBN/ISSN</a></li>
                 </ul><!--END .unified-search-resources -->
                 <div class="unified-search-filter"></div>
                 <ul class="unified-search-sort hidden">
@@ -43,14 +44,6 @@
                     <li>material type</li>
                 </ul><!--END .unified-search-sort -->
                 <form method="GET" action="http://clas.library.caltech.edu/">
-                    <!--NOTE: I think other search processing will ignore the cx hidden field used by Google -->
-<!--FIXME: I will need to add cx only on Google Search:
- <input type="hidden" name="cx" value="005709273917748521174:po9fevg5ksw" />
--->
-                    <!--NOTE: Used by Google but probably harmless elsewhere -->
-<!--FIXME: I will need to add ie on Google Search only
-                    <input type="hidden" name="ie" value="UTF-8" />
--->
                     <!--NOTE: JavaScript will replace the input name based on the menu item selected. Needs to have a class of unified-query-box -->
                     <input id="unified-query-box" type="text" name="search" value="" placeholder="Search for..." size="80">
                     <input type="submit" name="submit" value="submit">
