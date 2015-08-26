@@ -1,0 +1,75 @@
+/*
+ * These are classes for general styling
+ */
+.unified-search {
+    max-width: 95%;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+.unified-search-resources {
+    display: inline-block;
+}
+
+.unified-search-resources ul {
+    list-style-type: none;
+    min-width: 35%;
+}
+
+.unified-search-resources a:visited a:active a:link a:hover a:target {
+    color: blue;
+}
+
+.unified-search-resources a {
+    text-decoration: none;
+}
+
+.unified-search-filter {
+    display: inline-block;
+}
+
+.unified-search-filter ul {
+    list-style-type: none;
+}
+
+.unified-search-filter a {
+    text-decoration: none;
+}
+
+.unified-search-filter a:visited a:active a:link a:hover  a:target {
+    color: blue;
+}
+
+.unified-search-box {
+    min-width: 60%;
+    max-width: 100%;
+}
+
+
+/* :visited :active :link :hover */
+/*
+ a:visited a:active a:link a:hover
+ color: orange;
+ background-color: blue;
+
+      a:visited a:active a:link {
+
+    text-decoration: none;
+    background-color: yellow;
+}*/
+
+/*
+ * These are classes to attach visual behavoir
+ */
+.hidden {
+    visible: none;
+}
+
+.visible {
+    visible: visible;
+}
+
+.selected {
+    border: 1 px orange;
+    background-color: orange;
+}

@@ -1,61 +1,73 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="search.css" rel="stylesheet" />
+    <link href="css/search.css" rel="stylesheet" />
   </head>
   <body>
-      <p>This is a proof of concept unified search box based inspired by <a href="https://github.com/mitlibraries-ux/MITlibraries-parent/">MIT Library's implementation</a>.</p>
       <!-- START: Unified Search Box with JavaScript -->
       <div class="unified-search">
-             <div>Search
-                <ul name="unified-search-resources">
-                    <li><a href="http://clas.library.caltech.edu/search/X" data-action="http://clas.library.caltech.edu/search/X" data-hidden-fields="SORT=R" data-input-name="SEARCH" data-placeholder="Search for books and journals">Books and Journals</a>
-                        <ul class="unified-search-by">
-                            <li><a href="http://clas.library.caltech.edu/search/X" data-action="http://clas.library.caltech.edu/search/X" data-hidden-fields="SORT=R">Keyword</a></li>
-                            <li><a href="http://clas.library.caltech.edu/search/t" data-action="http://clas.library.caltech.edu/search/t" data-hidden-fields="sortdropdown=-">Title</a></li>
-                            <li><a href="http://clas.library.caltech.edu/search/a" data-action="http://clas.library.caltech.edu/search/a" data-hidden-fields="sortdropdown=-">Author</a></li>
-                            <li><a href="http://clas.library.caltech.edu/search/d" data-action="http://clas.library.caltech.edu/search/d" data-hidden-fields="sortdropdown=-">Subject</a></li>
-                            <li><a href="http://clas.library.caltech.edu/search/c" data-action="http://clas.library.caltech.edu/search/c" data-hidden-fields="sortdropdown=-">Call #</a></li>
-                        </ul></li>
-                    <li><a href="http://clas.caltech.edu/search/t" data-action="http://clas.caltech.edu/search/t" data-input-name="SEARCH" data-placeholder="Search for articles">Articles</a>
-                        <ul>
-                            <li><a href="http://sfx.caltech.edu:8088/caltech/az">e-Journals</a></li>
-                            <li><a href="http://clas.caltech.edu/search/t" data-action="http://clas.caltech.edu/search/t" data-hidden-fields="sortdropdown=-">Journal</a></li>
-                        </ul></li>
-                    <li><a href="http://authors.library.caltech.edu" data-action="http://authors.library.caltech.edu/cgi/search/simple" data-hidden-fields="screen=Search&order=&q_merge=ALL&_action_search=Search" data-input-name="q">CalTech Authors</a></li>
-                    <li><a href="http://thesis.library.caltech.edu/cgi/search/simple" data-action="http://thesis.library.caltech.edu/cgi/search/simple" data-hidden-fields="screen=Search&order=&q_merge=ALL&_action_search=Search" data-input-name="q">CalTech Thesis</a></li>
-                    <li><a href="http://google.com/cse?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&q=CalTech+Library+Resources" data-action="http://google.com/cse" data-hidden-fields="cx=005709273917748521174:po9fevg5ksw&ie=UTF-8" data-input-name="q" data-placeholder="search the website">Website</a></li>
-                    <li><a href="http://clas.caltech.edu/search/r">Course Reserves</a></li>
-                    <li><a href="http://clas.caltech.edu/search/?searchtype=X&searcharg=%22Moore-Hufstedtler+Leisure+Reading+Collection%22&SORT=D&extended=0&SUBMIT=Search&searchlimits=&searchorigarg=t">Leisure Reading</a></li>
-                    <li><a href="http://clas.caltech.edu/search/d?leisure%20movies">Leisure Movies</a></li>
-                    <li><a href="http://clas.library.caltech.edu/search/g">Government Documents</a></li>
-                    <li><a href="http://clas.library.caltech.edu/search/i">ISBN/ISSN</a></li>
-                    <li><a href="http://clas.library.caltech.edu/search/X">Advanced Keyword</a></li>
-                    <li><a href="http://clas.library.caltech.edu/search/q">Author and Title</a></li>
-                </ul><!--END .unified-search-resources -->
+                 <div class="unified-search-resources">
+                    <ul>
+                        <li><a href="http://clas.library.caltech.edu/search/X" data-action="http://clas.library.caltech.edu/search/X" data-hidden-fields="SORT=R" data-input-name="SEARCH" data-placeholder="Search for books and journals">Books and Journals</a>
+                            <ul>
+                                <li><a href="http://clas.library.caltech.edu/search/X" data-action="http://clas.library.caltech.edu/search/X" data-hidden-fields="SORT=R" data-placeholder="search by Keyword">Keyword</a></li>
+                                <li><a href="http://clas.library.caltech.edu/search/t" data-action="http://clas.library.caltech.edu/search/t" data-hidden-fields="sortdropdown=-" data-placeholder="search by Title">Title</a></li>
+                                <li><a href="http://clas.library.caltech.edu/search/a" data-action="http://clas.library.caltech.edu/search/a" data-hidden-fields="sortdropdown=-" data-placeholder="search by Author">Author</a></li>
+                                <li><a href="http://clas.library.caltech.edu/search/d" data-action="http://clas.library.caltech.edu/search/d" data-hidden-fields="sortdropdown=-" data-placeholder="searchby Subject">Subject</a></li>
+                                <li><a href="http://clas.library.caltech.edu/search/c" data-action="http://clas.library.caltech.edu/search/c" data-hidden-fields="sortdropdown=-" data-placeholder="search by Call #">Call #</a></li>
+                                <li><a href="http://clas.library.caltech.edu/search/i" data-action="http://clas.library.caltech.edu/search/i" data-hidden-fields="sortdropdown=-" data-placeholder="search by ISBN/ISSN">ISBN/ISSN</a></li>
+                            </ul></li>
+                        <li><a href="http://clas.caltech.edu/search/t" data-action="http://clas.caltech.edu/search/t" data-input-name="SEARCH" data-placeholder="Search for articles">Articles</a>
+                            <ul>
+                                <li><a href="http://sfx.caltech.edu:8088/caltech/az">e-Journals</a></li>
+                                <li><a href="http://clas.caltech.edu/search/t" data-action="http://clas.caltech.edu/search/t" data-hidden-fields="sortdropdown=-" data-placeholder="Search Journals">Journal</a></li>
+                            </ul></li>
+                        <li><a href="http://authors.library.caltech.edu" data-action="http://authors.library.caltech.edu/cgi/search/simple" data-hidden-fields="screen=Search&order=&q_merge=ALL&_action_search=Search" data-input-name="q">CalTech Authors</a></li>
+                        <li><a href="http://thesis.library.caltech.edu/cgi/search/simple" data-action="http://thesis.library.caltech.edu/cgi/search/simple" data-hidden-fields="screen=Search&order=&q_merge=ALL&_action_search=Search" data-input-name="q">CalTech Thesis</a></li>
+                        <li><a href="http://google.com/cse?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&q=CalTech+Library+Resources" data-action="http://google.com/cse" data-hidden-fields="cx=005709273917748521174:po9fevg5ksw&ie=UTF-8" data-input-name="q" data-placeholder="search the website">Website</a></li>
+                        <li><a href="http://clas.caltech.edu/search/r" data-action="http://clas.library.caltech.edu/search/r" data-hidden-fields="sortdropdown=-" data-input-name="SEARCH" data-placeholder="Search Course Reserves">Course Reserves</a>
+                            <ul>
+                                <li><a href="http://clas.caltech.edu/search/r" data-action="http://clas.library.caltech.edu/search/r" data-hidden-fields="sortdropdown=-" data-input-name="SEARCH" data-placeholder="Search by Course">Course</a>
+                                <li><a href="http://clas.caltech.edu/search/p" data-action="http://clas.library.caltech.edu/search/p" data-hidden-fields="sortdropdown=-" data-input-name="SEARCH" data-placeholder="Search by Instructor" >Instructor</a>
+                            </ul>
+                        </li>
+                        <li><a href="http://clas.library.caltech.edu/search/g" data-action="http://clas.library.caltech.edu/search/g" data-hidden-fields="sortdropdown=-" data-placeholder="Search for government documents">Government Documents</a></li>
+                    </ul><!--END .unified-search-resources -->
+                </div>
                 <div class="unified-search-filter"></div>
-                <ul class="unified-search-sort hidden">
-                    <li>system sorted</li>
-                    <li>title</li>
-                    <li>author</li>
-                    <li>sort by date order</li>
-                    <li>sort by reverse date order</li>
-                    <li>call number</li>
-                    <li>material type</li>
-                </ul><!--END .unified-search-sort -->
-                <form method="GET" action="http://clas.library.caltech.edu/">
-                    <!--NOTE: JavaScript will replace the input name based on the menu item selected. Needs to have a class of unified-query-box -->
-                    <input id="unified-query-box" type="text" name="search" value="" placeholder="Search for..." size="80">
-                    <input type="submit" name="submit" value="submit">
-                </form>
-             </div>
-         <div>Link to advanced facetted search</div>
+                <div class="unified-search-box">
+                    <form method="GET" action="http://clas.library.caltech.edu/">
+                        <!--NOTE: JavaScript will replace the input name based on the menu item selected. Needs to have a class of unified-query-box -->
+                        <input id="unified-query-box" type="text" name="search" value="" placeholder="Search for..." size="80">
+                        <input type="submit" name="submit" value="submit">
+                    </form>
+               </div>
       </div><!--END .unified-search -->
-      <script src="modernizr.js"></script>
-      <script src="moment.js"></script>
-      <script src="search.js"></script>
+      <script src="js/modernizr.js"></script>
+      <script src="js/search.js"></script>
       <!-- END: Unified Search Box -->
       <div class="search-results">
       </div>
+      <!--START: debug
+      <ul class="unified-search-sort hidden">
+          <li>system sorted</li>
+          <li>title</li>
+          <li>author</li>
+          <li>sort by date order</li>
+          <li>sort by reverse date order</li>
+          <li>call number</li>
+          <li>material type</li>
+      </ul>
+      <div class="main-content">
+          <p>This is a proof of concept unified search box based inspired by <a href="https://github.com/mitlibraries-ux/MITlibraries-parent/">MIT Library's implementation</a>.</p>
+          <p>Aditional searches available</p>
+          <ul>
+              <li><a href="http://clas.caltech.edu/search/?searchtype=X&searcharg=%22Moore-Hufstedtler+Leisure+Reading+Collection%22&SORT=D&extended=0&SUBMIT=Search&searchlimits=&searchorigarg=t">Leisure Reading</a></li>
+              <li><a href="http://clas.caltech.edu/search/d?leisure%20movies">Leisure Movies</a></li>
+              <li><a href="http://clas.library.caltech.edu/search/X">Advanced Keyword</a></li>
+              <li><a href="http://clas.library.caltech.edu/search/q">Author and Title</a></li>
+          </u>
+      </div>
+      END: debug -->
   </body>
 </html>
