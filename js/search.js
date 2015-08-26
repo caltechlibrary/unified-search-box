@@ -1,5 +1,5 @@
 /**
- * search.js - embed a unified search component for the CalTech library.
+ * search.js - embed a unified search component for the Caltech library.
  * Inspiration was MIT Library's search (source repository: https://github.com/mitlibraries-ux/MITlibraries-parent/blob/prod/js/search.js)
  *
  * @author R. S. Doiel, <rsdoiel@caltech.edu>

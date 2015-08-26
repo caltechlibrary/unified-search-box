@@ -18,12 +18,12 @@
 + [Articles](http://clas.caltech.edu/search/t)
     + [e-Journals](http://sfx.caltech.edu:8088/caltech/az)
     + [Journal](http://clas.caltech.edu/search/t)
-+ [CalTech Authors](http://authors.library.caltech.edu)
-+ [CalTech Thesis](http://clas.caltech.edu/search/c?SEARCH=thesis)
++ [Caltech Authors](http://authors.library.caltech.edu)
++ [Caltech Thesis](http://clas.caltech.edu/search/c?SEARCH=thesis)
 + [Course Reserves](http://clas.caltech.edu/search/r)
 + [Leisure Reading](http://clas.caltech.edu/search/?searchtype=X&searcharg=%22Moore-Hufstedtler+Leisure+Reading+Collection%22&SORT=D&extended=0&SUBMIT=Search&searchlimits=&searchorigarg=t)
 + [Leisure Movies](http://clas.caltech.edu/search/d?leisure%20movies)
-+ [Website](http://www.google.com/cse?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&q=CalTech+Library+Resources)
++ [Website](http://www.google.com/cse?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&q=Caltech+Library+Resources)
 
 
 ## Search services Inventor
@@ -43,8 +43,8 @@ From library homepage
         + JSTOR
         + Oxford English Dictionary
     + Coda
-        + CalTech Authors
-        + CalTech Thesis
+        + Caltech Authors
+        + Caltech Thesis
 + Books and Journals (tab)
     + Library Catalog
         + Advanced Search button (takes you to another search page)
