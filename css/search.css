@@ -1,6 +1,16 @@
 /*
  * These are classes for general styling
  */
+body {
+   padding: 0.24em;
+   margin: 0.24em;
+   font-size: 16px;
+}
+
+h1 {
+    text-font-size: 1em;
+    text-transform: uppercase;
+}
 .unified-search {
     max-width: 95%;
     padding: 0.5em;
