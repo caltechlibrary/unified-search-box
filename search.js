@@ -39,6 +39,10 @@
         //FIXME: Need to set a class on selected filter so we have a visible indicator of what was "clicked"
         console.log("DEBUG menuFilterHandler() event intercepted: " + evt.currentTarget.textContent);
         evt.preventDefault();
+        action = element.getAttribute("data-action");
+        if (action != null) {
+            unifiedSearchForm.setAttribute("action", action);
+        }
         hidden = element.getAttribute("data-hidden-fields");
         if (hidden != null) {
             if (hidden.indexOf("&") > -1) {
@@ -53,7 +57,12 @@
             }
             // Add the fields to the existing search form.
             Object.keys(hidden_fields).forEach(function (k, i) {
-                var child = document.createElement("input");
+                // Check if the field exists, add it if needed otherwise
+                // update the value
+                var child = unifiedSearchForm.querySelector("input[name=" + k + "]");
+                if (child == null) {
+                    child = document.createElement("input");
+                }
                 child.setAttribute("type", "hidden");
                 child.setAttribute("name", k);
                 child.setAttribute("value", hidden_fields[k]);
@@ -111,8 +120,12 @@
         if (ul !== null) {
             anchors = ul.querySelectorAll("a");
             for (i = 0; i < anchors.length; i += 1) {
-                console.log("DEBUG attaching listener to " + anchors[i].textContent);
-                anchors[i].addEventListener('click', menuFilterHandler, false);
+                if (anchors[i].getAttribute("data-action") || anchors[i].getAttribute("data-hidden-fields")) {
+                    console.log("DEBUG attaching listener to " + anchors[i].textContent);
+                    anchors[i].addEventListener('click', menuFilterHandler, false);
+                } else {
+                    console.log("DEBUG skipped attaching listener to " + anchors[i].textContent);
+                }
             }
         }
      }
