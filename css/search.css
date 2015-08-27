@@ -19,6 +19,8 @@ h1 {
 
 .unified-search-resources {
     display: inline-block;
+    vertical-align: top;
+    min-width: 20%;
 }
 
 .unified-search-resources ul {
@@ -37,6 +39,7 @@ h1 {
 .unified-search-filter {
     display: inline-block;
     vertical-align: top;
+    min-width: 20%;
 }
 
 .unified-search-filter ul {
@@ -52,8 +55,10 @@ h1 {
 }
 
 .unified-search-box {
-    min-width: 60%;
-    max-width: 100%;
+    min-width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 1em;
 }
 
 
