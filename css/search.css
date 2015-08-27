@@ -36,6 +36,7 @@ h1 {
 
 .unified-search-filter {
     display: inline-block;
+    vertical-align: top;
 }
 
 .unified-search-filter ul {
