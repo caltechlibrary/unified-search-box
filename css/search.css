@@ -61,6 +61,14 @@ h1 {
     padding-top: 1em;
 }
 
+.unified-search-box input {
+    vertical-align: bottom;
+}
+
+.unified-search-icon {
+    vertical-align: top;
+}
+
 /*
  * These are classes to attach visual behavoir
  */
@@ -68,8 +76,14 @@ h1 {
     visible: none;
 }
 
-.visible {
-    visible: visible;
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0px !important;
+    border: 0px none !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
 }
 
 .selected {

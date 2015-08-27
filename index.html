@@ -75,7 +75,13 @@
     <div class="unified-search-box">
       <form method="get" action="http://clas.library.caltech.edu/">
         <!--NOTE: JavaScript will replace the input name based on the menu item selected. Needs to have a class of unified-query-box -->
-        <input id="unified-query-box" type="text" name="search" value="" placeholder="Search for..." size="80"> <input type="submit" name="submit" value="search">
+        <input id="unified-query-box" type="text" name="search" value="" placeholder="Search for..." size="68">
+        <button type="submit">
+            <span class="visually-hidden">search</span><!-- per accessibility review/to be clipped via CSS -->
+    		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="16" viewBox="0 0 12 12" aria-hidden="true" class="unified-search-icon">
+    			<path d="M7.273 0.727q1.187 0 2.19 0.585t1.588 1.588 0.585 2.19-0.585 2.19-1.588 1.588-2.19 0.585q-1.278 0-2.33-0.676l-3.284 3.301q-0.295 0.284-0.688 0.284-0.403 0-0.688-0.284t-0.284-0.688 0.284-0.688l3.301-3.284q-0.676-1.051-0.676-2.33 0-1.188 0.585-2.19t1.588-1.588 2.19-0.585zM7.273 8q0.591 0 1.128-0.23t0.929-0.622 0.622-0.929 0.23-1.128-0.23-1.128-0.622-0.929-0.929-0.622-1.128-0.23-1.128 0.23-0.929 0.622-0.622 0.929-0.23 1.128 0.23 1.128 0.622 0.929 0.929 0.622 1.128 0.23z"></path>
+    		</svg>
+		</button>
       </form>
     </div>
   </div><!--END .unified-search -->
@@ -83,7 +89,6 @@
   </script>
   <script src="js/search.js">
   </script> <!-- END: Unified Search Box -->
-  <div class="search-results"></div>
   </article>
   <footer></footer>
 </body>
