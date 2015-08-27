@@ -1,5 +1,5 @@
 /*
- * These are classes for general styling
+ * These are classes for general layout
  */
 body {
    padding: 0.24em;
@@ -60,19 +60,6 @@ h1 {
     vertical-align: top;
     padding-top: 1em;
 }
-
-
-/* :visited :active :link :hover */
-/*
- a:visited a:active a:link a:hover
- color: orange;
- background-color: blue;
-
-      a:visited a:active a:link {
-
-    text-decoration: none;
-    background-color: yellow;
-}*/
 
 /*
  * These are classes to attach visual behavoir
