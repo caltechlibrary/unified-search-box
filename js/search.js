@@ -12,7 +12,7 @@
         unifiedSearchForm = unifiedSearch.querySelector(".unified-search-box form") || null;
 
      function setVisibility(element, visible) {
-         // If have JavaScript enabled then display the JavaScript dependent form.
+         // If JavaScript is enabled then display the JavaScript dependent form.
          if (visible === "visible" && element.className != undefined && element.className.indexOf("hidden") > -1) {
             element.className = element.className.replace("hidden", "").trim();
          } else {
@@ -34,16 +34,16 @@
      }
 
      function selectFilterItem(element) {
-         var filterAnchors = document.querySelectorAll(".unified-search-filter a"),
-            i = 0;
-         if (filterAnchors !== null) {
-             for (i = 0; i < filterAnchors.length; i  += 1) {
-                 if (filterAnchors[i].className.indexOf("selected") > -1) {
-                     filterAnchors[i].className = filterAnchors[i].className.replace("selected", "").trim();
-                 }
-             }
-         }
-         element.className += " selected";
+        var filterAnchors = document.querySelectorAll(".unified-search-filter a"),
+        i = 0;
+        if (filterAnchors !== null) {
+            for (i = 0; i < filterAnchors.length; i  += 1) {
+                if (filterAnchors[i].className.indexOf("selected") > -1) {
+                    filterAnchors[i].className = filterAnchors[i].className.replace("selected", "").trim();
+                }
+            }
+        }
+        element.className += " selected";
      }
 
      // Detaches the selected node and returns the detacted node.
@@ -123,6 +123,7 @@
              selectMenuItem(label);
              detachChildElement(unifiedSearchFilter, "UL");
              if (menuItem.ul !== null) {
+                 unifiedSearchFilter.innerHTML = "<h1>By</h1>";
                  unifiedSearchFilter.appendChild(menuItem.ul);
              }
              // Update Action and method
@@ -149,8 +150,8 @@
      }
 
      function attachFilterHandlers(ul) {
-         var anchors = null,
-            i = 0;
+        var anchors = null,
+        i = 0;
         if (ul !== null) {
             anchors = ul.querySelectorAll("a");
             for (i = 0; i < anchors.length; i += 1) {
@@ -185,6 +186,7 @@
 
             if (action !== "") {
                 anchor.addEventListener('click', menuResourceHandler, false);
+                anchor.addEventListener('focus', menuResourceHandler, false);
                 ul = detachChildElement(element, "UL");
                 attachFilterHandlers(ul);
                 if (hidden.trim() !== "") {
