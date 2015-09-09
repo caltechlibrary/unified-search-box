@@ -43,7 +43,7 @@
                 }
             }
         }
-        element.className += " selected";
+        element.className = (element.className + " selected").trim();
      }
 
      // Detaches the selected node and returns the detacted node.

@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.36">
-  <link rel="stylesheet" href="css/pure-0.6.0/pure-min.css">
+  <link rel="stylesheet" href="css/pure-release-0.6.0/pure-min.css">
   <link href="css/search.css" rel="stylesheet">
   <title>Unified Search Box Prototype</title>
 </head>
@@ -13,62 +13,56 @@
     <div class="unified-search-resources">
       <h1>Search</h1>
       <ul>
-        <li>
-          <a href="http://clas.library.caltech.edu/search/X" data-action="http://clas.library.caltech.edu/search/X" data-hidden-fields="SORT=R" data-input-name="SEARCH" data-placeholder="Search for books and journals">Books and Journals</a>
-          <ul>
-            <li>
-              <a href="http://clas.library.caltech.edu/search/X" data-action="http://clas.library.caltech.edu/search/X" data-hidden-fields="SORT=R" data-placeholder="search by Keyword">Keyword</a>
-            </li>
-            <li>
-              <a href="http://clas.library.caltech.edu/search/t" data-action="http://clas.library.caltech.edu/search/t" data-hidden-fields="sortdropdown=-" data-placeholder="search by Title">Title</a>
-            </li>
-            <li>
-              <a href="http://clas.library.caltech.edu/search/a" data-action="http://clas.library.caltech.edu/search/a" data-hidden-fields="sortdropdown=-" data-placeholder="search by Author">Author</a>
-            </li>
-            <li>
-              <a href="http://clas.library.caltech.edu/search/d" data-action="http://clas.library.caltech.edu/search/d" data-hidden-fields="sortdropdown=-" data-placeholder="search by Subject">Subject</a>
-            </li>
-            <li>
-              <a href="http://clas.library.caltech.edu/search/c" data-action="http://clas.library.caltech.edu/search/c" data-hidden-fields="sortdropdown=-" data-placeholder="search by Call #">Call #</a>
-            </li>
-            <li>
-              <a href="http://clas.library.caltech.edu/search/i" data-action="http://clas.library.caltech.edu/search/i" data-hidden-fields="sortdropdown=-" data-placeholder="search by ISBN/ISSN">ISBN/ISSN</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="http://clas.caltech.edu/search/t" data-action="http://clas.caltech.edu/search/t" data-input-name="SEARCH" data-placeholder="Search for articles">Articles</a>
-          <ul>
-            <li>
-              <a href="http://sfx.caltech.edu:8088/caltech/az">e-Journals</a>
-            </li>
-            <li>
-              <a href="http://clas.caltech.edu/search/t" data-action="http://clas.caltech.edu/search/t" data-hidden-fields="sortdropdown=-" data-placeholder="Search Journals">Journal</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="http://clas.caltech.edu/search/r" data-action="http://clas.library.caltech.edu/search/r" data-hidden-fields="sortdropdown=-" data-input-name="SEARCH" data-placeholder="Search Course Reserves">Course Reserves</a>
-          <ul>
-            <li>
-              <a href="http://clas.caltech.edu/search/r" data-action="http://clas.library.caltech.edu/search/r" data-hidden-fields="sortdropdown=-" data-input-name="SEARCH" data-placeholder="Search Reserves by Course">Course</a>
-            </li>
-            <li>
-              <a href="http://clas.caltech.edu/search/p" data-action="http://clas.library.caltech.edu/search/p" data-hidden-fields="sortdropdown=-" data-input-name="SEARCH" data-placeholder="Search Reserves by Instructor">Instructor</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="http://authors.library.caltech.edu" data-action="http://authors.library.caltech.edu/cgi/search/simple" data-hidden-fields="screen=Search&amp;order=&amp;q_merge=ALL&amp;_action_search=Search" data-placeholder="Search CaltechAUTHORS" data-input-name="q">CaltechAUTHORS</a>
-        </li>
-        <li>
-          <a href="http://thesis.library.caltech.edu/cgi/search/simple" data-action="http://thesis.library.caltech.edu/cgi/search/simple" data-hidden-fields="screen=Search&amp;order=&amp;q_merge=ALL&amp;_action_search=Search" data-placeholder="Search CaltechTHESIS" data-input-name="q">CaltechTHESIS</a>
-        </li>
-        <li>
-          <a href="http://clas.library.caltech.edu/search/g" data-action="http://clas.library.caltech.edu/search/g" data-hidden-fields="sortdropdown=-" data-input-name="SEARCH" data-placeholder="Search for government documents">Government Documents</a>
-        </li>
-        <li>
-          <a href="http://google.com/cse?cx=005709273917748521174:po9fevg5ksw&amp;ie=UTF-8&amp;q=Caltech+Library+Resources" data-action="http://google.com/cse" data-hidden-fields="cx=005709273917748521174:po9fevg5ksw&amp;ie=UTF-8" data-input-name="q" data-placeholder="Search the library website">Website</a>
+        <li><!-- START: EDS search options -->
+            <a href="http://library.caltech.edu/index-eds.php" title="Articles, Books, etc." data-action="http://eds.a.ebscohost.com/eds/results" data-input-name="bquery" data-hidden-fields="" data-placeholder="Search articles, books, etc.">Find It!</a>
+        </li><!--  END: EDS search options -->
+        <li><!-- START: Tind -->
+            <a href="http://caltech.tind.io" title="Books and Print Journals">Library Catalog</a>
+            <ul>
+                <li>
+                    <a href="http://caltech.tind.io/search?f=title" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="f=title" data-placeholder="Search by title">Title</a>
+                </li>
+                <li>
+                    <a href="http://caltech.tind.io/search?f=author" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="f=author" data-placeholder="Search by author">Author</a>
+                </li>
+                <li>
+                    <a href="http://caltech.tind.io/search?f=subject" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="f=subject" data-placeholder="Search by subject">Subject</a>
+                </li>
+                <li>
+                    <a href="http://caltech.tind.io/search?f=keyword" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="f=keyword" data-placeholder="Search by keyword">Keyword</a>
+                </li>
+                <li>
+                    <a href="http://caltech.tind.io/search?f=isbn" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="f=isbn" data-placeholder="Search by ISBN">ISBN</a>
+                </li>
+                <li>
+                    <a href="http://caltech.tind.io/search?f=journal" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="f=journal" data-placeholder="Search by journal">Journal</a>
+                </li>
+                <li>
+                    <a href="http://caltech.tind.io/search?f=abstract" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="f=abstract" data-placeholder="Search by abstract">Abstract</a>
+                </li>
+                <li>
+                    <a href="http://caltech.tind.io/search?f=issn" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="f=issn" data-placeholder="Search by issn">ISSN</a>
+                </li>
+            </ul>
+        </li><!--  END: Tind -->
+        <li><!-- START: SFX eJournal -->
+            <a href="http://sfx.caltech.edu:8088/caltech/az" data-action="http://sfx.caltech.edu:8088/caltech/az" data-input-name="param_pattern_value" data-hidden-fields="param_perform_save=searchTitle" data-placeholder="Search Library eJournal subscriptions" title="Library eJournal subscriptions">Find eJournals</a>
+        </li><!--  END: SFX eJournal -->
+        <li><!-- START: Tind Course Reserves -->
+            <a href="http://caltech.tind.io/search?c=Course%20Reserves">Course Reserves</a>
+            <ul>
+                <li><a href="http://caltech.tind.io/search?c=Course%20Reserves&f=course" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course%20Reserves&f=course" data-placeholder="By course name">Course</a></li>
+                <li><a href="http://caltech.tind.io/search?c=Course%20Reserves&f=instructor" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course%20Reserves&f=instructor" data-placeholder="By instructor name">Instructor</a></li>
+            </ul>
+        </li><!--  END: Tind Course Reserves -->
+        <li><!-- START: CODA: Caltech Collections and Digital Archives -->
+            <a href="https://cse.google.com/cse/publicurl?cx=005709273917748521174:b0g6d4sxowm&ie=UTF-8&q=CODA+-+Caltech+Collection+of+Open+Digital+Archives" data-input-name="q" data-hidden-fields="cx=005709273917748521174:b0g6d4sxowm&ie=UTF-8" data-placeholder="Search Caltech’s Institutional Repository" title="Caltech’s Institutional Repository">CODA: Caltech Collections and Digital Archives</a>
+        </li><!--  END: CODA: Caltech Collections and Digital Archives -->
+        <li><!-- START: Website -->
+            <a href="http://google.com/cse?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&q=Caltech+Library+Resources" data-action="http://google.com/cse" data-hidden-fields="cx=005709273917748521174:po9fevg5ksw&amp;ie=UTF-8" data-input-name="q" data-placeholder="Search the library website" title="Library and LibGuides">Website</a>
+        </li><!--  END: Website -->
+        <li><!-- START: More search tools -->
+            <a href="http://libguides.caltech.edu/">More search tools</a>
         </li>
       </ul><!--END .unified-search-resources -->
     </div>
@@ -86,10 +80,27 @@
       </form>
     </div>
   </div><!--END .unified-search -->
+  <footer></footer>
   <script src="js/modernizr.js">
   </script>
   <script src="js/search.js">
   </script> <!-- END: Unified Search Box -->
-  <footer></footer>
+<script>
+/*not using for now.
+(function() {
+  // Google Search element
+  var cx = '005709273917748521174:b0g6d4sxowm';
+  var gcse = document.createElement('script');
+  gcse.type = 'text/javascript';
+  gcse.async = true;
+  gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+    '//cse.google.com/cse.js?cx=' + cx;
+  var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+})();
+*/
+</script>
+<gcse:search></gcse:search>
+                                             
 </body>
 </html>
