@@ -16,7 +16,7 @@
          if (visible === "visible" && element.className != undefined && element.className.indexOf("hidden") > -1) {
             element.className = element.className.replace("hidden", "").trim();
          } else {
-            element.className += " hidden";
+            element.className = (element.className + " hidden").trim();
          }
      }
 
@@ -28,7 +28,7 @@
                  item.element.className = item.element.className.replace("selected", "").trim();
              }
              if (k == label) {
-                 item.element.className += " selected";
+                 item.element.className = (item.element.className + " selected").trim();
              }
          })
      }
@@ -144,7 +144,6 @@
 
              queryBox.setAttribute("name", menuItem.inputName)
              queryBox.setAttribute("placeholder", menuItem.placeholder);
-             console.log("DEBUG form", unifiedSearchForm.action, unifiedSearchForm.method)
              setVisibility(unifiedSearchFilter, "visible");
          }
      }
