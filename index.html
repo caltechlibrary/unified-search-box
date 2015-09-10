@@ -51,7 +51,22 @@
         <li><!-- START: Tind Course Reserves -->
             <a href="http://caltech.tind.io/search?c=Course%20Reserves" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course Reserves" data-placeholder="Search course reserves">Course Reserves</a>
             <ul>
-                <li><a href="http://caltech.tind.io/search?c=Course%20Reserves&f=course" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course Reserves&amp;f=course" data-placeholder="By course name">Course</a></li>
+                <!-- Course Reserves: 
+                Tind Web API Search Engine info: http://invenio-demo.cern.ch/help/hacking/search-engine-api
+                + http://invenio-software.org/wiki/Talk/WebAPIs
+                + http://demo.invenio-software.org/help/admin/howto-marc?ln=en
+                + http://www.loc.gov/marc/bibliographic/
+
+                 Indexed fields: 
+                 955 $$ a: Course Title
+                 957 $$ a: Instructor
+                 958 $$ a: Course Notes
+                 959 $$ a: Semester 
+                 962 $$ t: Title of bibliographic record
+                 962 $$ w: Bibliographic record ID
+
+                Courses trying f=Course+Title to search for be something like tind101, cs08 -->
+                <li><a href="http://caltech.tind.io/search?c=Course%20Reserves" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course%20Reserves" data-placeholder="By course name">Course</a></li>
                 <li><a href="http://caltech.tind.io/search?c=Course%20Reserves&f=instructor" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course Reserves&amp;f=instructor" data-placeholder="By instructor name">Instructor</a></li>
             </ul>
         </li><!--  END: Tind Course Reserves -->
