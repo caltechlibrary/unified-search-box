@@ -14,10 +14,10 @@
       <h1>Search</h1>
       <ul>
         <li><!-- START: EDS search options -->
-            <a href="http://library.caltech.edu/index-eds.php" title="Articles, Books, etc." data-action="http://eds.a.ebscohost.com/eds/results" data-input-name="bquery" data-hidden-fields="" data-placeholder="Search articles, books, etc.">Find It!</a>
+            <a href="http://library.caltech.edu/index-eds.php" title="Articles, Books, etc." data-action="http://library.caltech.edu/index-eds.php" data-input-name="ebscohostsearchtext" data-hidden-fields="" data-placeholder="Search articles, books, etc.">Find It!</a>
         </li><!--  END: EDS search options -->
         <li><!-- START: Tind -->
-            <a href="http://caltech.tind.io" title="Books and Print Journals">Library Catalog</a>
+            <a href="http://caltech.tind.io" title="Books and Print Journals" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="" data-placeholder="Search library catalog">Library Catalog</a>
             <ul>
                 <li>
                     <a href="http://caltech.tind.io/search?f=title" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="f=title" data-placeholder="Search by title">Title</a>
@@ -49,14 +49,14 @@
             <a href="http://sfx.caltech.edu:8088/caltech/az" data-action="http://sfx.caltech.edu:8088/caltech/az" data-input-name="param_pattern_value" data-hidden-fields="param_perform_save=searchTitle" data-placeholder="Search Library eJournal subscriptions" title="Library eJournal subscriptions">Find eJournals</a>
         </li><!--  END: SFX eJournal -->
         <li><!-- START: Tind Course Reserves -->
-            <a href="http://caltech.tind.io/search?c=Course%20Reserves">Course Reserves</a>
+            <a href="http://caltech.tind.io/search?c=Course%20Reserves" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course Reserves" data-placeholder="Search course reserves">Course Reserves</a>
             <ul>
-                <li><a href="http://caltech.tind.io/search?c=Course%20Reserves&f=course" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course%20Reserves&f=course" data-placeholder="By course name">Course</a></li>
-                <li><a href="http://caltech.tind.io/search?c=Course%20Reserves&f=instructor" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course%20Reserves&f=instructor" data-placeholder="By instructor name">Instructor</a></li>
+                <li><a href="http://caltech.tind.io/search?c=Course%20Reserves&f=course" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course Reserves&amp;f=course" data-placeholder="By course name">Course</a></li>
+                <li><a href="http://caltech.tind.io/search?c=Course%20Reserves&f=instructor" data-action="http://caltech.tind.io/search" data-input-name="p" data-hidden-fields="c=Course Reserves&amp;f=instructor" data-placeholder="By instructor name">Instructor</a></li>
             </ul>
         </li><!--  END: Tind Course Reserves -->
         <li><!-- START: CODA: Caltech Collections and Digital Archives -->
-            <a href="https://cse.google.com/cse/publicurl?cx=005709273917748521174:b0g6d4sxowm&ie=UTF-8&q=CODA+-+Caltech+Collection+of+Open+Digital+Archives" data-input-name="q" data-hidden-fields="cx=005709273917748521174:b0g6d4sxowm&ie=UTF-8" data-placeholder="Search Caltech’s Institutional Repository" title="Caltech’s Institutional Repository">CODA: Caltech Collections and Digital Archives</a>
+            <a href="https://cse.google.com/cse/publicurl?cx=005709273917748521174:b0g6d4sxowm&ie=UTF-8&q=CODA+-+Caltech+Collection+of+Open+Digital+Archives" data-action="https://cse.google.com/cse" data-input-name="q" data-hidden-fields="cx=005709273917748521174:b0g6d4sxowm&amp;ie=UTF-8" data-placeholder="Search Caltech’s Institutional Repository" title="Caltech’s Institutional Repository">CODA: Caltech Collections and Digital Archives</a>
         </li><!--  END: CODA: Caltech Collections and Digital Archives -->
         <li><!-- START: Website -->
             <a href="http://google.com/cse?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&q=Caltech+Library+Resources" data-action="http://google.com/cse" data-hidden-fields="cx=005709273917748521174:po9fevg5ksw&amp;ie=UTF-8" data-input-name="q" data-placeholder="Search the library website" title="Library and LibGuides">Website</a>
@@ -80,27 +80,8 @@
       </form>
     </div>
   </div><!--END .unified-search -->
-  <footer></footer>
-  <script src="js/modernizr.js">
-  </script>
-  <script src="js/search.js">
-  </script> <!-- END: Unified Search Box -->
-<script>
-/*not using for now.
-(function() {
-  // Google Search element
-  var cx = '005709273917748521174:b0g6d4sxowm';
-  var gcse = document.createElement('script');
-  gcse.type = 'text/javascript';
-  gcse.async = true;
-  gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-    '//cse.google.com/cse.js?cx=' + cx;
-  var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-})();
-*/
-</script>
-<gcse:search></gcse:search>
-                                             
+  <footer>page footer goes here.</footer>
+  <script src="js/search.js"><!--  START: Unified Search Box behaviors -->
+  </script><!--  END: Unified Search Box behaviors -->
 </body>
 </html>
