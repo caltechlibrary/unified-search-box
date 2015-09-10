@@ -5,10 +5,13 @@
  * @author R. S. Doiel, <rsdoiel@caltech.edu>
  */
  (function (window, document) {
+     "use strict";
      var menuElements = {},
+        i = 0,
+        currentElement = null,
+        filterUL = null,
         unifiedSearch = document.querySelector(".unified-search") || null,
         unifiedSearchFilter = document.querySelector(".unified-search-filter") || null,
-        currentElement = unifiedSearch.querySelector(".unified-search-resources li") || null,
         unifiedSearchForm = unifiedSearch.querySelector(".unified-search-box form") || null;
 
      function setVisibility(element, visible) {
@@ -16,7 +19,7 @@
          if (visible === "visible" && element.className != undefined && element.className.indexOf("hidden") > -1) {
             element.className = element.className.replace("hidden", "").trim();
          } else {
-            element.className += " hidden";
+            element.className = (element.className + " hidden").trim();
          }
      }
 
@@ -28,22 +31,23 @@
                  item.element.className = item.element.className.replace("selected", "").trim();
              }
              if (k == label) {
-                 item.element.className += " selected";
+                 item.element.className = (item.element.className + " selected").trim();
              }
          })
      }
 
      function selectFilterItem(element) {
-        var filterAnchors = document.querySelectorAll(".unified-search-filter a"),
+        var filterLIs = document.querySelectorAll(".unified-search-filter a"),
         i = 0;
-        if (filterAnchors !== null) {
-            for (i = 0; i < filterAnchors.length; i  += 1) {
-                if (filterAnchors[i].className.indexOf("selected") > -1) {
-                    filterAnchors[i].className = filterAnchors[i].className.replace("selected", "").trim();
+        console.log("DEBUG element type? "+element.textContent);
+        if (filterLIs !== null) {
+            for (i = 0; i < filterLIs.length; i  += 1) {
+                if (filterLIs[i].className.indexOf("selected") > -1) {
+                    filterLIs[i].className = filterLIs[i].className.replace("selected", "").trim();
                 }
             }
         }
-        element.className += " selected";
+        element.className = (element.className + " selected").trim();
      }
 
      // Detaches the selected node and returns the detacted node.
@@ -76,7 +80,9 @@
             queryBox.setAttribute("name", inputName);
         }
         placeholder = element.getAttribute("data-placeholder");
-        queryBox.setAttribute("placeholder", placeholder);
+        if (placeholder !== null) {
+            queryBox.setAttribute("placeholder", placeholder);
+        }
 
         action = element.getAttribute("data-action");
         if (action != null) {
@@ -107,7 +113,7 @@
                 child.setAttribute("value", hidden_fields[k]);
                 unifiedSearchForm.appendChild(child);
             });
-        }
+        }/* end of if (hidden !== null) */
     }
 
      function menuResourceHandler(evt) {
@@ -124,7 +130,10 @@
              detachChildElement(unifiedSearchFilter, "UL");
              if (menuItem.ul !== null) {
                  unifiedSearchFilter.innerHTML = "<h1>By</h1>";
+                 //FIXME: need to remove any stale selected attribute from element before display
                  unifiedSearchFilter.appendChild(menuItem.ul);
+             } else {
+                 unifiedSearchFilter.innerHTML = "";
              }
              // Update Action and method
              unifiedSearchForm.setAttribute("action", menuItem.action);
@@ -144,14 +153,13 @@
 
              queryBox.setAttribute("name", menuItem.inputName)
              queryBox.setAttribute("placeholder", menuItem.placeholder);
-             console.log("DEBUG form", unifiedSearchForm.action, unifiedSearchForm.method)
              setVisibility(unifiedSearchFilter, "visible");
          }
      }
 
      function attachFilterHandlers(ul) {
         var anchors = null,
-        i = 0;
+            i = 0;
         if (ul !== null) {
             anchors = ul.querySelectorAll("a");
             for (i = 0; i < anchors.length; i += 1) {
@@ -218,7 +226,7 @@
                  placeholder:placeholder,
                  ul: ul
             };
-        }
+        }/* end if (anchor !== null) */
      }
 
 
@@ -228,10 +236,10 @@
 
      // Validate box structure as one we know how to work with.
      //FIXME: Need to implement some sort of validation so that box can be managed via HTML only.
-
      // Make the search stuff hidden while we're building the new page functionality.
      setVisibility(unifiedSearch, "hidden");
      // Build a menu list and re-arrange things.
+     currentElement = unifiedSearch.querySelector(".unified-search-resources li") || null;
      while (currentElement != null) {
          if (currentElement.nodeName === "LI") {
              makeMenuElement(currentElement);
