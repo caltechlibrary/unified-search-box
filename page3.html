@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>page test</title>
+  <style>
+    .search {
+        display:block;
+        color: white;
+        background-color: blue;
+        text-transform: uppercase;
+        font-family: sans-serif;
+        padding: 0.5em;
+        text-align: center;
+    }
+    .search a {
+        text-transform: none;
+        color: #ccc;
+    }
+
+    .search div {
+        display: inline-block;
+    }
+
+    .search label {
+        max-height: 1.24em;
+    }
+
+    .hide {
+        display:none;
+        visibility: hidden;
+        width: 0;
+    }
+
+    .show {
+        display: block;
+        visibility: visible;
+    }
+    .show-inline {
+        display: inline-block;
+        visibility: visible;
+        width: auto;
+    }
+
+    .search select {
+        text-transform: uppercase;
+        color: white;
+        background-color: #ffa500; /* orange */
+        border: 0.24em solid #ff8c00; /* dark orange */
+        display:inline-block;
+        font-size: 0.84em;
+    }
+
+    .search input[type=search] {
+        position: relative;
+        font-size: 1.0em;
+        width: 24em;
+        display:inline-block;
+    }
+
+    .search button {
+        position: relative;
+        text-transform: uppercase;
+        color: white;
+        background-color: #ffa500; /* orange */
+        border: 0.24em solid #ff8c00; /* dark orange */
+        border-radius: 2.24em;
+        display:inline-block;
+        font-size: 1.0em;
+    }
+
+  </style>
+</head>
+<body>
+<p>
+    <!--
+    SEARCH TARGET | LABEL | DESCRIPTION
+    --------------|-------|------------------
+    EDS | Find It | Articles, Books, etc.
+    --------------|-------|------------------
+    TIND | Library Catalog | Books and Print Journals
+    --------------|-------|------------------
+    SFX | Find eJournals | Library Ejournal subscriptions
+    --------------|-------|------------------
+    TIND | Course Reserves |
+    --------------|-------|------------------
+    Google Custom Search | CODA: Caltech Collection of Digital Archives | Caltech’s Institutional Repository
+    --------------|-------|------------------
+    Google Custom Search | Website search | Library website and LibGuides
+    --------------|-------|------------------
+    Link to web page | More search tools and Help |
+    --------------|-------|------------------
+    -->
+<form class="search">
+<div>
+    <label for="resources">Search</label>
+    <select name="resources" class="resources">
+        <option value="eds">Fint It</option>
+        <option value="tind">Library Catalog</option>
+        <option value="sfx">Find eJounrals</option>
+        <option value="course-reserves">Course Reserves</option>
+        <option value="coda">CODA: Caltech Collection of Digital Archives</option>
+        <option value="website">Website</option>
+    </select>
+</div>
+<div>
+    <label>By</label>
+    <select class="books show-inline">
+        <option vlaue="keyword">Keyword</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="subject">Subject</option>
+    </select>
+    <select class="journals hide">
+        <option value="title">Journal Title</option>
+        <option value="author">Journal Author</option>
+        <option value="subject">Journal Subject</option>
+    </select>
+    <select class="articles hide">
+        <option value="title">Article Title</option>
+        <option value="author">Article Author</option>
+        <option value="subject">Article Subject</option>
+        <option value="keyword">Article Keyword</option>
+    </select>
+</div>
+<div><label>For</label>
+    <input name="q" type="search" >
+    <button>Search</button>
+</div>
+<p>(<a href="">More search tools and Help</a>)
+</form>
+<script>
+(function (doc, win) {
+    var search = document.querySelector(".search"),
+        resources = search.querySelector("select.resources"),
+        books = search.querySelector("select.books"),
+        journals = search.querySelector("select.journals"),
+        articles = search.querySelector("select.articles"),
+        searchInput = search.querySelector("input[type=search]"),
+        searchButton = search.querySelector("button");
+
+
+    resources.tabIndex = 1;
+    books.tabIndex = 2;
+    journals.tabIndex = 2;
+    articles.tabIndex = 2;
+    searchInput.tabIndex = 3;
+    searchButton.tabIndex = 4;
+
+    function showFilter(selector) {
+        var elem = search.querySelector(selector);
+        console.log("DEBUG showing fix selector: "+selector);
+        if (elem !== null) {
+            elem.className = (elem.className.replace("hide", "") + " show-inline").trim()
+            elem.focus();
+        }
+    }
+
+    function hideFilter(selector) {
+        var elem = resources.querySelector(selector);
+        console.log("DEBUG hiding fix selector: "+selector);
+        if (elem !== null) {
+            elem.className = elem.className.replace("show-inline", "");
+            elem.className += " hide";
+        }
+    }
+
+    function filterSelection (evt) {
+        var select = evt.target,
+            value = select.options[select.selectedIndex].value;
+
+        console.log("DEBUG selected: "+value);
+        switch(value) {
+            case 'journals':
+                hideFilter(".books");
+                hideFilter(".articles");
+                showFilter(".journals");
+                break;
+            case 'articles':
+                hideFilter(".books");
+                hideFilter(".journals");
+                showFilter(".articles");
+                break;
+            default:
+                hideFilter(".journals");
+                hideFilter(".articles");
+                showFilter(".books");
+        }
+    }
+
+    resources.addEventListener("change", filterSelection, false);
+}(document, window))
+</script>
+</p>
+</body>
+</html>
