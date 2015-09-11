@@ -169,17 +169,18 @@
             value = select.options[select.selectedIndex].value;
 
         console.log("DEBUG selected: "+value);
-        switch(value) {
-            case 'journals':
-                hideFilter(".books");
-                hideFilter(".articles");
-                showFilter(".journals");
-                break;
-            case 'articles':
+        switch (value) {
+            case "eds":
+            case "tind":
                 hideFilter(".books");
                 hideFilter(".journals");
                 showFilter(".articles");
                 break;
+            case "sfx":
+            case "course-reserves":
+            case "coda":
+            case "website":
+            case 'articles':
             default:
                 hideFilter(".journals");
                 hideFilter(".articles");
