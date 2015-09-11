@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>page test</title>
+  <style>
+  .search {
+    display: inline-block;
+  }
+
+  .search ul {
+    list-style-type: none;
+    background-color: lightgrey;
+  }
+
+  .search ul li ul {
+    position:absolute;
+    left: 20%;
+    display: none;
+  }
+
+  .search ul li:hover ul {
+    display: inline-block;
+  }
+  .search ul li a:focus {
+    color: red;
+  }
+  .search ul li a:focus ul {
+    display: inline-block;
+  }
+  </style>
+</head>
+<body>
+<p>
+  <ul class="search">
+    <li>Search
+      <ul>
+    <li><a href="#">Journals</a>
+      <ul>
+        <li><a href="#">Name</a></li>
+        <li><a href="#">Publisher</a></li>
+        <li><a href="#">Subject</a></li>
+        <li><a href="#">Keyword</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Books</a>
+      <ul>
+        <li><a href="#">Title</a></li>
+        <li><a href="#">Author</a></li>
+        <li><a href="#">Subject</a></li>
+        <li><a href="#">Publisher</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Articles</a>
+      <ul>
+        <li><a href="#">title</a></li>
+        <li><a href="#">author</a></li>
+        <li><a href="#">subject</a></li>
+        <li><a href="#">publication</a></li>
+        <li><a href="#">year</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</p>
+</body>
+</html>
