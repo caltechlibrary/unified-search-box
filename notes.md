@@ -14,8 +14,17 @@ For each the of the menu items.
 + build hard coded elements with ULs
 + after working, then try to bolt on 508 features possibly after roll out
 
+## Issues
+
++ weird chrome bug
++ re-inventing the select box
++ EDS form is very extensive which makes my data attributes bulky
+    + Final implementation my choose a different approach then data attributes
+
 
 ## background
+
+# ADA/508 references
 
 + [Section 508](http://www.section508.gov/) - how to comply
     + [ARIA](http://a11yproject.com/posts/getting-started-aria/)
