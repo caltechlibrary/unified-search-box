@@ -32,10 +32,6 @@
     }
 
     .show {
-        display: block;
-        visibility: visible;
-    }
-    .show-inline {
         display: inline-block;
         visibility: visible;
         width: auto;
@@ -103,24 +99,39 @@
     </select>
 </div>
 <div>
-    <label>By</label>
-    <select class="books show-inline">
-        <option vlaue="keyword">Keyword</option>
-        <option value="title">Title</option>
-        <option value="author">Author</option>
-        <option value="subject">Subject</option>
-    </select>
-    <select class="journals hide">
-        <option value="title">Journal Title</option>
-        <option value="author">Journal Author</option>
-        <option value="subject">Journal Subject</option>
-    </select>
-    <select class="articles hide">
-        <option value="title">Article Title</option>
-        <option value="author">Article Author</option>
-        <option value="subject">Article Subject</option>
-        <option value="keyword">Article Keyword</option>
-    </select>
+    <span class="books">
+        <label>By</label>
+        <select>
+            <option value="keyword">Keyword</option>
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="subject">Subject</option>
+        </select>
+    </span><!-- class="books"-->
+    <span class="journals hide">
+        <label>By</label>
+        <select>
+            <option value="title">Journal Title</option>
+            <option value="author">Journal Author</option>
+            <option value="subject">Journal Subject</option>
+        </select>
+    </span><!-- class="journals"-->
+    <span class="articles hide">
+        <label>By</label>
+        <select>
+            <option value="title">Article Title</option>
+            <option value="author">Article Author</option>
+            <option value="subject">Article Subject</option>
+            <option value="keyword">Article Keyword</option>
+        </select>
+    </span><!-- class="articles"-->
+    <span class="course-reserves hide">
+        <label>By</label>
+        <select>
+            <option value="cousre">Course</option>
+            <option value="instructor">Instructor</option>
+        </select>
+    </span>
 </div>
 <div><label>For</label>
     <input name="q" type="search" >
@@ -132,9 +143,10 @@
 (function (doc, win) {
     var search = document.querySelector(".search"),
         resources = search.querySelector("select.resources"),
-        books = search.querySelector("select.books"),
-        journals = search.querySelector("select.journals"),
-        articles = search.querySelector("select.articles"),
+        books = search.querySelector("span.books"),
+        journals = search.querySelector("span.journals"),
+        articles = search.querySelector("span.articles"),
+        reserves = search.querySelector("span.course-reserves"),
         searchInput = search.querySelector("input[type=search]"),
         searchButton = search.querySelector("button");
 
@@ -146,21 +158,21 @@
     searchInput.tabIndex = 3;
     searchButton.tabIndex = 4;
 
-    function showFilter(selector) {
-        var elem = search.querySelector(selector);
-        console.log("DEBUG showing fix selector: "+selector);
-        if (elem !== null) {
-            elem.className = (elem.className.replace("hide", "") + " show-inline").trim()
-            elem.focus();
-        }
-    }
+    function showFilter(selector, addClass, removeClass) {
+        var elem = search.querySelector(selector), s = "";
 
-    function hideFilter(selector) {
-        var elem = resources.querySelector(selector);
-        console.log("DEBUG hiding fix selector: "+selector);
+        console.log("DEBUG addClass: "+addClass);
+        console.log("DEBUG removeClass: "+removeClass);
         if (elem !== null) {
-            elem.className = elem.className.replace("show-inline", "");
-            elem.className += " hide";
+            console.log("DEBUG showing fix selector: "+selector);
+            s = elem.className;
+            if (s.indexOf(addClass) == -1) {
+                s = s.replace(removeClass, "");
+                s = s + " " + addClass;
+            }
+            elem.className = s.trim();
+            console.log("DEBUG show className: "+elem.className)
+            elem.focus();
         }
     }
 
@@ -172,19 +184,47 @@
         switch (value) {
             case "eds":
             case "tind":
-                hideFilter(".books");
-                hideFilter(".journals");
-                showFilter(".articles");
+                showFilter(".books", "show", "hide");
+                showFilter(".journals", "hide", "show");
+                showFilter(".articles", "hide", "show");
+                showFilter(".course-reserves", "hide", "show");
                 break;
             case "sfx":
+                showFilter(".books", "hide", "show");
+                showFilter(".journals", "show", "hide");
+                showFilter(".articles", "hide", "show");
+                showFilter(".course-reserves", "hide", "show");
+                break;
             case "course-reserves":
-            case "coda":
-            case "website":
+                showFilter(".books", "hide", "show");
+                showFilter(".journals", "hide", "show");
+                showFilter(".articles", "hide", "show");
+                showFilter(".course-reserves", "show", "hide");
+                break;
             case 'articles':
+                showFilter(".books", "hide", "show");
+                showFilter(".journals", "hide", "show");
+                showFilter(".articles", "show", "hide");
+                showFilter(".course-reserves", "hide", "show");
+                break;
+            case "coda":
+                showFilter(".books", "hide", "show");
+                showFilter(".journals", "hide", "show");
+                showFilter(".articles", "hide", "show");
+                showFilter(".course-reserves", "hide", "show");
+                break;
+            case "website":
+                showFilter(".books", "hide", "show");
+                showFilter(".journals", "hide", "show");
+                showFilter(".articles", "hide", "show");
+                showFilter(".course-reserves", "hide", "show");
+                break;
             default:
-                hideFilter(".journals");
-                hideFilter(".articles");
-                showFilter(".books");
+                showFilter(".books", "hide", "show");
+                showFilter(".journals", "hide", "show");
+                showFilter(".articles", "hide", "show");
+                showFilter(".course-reserves", "hide", "show");
+                break;
         }
     }
 

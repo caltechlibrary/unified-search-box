@@ -41,7 +41,6 @@ h1 {
     padding:0;
     list-style-type: none;
     min-width: 35%;
-    border: 0.24em solid blue;
 }
 
 
@@ -90,14 +89,12 @@ h1 {
     position: absolute !important;
     clip: rect(1px, 1px, 1px, 1px);
     padding: 0px !important;
-    border: 0px none !important;
     height: 1px !important;
     width: 1px !important;
     overflow: hidden;
 }
 
 .selected {
-    border: 1 px orange;
     color: white;
     background-color: orange;
 }
