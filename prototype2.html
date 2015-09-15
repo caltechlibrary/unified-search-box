@@ -93,7 +93,7 @@
     <label for="resources">Search</label>
     <select name="resources" class="resources">
         <option value="eds">Fint It</option>
-        <option value="tind">Library Catalog</option>
+        <option value="tind" selected>Library Catalog</option>
         <option value="sfx">Find eJounrals</option>
         <option value="course-reserves">Course Reserves</option>
         <option value="coda">CODA: Caltech Collection of Digital Archives</option>
@@ -101,7 +101,7 @@
     </select>
 </div>
 <div>
-    <span class="books">
+    <span class="books hide">
         <label>By</label>
         <select>
             <option value="keyword">Keyword</option>
@@ -141,15 +141,20 @@
 </div>
 <p>(<a href="">More search tools and Help</a>)
 </form>
+  <h3>Notes</h3>
+  <p>This is a demo of the look and feel or a form driven custom search. It has some advantages for easy ADA complience. 
+  The general approach would be to use the UL list for non-JavaScript enabled browsers and replace the UL list with a form
+  like this one if JavaScript is available.</p>
   </section>
   <nav>
      <ol>
         <li><a href="index.html">start</a></li>
         <li><a href="prototype1.html">prototype one</a></li>
         <li><a href="prototype2.html">prototype two</a></li>
+        <li><a href="prototype3.html">prototype three</a> (not implemented, a test of the EDS form)</li>
     </ol>
   </nav>
-  <footer>footer goes here.</footer>
+  <footer>No droids, here. You can move along.  Just so proof of concept prototypes.</footer>
 <script>
 (function (doc, win) {
     var search = document.querySelector(".search"),
@@ -187,13 +192,15 @@
         }
     }
 
-    function filterSelection (evt) {
-        var select = evt.target,
-            value = select.options[select.selectedIndex].value;
-
+    function refreshFilter(value) {
         console.log("DEBUG selected: "+value);
         switch (value) {
             case "eds":
+                showFilter(".books", "hide", "show");
+                showFilter(".journals", "hide", "show");
+                showFilter(".articles", "hide", "show");
+                showFilter(".course-reserves", "hide", "show");
+                break;
             case "tind":
                 showFilter(".books", "show", "hide");
                 showFilter(".journals", "hide", "show");
@@ -239,7 +246,15 @@
         }
     }
 
-    resources.addEventListener("change", filterSelection, false);
+    function filterChange (evt) {
+        var select = evt.target,
+            value = select.options[select.selectedIndex].value;
+        refreshFilter(value);
+    }
+
+    resources.addEventListener("change", filterChange, false);
+    // Now refresh the form based on default selection.
+    refreshFilter(resources.options[resources.selectedIndex].value);
 }(document, window))
 </script>
 </p>
