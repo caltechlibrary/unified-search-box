@@ -1,10 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 4.9.36">
-  <link href="css/page-basic.css" rel="stylesheet">
-  <link href="css/search.css" rel="stylesheet">
   <title>Unified Search Box Prototype</title>
+  <link href="css/page-basic.css" rel="stylesheet">
+  <style>
+/*
+ * These are classes for general layout
+ */
+body {
+   padding: 0em;
+   margin: 0.24em;
+   font-size: 16px;
+}
+
+h1 {
+    text-font-size: 1em;
+    text-transform: uppercase;
+}
+
+a, a:hover, a:link, a:active, a:visited, a:focus {
+    color: blue;
+}
+
+.unified-search {
+    max-width: 80%;
+    padding: 0.0em;
+    margin: 0.0em;
+}
+
+.unified-search h1 {
+    font-size: 1em;
+}
+
+.unified-search a, a:link, a:visited {
+    text-decoration: none;
+}
+
+.unified-search a:active, a:hover, a:focus {
+    color: white;
+    background-color: orange;
+}
+
+.unified-search-resources {
+    display: inline-block;
+    vertical-align: top;
+    min-width: 20%;
+    cursor: pointer;
+}
+
+.unified-search-resources ul {
+    padding:0;
+    list-style-type: none;
+    min-width: 35%;
+}
+
+
+.unified-search-filter {
+    display: inline-block;
+    vertical-align: top;
+    min-width: 20%;
+    cursor: pointer;
+}
+
+.unified-search-filter ul {
+    list-style-type: none;
+}
+
+.unified-search-filter a {
+    text-decoration: none;
+}
+
+.unified-search-filter a:visited a:active a:link a:hover  a:target {
+    color: blue;
+}
+
+.unified-search-box {
+    min-width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 1em;
+}
+
+.unified-search-box input {
+    vertical-align: bottom;
+    min-width: 42.0em;
+}
+
+.unified-search-icon {
+    vertical-align: top;
+}
+
+.more-tools {
+    text-transform: capitalize;
+    font-family: sans-serif;
+    font-size: 0.84em;
+}
+
+
+/*
+ * These are classes to attach visual behavoir
+ */
+.hidden {
+    visible: none;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0px !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+
+.selected {
+    color: white;
+    background-color: orange;
+}
+
+.selected a:visited {
+    color: white;
+    background-color: orange;
+}
+  </style>
 </head>
 <body>
   <header><h1>prototype 1</h1></header>
@@ -78,7 +196,7 @@
             <a href="http://google.com/cse?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&q=Caltech+Library+Resources" data-action="http://google.com/cse" data-hidden-fields="cx=005709273917748521174:po9fevg5ksw&amp;ie=UTF-8" data-input-name="q" data-placeholder="Search the library website" title="Library and LibGuides">Website</a>
         </li><!--  END: Website -->
         <li><!-- START: More search tools -->
-            <a href="http://libguides.caltech.edu/">More search tools</a>
+            (<a class="more-tools" href="http://libguides.caltech.edu/">More search tools</a>)
         </li>
       </ul><!--END .unified-search-resources -->
     </div>
@@ -102,10 +220,263 @@
         <li><a href="index.html">start</a></li>
         <li><a href="prototype1.html">prototype one</a></li>
         <li><a href="prototype2.html">prototype two</a></li>
+        <li><a href="prototype3.html">prototype three</a> (not implemented, a test of the EDS form)</li>
     </ol>
   </nav>
   <footer>page footer goes here.</footer>
-  <script src="js/search.js"><!--  START: Unified Search Box behaviors -->
+  <script><!--  START: Unified Search Box behaviors -->
+/**
+ * search.js - embed a unified search component for the Caltech library.
+ * Inspiration was MIT Library's search (source repository: https://github.com/mitlibraries-ux/MITlibraries-parent/blob/prod/js/search.js)
+ *
+ * @author R. S. Doiel, <rsdoiel@caltech.edu>
+ */
+ (function (window, document) {
+     "use strict";
+     var menuElements = {},
+        i = 0,
+        currentElement = null,
+        filterUL = null,
+        unifiedSearch = document.querySelector(".unified-search") || null,
+        unifiedSearchFilter = document.querySelector(".unified-search-filter") || null,
+        unifiedSearchForm = unifiedSearch.querySelector(".unified-search-box form") || null;
+
+     function setVisibility(element, visible) {
+         // If JavaScript is enabled then display the JavaScript dependent form.
+         if (visible === "visible" && element.className != undefined && element.className.indexOf("hidden") > -1) {
+            element.className = element.className.replace("hidden", "").trim();
+         } else {
+            element.className = (element.className + " hidden").trim();
+         }
+     }
+
+     function selectMenuItem(label) {
+         var labels = Object.keys(menuElements);
+         labels.forEach(function (k,i) {
+             var item = menuElements[k];
+             if (item.element.className.indexOf("selected") > -1) {
+                 item.element.className = item.element.className.replace("selected", "").trim();
+             }
+             if (k == label) {
+                 item.element.className = (item.element.className + " selected").trim();
+             }
+         })
+     }
+
+     function selectFilterItem(element) {
+        var filterLIs = document.querySelectorAll(".unified-search-filter a"),
+        i = 0;
+        console.log("DEBUG element type? "+element.textContent);
+        if (filterLIs !== null) {
+            for (i = 0; i < filterLIs.length; i  += 1) {
+                if (filterLIs[i].className.indexOf("selected") > -1) {
+                    filterLIs[i].className = filterLIs[i].className.replace("selected", "").trim();
+                }
+            }
+        }
+        element.className = (element.className + " selected").trim();
+     }
+
+     // Detaches the selected node and returns the detacted node.
+     function detachChildElement(element, selector) {
+         var child = element.querySelector(selector);
+         if (child == null) {
+             return null;
+         }
+         return element.removeChild(child);
+     }
+
+    function menuFilterHandler(evt) {
+        var element = evt.currentTarget,
+        action = "",
+        label = "",
+        placeholder = "",
+        hidden = "",
+        hidden_fields = {},
+        parts = [],
+        label = element.textContent.trim(),
+        inputName = "",
+        queryBox = document.getElementById("unified-query-box");
+
+        selectFilterItem(element);
+        evt.preventDefault();
+        label = element.textContent;
+
+        inputName = element.getAttribute("data-input-name");
+        if (inputName !== null) {
+            queryBox.setAttribute("name", inputName);
+        }
+        placeholder = element.getAttribute("data-placeholder");
+        if (placeholder !== null) {
+            queryBox.setAttribute("placeholder", placeholder);
+        }
+
+        action = element.getAttribute("data-action");
+        if (action != null) {
+            unifiedSearchForm.setAttribute("action", action);
+        }
+        hidden = element.getAttribute("data-hidden-fields");
+        if (hidden != null) {
+            if (hidden.indexOf("&") > -1) {
+                parts = hidden.split("&");
+                parts.forEach(function (item, i) {
+                    var kv = item.split("=", 2);
+                    hidden_fields[decodeURI(kv[0])] = decodeURI(kv[1]);
+                });
+            } else {
+                parts = hidden.split("=", 2);
+                hidden_fields[decodeURI(parts[0])] = decodeURI(parts[1]);
+            }
+            // Add the fields to the existing search form.
+            Object.keys(hidden_fields).forEach(function (k, i) {
+                // Check if the field exists, add it if needed otherwise
+                // update the value
+                var child = unifiedSearchForm.querySelector("input[name=" + k + "]");
+                if (child == null) {
+                    child = document.createElement("input");
+                }
+                child.setAttribute("type", "hidden");
+                child.setAttribute("name", k);
+                child.setAttribute("value", hidden_fields[k]);
+                unifiedSearchForm.appendChild(child);
+            });
+        }/* end of if (hidden !== null) */
+    }
+
+     function menuResourceHandler(evt) {
+         var element = evt.currentTarget,
+            label = element.textContent,
+            menuItem = menuElements[label],
+            queryBox = document.getElementById("unified-query-box"),
+            child = null;
+
+         evt.preventDefault();
+
+         if (menuItem !== undefined) {
+             selectMenuItem(label);
+             detachChildElement(unifiedSearchFilter, "UL");
+             if (menuItem.ul !== null) {
+                 unifiedSearchFilter.innerHTML = "<h1>By</h1>";
+                 //FIXME: need to remove any stale selected attribute from element before display
+                 unifiedSearchFilter.appendChild(menuItem.ul);
+             } else {
+                 unifiedSearchFilter.innerHTML = "";
+             }
+             // Update Action and method
+             unifiedSearchForm.setAttribute("action", menuItem.action);
+             unifiedSearchForm.setAttribute("method", menuItem.method);
+             // Remove any stale hidden fields
+             do {
+                 child = detachChildElement(unifiedSearchForm, "input[type=hidden]");
+             }  while (child != null);
+             // Add any additional hidden fields needed
+             Object.keys(menuItem.hidden_fields).forEach(function(field, i) {
+                 var child = document.createElement("input");
+                 child.setAttribute("type", "hidden");
+                 child.setAttribute("name", field);
+                 child.setAttribute("value", menuItem.hidden_fields[field]);
+                 unifiedSearchForm.appendChild(child);
+             })
+
+             queryBox.setAttribute("name", menuItem.inputName)
+             queryBox.setAttribute("placeholder", menuItem.placeholder);
+             setVisibility(unifiedSearchFilter, "visible");
+         }
+     }
+
+     function attachFilterHandlers(ul) {
+        var anchors = null,
+            i = 0;
+        if (ul !== null) {
+            anchors = ul.querySelectorAll("a");
+            for (i = 0; i < anchors.length; i += 1) {
+                if (anchors[i].getAttribute("data-action") || anchors[i].getAttribute("data-hidden-fields")) {
+                    anchors[i].addEventListener('click', menuFilterHandler, false);
+                }
+            }
+        }
+     }
+
+     function makeMenuElement(element) {
+         var anchor = element.querySelector("A"),
+            label = "",
+            method = "GET",
+            action = "",
+            placeholder = "",
+            inputName = "",
+            ul = null,
+            parts = [],
+            hidden_fields = {},
+            hidden = "",
+            k = "",
+            v = "";
+
+        if (anchor !== null) {
+            label = anchor.textContent || "";
+            method = anchor.getAttribute("data-method") || "GET";
+            action = anchor.getAttribute("data-action") || "";
+            placeholder = anchor.getAttribute("data-placeholder") || "";
+            inputName = anchor.getAttribute("data-input-name") || "";
+            hidden = anchor.getAttribute("data-hidden-fields") || "";
+
+            if (action !== "") {
+                anchor.addEventListener('click', menuResourceHandler, false);
+                anchor.addEventListener('focus', menuResourceHandler, false);
+                ul = detachChildElement(element, "UL");
+                attachFilterHandlers(ul);
+                if (hidden.trim() !== "") {
+                    if (hidden.indexOf("&") > -1) {
+                        parts = hidden.split("&");
+                        parts.forEach(function (item, i) {
+                            var kv = item.split("="),
+                                k = decodeURI(kv[0]),
+                                v = decodeURI(kv[1]);
+                            if (k != inputName) {
+                                hidden_fields[k] = v;
+                            }
+                        });
+                    } else if (hidden.indexOf("&") > -1) {
+                        parts = hidden.split("=");
+                        k = decodeURI(parts[0]);
+                        v = decodeURI(parts[1]);
+                        hidden_fields[k] = v;
+                    }
+                }
+            }
+            menuElements[label] = {
+                 label: label,
+                 element: element,
+                 method: method,
+                 action: action,
+                 hidden_fields: hidden_fields,
+                 inputName: inputName,
+                 placeholder:placeholder,
+                 ul: ul
+            };
+        }/* end if (anchor !== null) */
+     }
+
+
+     //
+     // Main processing for unified search box
+     //
+
+     // Validate box structure as one we know how to work with.
+     //FIXME: Need to implement some sort of validation so that box can be managed via HTML only.
+     // Make the search stuff hidden while we're building the new page functionality.
+     setVisibility(unifiedSearch, "hidden");
+     // Build a menu list and re-arrange things.
+     currentElement = unifiedSearch.querySelector(".unified-search-resources li") || null;
+     while (currentElement != null) {
+         if (currentElement.nodeName === "LI") {
+             makeMenuElement(currentElement);
+         }
+         currentElement = currentElement.nextSibling;
+     }
+
+     // We should be ready to go so, make the unified search box visible!
+     setVisibility(unifiedSearch, "visible");
+ }(window, document))
   </script><!--  END: Unified Search Box behaviors -->
 </body>
 </html>
