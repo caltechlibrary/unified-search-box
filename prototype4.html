@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UL with Firefox</title>
+    <link href="css/page-basic.css" rel="stylesheet">
+    <style>
+input[type=search] {
+    width: 10em;
+    font-size: 1.5em;
+}
+
+.search-dropdown-selected {
+    position:relative;
+    display: inline-block;
+    width:16.0em;
+    padding:5px;
+    border:1px solid black;
+    height:20px
+}
+
+.search-dropdown-select-button {
+    position: absolute;
+    display: inline-block;
+    padding:0.24em;
+    border:1px solid black;
+    height:1.42em;
+    width:4.0em;
+    text-decoration:none;
+    font-family:helvetica;
+    text-align:center;
+}
+
+.search-dropdown {
+    position:relative;
+    width: 22.0em;
+    background-color: grey;
+}
+
+.search-dropdown ul {
+    position:absolute;
+    top:27px;
+    left:0;
+    list-style:none;
+    margin:0;
+    display:none;
+    padding:0;
+}
+
+.search-dropdown ul li {
+    padding:5px;   
+    background-color: grey;
+}
+
+.search-label {
+    display: inline-block;
+    position:relative;
+    font-size: 1.24em;
+    color: black;
+    text-transform: lowercase;
+    vertical-align: top;
+}
+
+.primary {
+    display: block;
+    font-size: 1.0em;
+    color: black;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.secondary {
+    display: block;
+    font-size: 0.82em;
+    color: white;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+#resources {
+    display: inline-block;
+    position: relative;
+}
+
+#filters {
+    display: inline-block;
+    position: relative;
+}
+
+#query-input {
+    display: inline-block;
+    position: relative;
+}
+
+    </style>
+</head>
+<body>
+<header>
+    <h1>UL only approach in Firefox</h1>
+</header>
+<section>
+    <div class="search-label">Search</div>
+    <div id="resources" class="search-dropdown">
+        <div class="search-dropdown-selected"></div>
+        <a href="#" class="search-dropdown-select-button">v</a>
+        <ul>
+            <li><span class="primary">Find It</span> <span class="secondary">Articles, Books, etc.</span></li>
+            <li><span class="primary">Library Catalog</span> <span class="secondary">Books and Print Journals</span></li>
+            <li><span class="primary">Find eJournals</span> <span class="secondary">Library eJournal Subscriptions</span></li>
+            <li><span class="primary">Course Reserves</span></li>
+            <li><span class="primary">CODA: Caltech Collection of Digital Archives</span> <span class="secondary">Caltech's Institutional Repository</span></li>
+            <li><span class="primary">Search Website</span> <span class="secondary">Library website and LibGuides</span></li>
+        </ul>
+    </div><!-- END: id="resources" -->
+    <div class="search-label">By</div>
+    <div id="filters" class="search-dropdown">
+        <div class="search-dropdown-selected"></div>
+        <a href="#" class="search-dropdown-select-button">v</a>
+        <ul>
+            <li><span class="primary">one</span></li>
+            <li><span class="primary">two</span></li>
+            <li><span class="primary">three</span></li>
+            <li><span class="primary">four</span></li>
+            <li><span class="primary">five</span></li>
+        </ul>
+    </div><!-- END: id="filter" -->
+    <div class="search-label">For</div>
+    <div id="query-input">
+        <input type="search" size="60">
+        <button>Search</button>
+    </div><!-- END: id="query-input" -->
+    <div class="search-more-tools">
+    (More search tools)
+    </div>
+    <script>
+(function (window, document) {
+    "use strict";
+var resource = document.getElementById("resources"),
+    resourceButton = resource.querySelector(".search-dropdown-select-button"),
+    filter = document.getElementById("filters"),
+    filterButton = filter.querySelector(".search-dropdown-select-button");
+
+function showDropdown(element){
+    var listElement = element.parentNode.getElementsByTagName('ul').item(0);
+    if (listElement.getAttribute('style')=="display:inline-block;") {
+        listElement.setAttribute('style','display:none;');
+    } else {
+        listElement.setAttribute('style','display:inline-block;');
+    }
+}
+
+function dropdownEventHandler(evt) {
+    var elem = evt.target;
+
+    if (elem !== null) {
+        showDropdown(elem);
+    }
+}
+
+resourceButton.addEventListener("click", dropdownEventHandler, false);
+filterButton.addEventListener("click", dropdownEventHandler, false);
+}(window, document))
+    </script>
+    <!-- 
+    SEARCH TARGET | LABEL | DESCRIPTION
+    --------------|-------|------------------
+    EDS           | Find It | Articles, Books, etc.
+    --------------|-------|------------------
+    TIND          | Library Catalog | Books and Print Journals
+    --------------|-------|------------------
+    SFX           | Find eJournals | Library Ejournal subscriptions
+    --------------|-------|------------------
+    TIND          | Course Reserves |
+    --------------|-------|------------------
+    Google Custom Search | CODA: Caltech Collection of Digital Archives | Caltech’s Institutional Repository
+    --------------|-------|------------------
+    Google Custom Search | Website search | Library website and LibGuides
+    --------------|-------|------------------
+    Link to web page | More search tools and Help |
+    --------------|-------|------------------
+    -->
+    <div>
+    <h2>references</h2>
+    <p>Example CSS/JS implementations</p>
+    <ul>
+        <li><a href="http://jsfiddle.net/q5SEF/3/">jsfiddle</a> (menu behavior)</li>
+        <li><a href="http://jsfiddle.net/starx/a6njk/3/">jsfiddle</a> (get value)</li>
+    </ul>
+    </div>
+</section>
+<nav>
+   <ol>
+      <li><a href="index.html">start</a></li>
+      <li><a href="prototype1.html">prototype one</a></li>
+      <li><a href="prototype2.html">prototype two</a></li>
+      <li><a href="prototype3.html">prototype three</a> (not implemented, a test of the EDS form)</li>
+      <li><a href="prototype4.html">prototype four</a></li>
+  </ol>
+</nav>
+  <footer>No droids, here. We're of no interest. Move along.</footer>
+<script>
+</script>
+</body>
+</html>
