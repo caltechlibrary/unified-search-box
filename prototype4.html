@@ -195,9 +195,25 @@
     "use strict";
     var resources = document.getElementById("usb-search-resources"),
         resourcesSelectButton = resources.querySelector(".usb-menu-select-button"),
+        resourcesMenuItems = resources.querySelectorAll(".usb-menu-item-primary a"),
         filters = document.getElementById("usb-search-filters"),
-        filtersSelectButton = filters.querySelector(".usb-menu-select-button");
+        filtersSelectButton = filters.querySelector(".usb-menu-select-button"),
+        filtersMenuItems = filters.querySelectorAll(".usb-menu-item-primary a"),
+        i = 0;
 
+
+    function findParentOfTagName(elem, tagName) {
+        // Walk up to the parent of the UL.
+        var cur = elem, prev = null;
+        while (cur !== null) {
+            prev = cur;
+            cur = prev.parentNode;
+            if (prev.tagName === tagName) {
+                break;
+            }
+        }
+        return cur;
+    }
 
     function menuEventHandler(evt) {
         var elem = evt.target;
@@ -205,34 +221,55 @@
         if (elem !== null) {
           switch(elem.tagName.toLowerCase()) {
             case 'a':
-              toggleMenu(elem);
+              toggleMenu(elem.parentNode);
               break;
             case 'path':
-              toggleMenu(elem.parentNode.parentNode);
+              toggleMenu(elem.parentNode.parentNode.parentNode);
               break;
             default:
-              toggleMenu(elem.parentNode);
+              toggleMenu(elem.parentNode.parentNode);
               break;
           }
         }
     }
 
     function toggleMenu(element){
-        var listElement = element.parentNode.getElementsByTagName('ul').item(0);
+        var ul = element.getElementsByTagName('ul').item(0);
 
-        if (listElement.getAttribute('style')=="display:inline-block;") {
-            listElement.setAttribute('style','display:none;');
+        if (ul.getAttribute('style')=="display:inline-block;") {
+            ul.setAttribute('style','display:none;');
         } else {
-            listElement.setAttribute('style','display:inline-block;');
+            ul.setAttribute('style','display:inline-block;');
         }
     }
 
-    resourcesSelectButton.addEventListener("click", menuEventHandler, false);
-    filtersSelectButton.addEventListener("click", menuEventHandler, false);
+    function addMenuItemListener(elem, eventName, listener, useCapture) {
+      elem.addEventListener(eventName, listener, useCapture);
+    }
 
-    /* Add keyboard handling to menu pulldowns */
+    function menuItemEventHandler(evt) {
+      var elem = evt.target;
+      var cur = findParentOfTagName(elem, "UL");
+      console.log("DEBUG elem.tagName, elem.textContent? "+elem.tagName+" -> "+elem.textContent);
+      //FIXME: update resource/filter selection.
+      //FIXME: Need to set focus to next item (e.g. filters or search input box)
+      toggleMenu(cur);
+    }
+
+    /* Add mouse handling to menu */
+    resourcesSelectButton.addEventListener("click", menuEventHandler, false);
+    for (i = 0; i < resourcesMenuItems.length; i++) {
+       addMenuItemListener(resourcesMenuItems[i], "click", menuItemEventHandler, false);
+    }
+    filtersSelectButton.addEventListener("click", menuEventHandler, false);
+    for (i = 0; i < filtersMenuItems.length; i++) {
+       addMenuItemListener(filtersMenuItems[i], "click", menuItemEventHandler, false);
+    }
+
+    /* Add keyboard tab handling to menu */
     resourcesSelectButton.addEventListener("focus", menuEventHandler, false);
     filtersSelectButton.addEventListener("focus", menuEventHandler, false);
+
 }(window, document));
     </script>
     <!--
