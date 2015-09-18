@@ -46,7 +46,7 @@ section {
 
 form {
     margin: 0;
-    padding; 0;
+    padding: 0;
 }
 
 p {
@@ -55,7 +55,6 @@ p {
 
 nav {
     display: block;
-    text-align: bottom;
     padding-top: 10em;
     padding-bottom: 0;
     padding-left: 0.24em;
