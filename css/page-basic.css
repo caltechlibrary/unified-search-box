@@ -15,7 +15,7 @@ header {
     color: white;
     background-color: blue;
     height: auto;
-    border-bottom: 0.24em solid orange;
+    border-bottom: 0.24em solid teal;
 }
 
 h1 {
@@ -72,6 +72,6 @@ footer {
     color: white;
     background-color: blue;
     height: auto;
-    border-top: 0.24em solid orange;
+    border-top: 0.24em solid teal;
     text-align: center;
 }

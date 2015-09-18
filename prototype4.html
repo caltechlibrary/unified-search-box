@@ -5,7 +5,7 @@
     <link href="css/page-basic.css" rel="stylesheet">
     <style>
 .usb-searchbox {
-  padding-top: 1.24em;
+  margin-top: 1.24em;
   color: black;
   background-color: white;
 }
@@ -129,6 +129,12 @@
     overflow: hidden;
 }
 
+.usb-more-search-tools {
+  width: 100%;
+  font-size: 0.84em;
+  text-align: center;
+}
+
 #usb-search-resources {
     display: inline-block;
     position: relative;
@@ -146,7 +152,7 @@
     <h1>UL only approach in Firefox</h1>
 </header>
 <section>
-  <div id="usb-searchbox">
+  <div id="usb-searchbox" class="usb-searchbox">
     <div class="usb-menu-label">Search</div>
     <div id="usb-search-resources" class="usb-menu">
         <div class="usb-menu-selected"></div>
@@ -172,7 +178,7 @@
             <li><span class="usb-menu-item-primary"><a href="#">one</a></span></li>
             <li><span class="usb-menu-item-primary"><a href="#">two</a></span></li>
             <li><span class="usb-menu-item-primary"><a href="#">three</a></span></li>
-            <li><span class="usb-menu-item-primary"><a ref="#">four</a></span></li>
+            <li><span class="usb-menu-item-primary"><a href="#">four</a></span></li>
             <li><span class="usb-menu-item-primary"><a href="#">five</a></span></li>
         </ul>
     </div><!-- END: id="filter" -->
@@ -186,7 +192,7 @@
             </svg>
         </button>
     </div><!-- END: class="usb-query-input" -->
-    <div class="usb-swarch-more-tools">
+    <div class="usb-more-search-tools">
     (More search tools)
     </div>
   </div><!-- END: id="usb-searchvox" -->
@@ -199,6 +205,7 @@
         filters = document.getElementById("usb-search-filters"),
         filtersSelectButton = filters.querySelector(".usb-menu-select-button"),
         filtersMenuItems = filters.querySelectorAll(".usb-menu-item-primary a"),
+        searchQueryInput = document.getElementById("usb-query-input"),
         i = 0;
 
 
@@ -253,6 +260,14 @@
       console.log("DEBUG elem.tagName, elem.textContent? "+elem.tagName+" -> "+elem.textContent);
       //FIXME: update resource/filter selection.
       //FIXME: Need to set focus to next item (e.g. filters or search input box)
+      if (cur.id && cur.id === "usb-search-resources") {
+         // Find filters select button.
+         filtersSelectButton.focus();
+      } else {
+        cur.parentNode.querySelector("input[type=search]").focus();
+      }
+      console.log("DEBUG cur className? "+cur.className+" id: "+cur.getAttribute("id"));
+      console.log("DEBUG parent className? "+cur.parentNode.className);
       toggleMenu(cur);
     }
 
