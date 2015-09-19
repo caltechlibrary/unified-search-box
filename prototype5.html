@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unified Search Box prototypes</title>
+  <link href="css/page-basic.css" rel="stylesheet">
+  <style>
+.usb-searchbox {
+  display: block;
+  position: relative;
+  padding: 1.0em;
+  color: black;
+  background-color: white;
+}
+
+.usb-menu {
+    position:relative;
+    min-width: 20%;
+    height: auto;
+    font-size: 1.0em;
+    color: white;
+    background-color: blue;
+    border-radius: 0.24em;
+}
+
+.usb-menu ul {
+    position:absolute;
+    display:none;
+    top:0;
+    left:0;
+    list-style:none;
+    margin:1.72em;
+    padding:0.24em;
+    border: 0.12em solid darkblue;
+    background-color: inherit;
+    box-shadow: 0.12em 0.12em darkblue;
+}
+
+.usb-menu ul li {
+  border-bottom: 0.12em solid black;
+}
+
+.usb-menu ul li:last-child {
+  border: none;
+}
+
+.usb-menu-selected {
+    position:relative;
+    display: inline-block;
+    width:90%;
+    padding-left: 2%;
+}
+
+.usb-menu-select-button {
+    position: relative;
+    display: inline-block;
+    width: 4%;
+    font-family:helvetica;
+    text-decoration:none;
+    text-align:center;
+}
+
+.usb-menu-label {
+    display: inline-block;
+    position:relative;
+}
+
+.usb-menu-item-primary {
+    display: block;
+    font-weight: bold;
+    text-transform: none;
+    text-align: left;
+}
+
+.usb-menu-item-primary a, .usb-menu-item-primary a:link, .usb-menu-item-primary a.active, .usb-menu-item-secondary a:visited {
+    text-decoration: none;
+    color: white;
+    background-color: blue;
+}
+
+.usb-menu-item-primary a:hover, .usb-menu-item-primary a:focus {
+    text-decoration: none;
+    color: blue;
+    background: white  ;
+}
+
+.usb-menu-item-secondary {
+    display: block;
+    font-weight: lighter;
+    text-transform: none;
+    text-decoration: none;
+    text-align: left;
+}
+
+.usb-menu-item-selected {
+    text-decoration: underline;
+}
+
+.usb-query-input {
+    display: inline-block;
+    position: relative;
+    min-width: 20%;
+    max-width: 60%;
+}
+
+.usb-query-input > input[type=search] {
+    padding: 0;
+    margin: 0;
+}
+
+.usb-more-search-tools {
+    width: 100%;
+    text-align: center;
+}
+
+.usb-more-search-tools a {
+  color: blue;
+}
+
+#usb-search-resources {
+    display: inline-block;
+    position: relative;
+}
+
+#usb-search-filters {
+    display: inline-block;
+    position: relative;
+}
+  </style>
+</head>
+<body>
+  <header><h1>Prototype 5</h1></header>
+  <section>
+  <div id="usb-searchbox" class="usb-searchbox">
+    <div class="usb-menu-label">Search</div>
+    <div id="usb-search-resources" class="usb-menu">
+        <div class="usb-menu-selected">Find It</div>
+        <a href="#" class="usb-menu-select-button"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8.071px" height="14px" viewBox="0 0 8.071 14" enable-background="new 0 0 8.071 14" xml:space="preserve">
+            <path d="M0.069 8.74c0.08-0.159 0.252-0.264 0.436-0.274 0.023 0 1.743-0.104 3.531-0.104s3.508 0.104 3.53 0.104C7.751 8.476 7.911 8.581 8.003 8.74c0.092 0.161 0.092 0.356 0 0.517 -1.364 2.431-3.508 4.517-3.6 4.598 -0.206 0.194-0.528 0.194-0.734 0 -0.091-0.081-2.235-2.167-3.6-4.598C-0.023 9.096-0.023 8.901 0.069 8.74M8.003 5.259c-0.08 0.16-0.252 0.264-0.437 0.275 -0.022 0-1.742 0.103-3.53 0.103S0.528 5.535 0.505 5.535C0.321 5.523 0.161 5.419 0.069 5.259c-0.092-0.161-0.092-0.355 0-0.516 1.365-2.431 3.508-4.517 3.6-4.598 0.206-0.194 0.528-0.194 0.734 0 0.092 0.081 2.235 2.167 3.6 4.598C8.095 4.904 8.095 5.099 8.003 5.259"></path>
+        </svg></a>
+        <ul>
+            <li><span class="usb-menu-item-primary"><a href="#" class="usb-menu-item-selected">Find It</a></span> <span class="usb-menu-item-secondary">Articles, Books, etc.</span></li>
+            <li><span class="usb-menu-item-primary"><a href="#">Library Catalog</a></span> <span class="usb-menu-item-secondary">Books and Print Journals</span></li>
+            <li><span class="usb-menu-item-primary"><a href="#">Find eJournals</a></span> <span class="usb-menu-item-secondary">Library eJournal Subscriptions</span></li>
+            <li><span class="usb-menu-item-primary"><a href="#">Course Reserves</a></span></li>
+            <li><span class="usb-menu-item-primary"><a href="#">CODA: Caltech Collection of Digital Archives</a></span> <span class="usb-menu-item-secondary">Caltech's Institutional Repository</span></li>
+            <li><span class="usb-menu-item-primary"><a href="#">Search Website</a></span> <span class="usb-menu-item-secondary">Library website and LibGuides</span></li>
+        </ul>
+    </div><!-- END: id="resources" -->
+    <div class="usb-menu-label">By</div>
+    <div id="usb-search-filters" class="usb-menu">
+        <div class="usb-menu-selected">one</div>
+        <a href="#" class="usb-menu-select-button"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8.071px" height="14px" viewBox="0 0 8.071 14" enable-background="new 0 0 8.071 14" xml:space="preserve">
+            <path d="M0.069 8.74c0.08-0.159 0.252-0.264 0.436-0.274 0.023 0 1.743-0.104 3.531-0.104s3.508 0.104 3.53 0.104C7.751 8.476 7.911 8.581 8.003 8.74c0.092 0.161 0.092 0.356 0 0.517 -1.364 2.431-3.508 4.517-3.6 4.598 -0.206 0.194-0.528 0.194-0.734 0 -0.091-0.081-2.235-2.167-3.6-4.598C-0.023 9.096-0.023 8.901 0.069 8.74M8.003 5.259c-0.08 0.16-0.252 0.264-0.437 0.275 -0.022 0-1.742 0.103-3.53 0.103S0.528 5.535 0.505 5.535C0.321 5.523 0.161 5.419 0.069 5.259c-0.092-0.161-0.092-0.355 0-0.516 1.365-2.431 3.508-4.517 3.6-4.598 0.206-0.194 0.528-0.194 0.734 0 0.092 0.081 2.235 2.167 3.6 4.598C8.095 4.904 8.095 5.099 8.003 5.259"></path>
+        </svg></a>
+        <ul>
+            <li><span class="usb-menu-item-primary"><a href="#" class="usb-menu-item-selected">one</a></span></li>
+            <li><span class="usb-menu-item-primary"><a href="#">two</a></span></li>
+            <li><span class="usb-menu-item-primary"><a href="#">three</a></span></li>
+            <li><span class="usb-menu-item-primary"><a href="#">four</a></span></li>
+            <li><span class="usb-menu-item-primary"><a href="#">five</a></span></li>
+        </ul>
+    </div><!-- END: id="filter" -->
+    <div class="usb-menu-label">For</div>
+    <div class="usb-query-input">
+        <input type="search">
+        <button><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="16" viewBox="0 0 12 12" aria-hidden="true" class="icon-search">
+                <path d="M7.273 0.727q1.187 0 2.19 0.585t1.588 1.588 0.585 2.19-0.585 2.19-1.588 1.588-2.19 0.585q-1.278 0-2.33-0.676l-3.284 3.301q-0.295 0.284-0.688 0.284-0.403 0-0.688-0.284t-0.284-0.688 0.284-0.688l3.301-3.284q-0.676-1.051-0.676-2.33 0-1.188 0.585-2.19t1.588-1.588 2.19-0.585zM7.273 8q0.591 0 1.128-0.23t0.929-0.622 0.622-0.929 0.23-1.128-0.23-1.128-0.622-0.929-0.929-0.622-1.128-0.23-1.128 0.23-0.929 0.622-0.622 0.929-0.23 1.128 0.23 1.128 0.622 0.929 0.929 0.622 1.128 0.23z"></path>
+        </svg></button>
+    </div><!-- END: class="usb-query-input" -->
+    <div class="usb-more-search-tools">
+    (<a href="http://libguides.caltech.edu/">More search tools</a>)
+    </div>
+  </div><!-- END: id="usb-searchbox" -->
+  <script>
+(function (document, window) {
+    "use strict";
+    var resources = document.getElementById("usb-search-resources"),
+        resourcesSelectButton = resources.querySelector(".usb-menu-select-button"),
+        resourcesMenuItems = resources.querySelectorAll(".usb-menu-item-primary a"),
+        filters = document.getElementById("usb-search-filters"),
+        filtersSelectButton = filters.querySelector(".usb-menu-select-button"),
+        filtersMenuItems = filters.querySelectorAll(".usb-menu-item-primary a"),
+        searchQueryInput = document.getElementById("usb-query-input"),
+        i = 0;
+
+    function addClass(elem, className) {
+        var currentClasses = elem.className || "";
+        if (currentClasses.indexOf(className) === -1) {
+           elem.className = (currentClasses+" "+className).trim();
+        }
+    }
+
+    function removeClass(elem, className) {
+        var currentClasses = elem.className || "";
+        if (currentClasses.indexOf(className) !== -1) {
+           elem.className = currentClasses.replace(className, "").replace("  ", " ");
+        }
+    }
+
+    function getParentOfTagName(elem, tagName) {
+        // Walk up to the parent of the UL.
+        var cur = elem, prev = null;
+        while (cur !== null) {
+          console.log("DEBUG walking? "+cur.tagName);
+            prev = cur;
+            cur = prev.parentNode;
+            if (prev.tagName === tagName) {
+                break;
+            }
+        }
+        return cur;
+    }
+
+    function menuEventHandler(evt) {
+        var elem = evt.target;
+        // we don't use parent of UL here since we're already in a set of nested divs here.
+        if (elem !== null) {
+            switch(elem.tagName.toLowerCase()) {
+            case 'a':
+                toggleMenu(elem.parentNode);
+                break;
+            case 'path':
+                toggleMenu(elem.parentNode.parentNode.parentNode);
+                break;
+            default:
+                toggleMenu(elem.parentNode.parentNode);
+                break;
+            }
+        }
+    }
+
+    function toggleMenu(element){
+        var ul = element.getElementsByTagName('ul').item(0);
+
+        if (ul.getAttribute('style')=="display:inline-block;") {
+            ul.setAttribute('style','display:none;');
+        } else {
+            ul.setAttribute('style','display:inline-block;');
+        }
+    }
+
+    function addMenuItemListener(elem, eventName, listener, useCapture) {
+      elem.addEventListener(eventName, listener, useCapture);
+    }
+
+    function menuItemEventHandler(evt) {
+      var elem = evt.target;
+      var cur = getParentOfTagName(elem, "UL"),
+          menuSelected = cur.querySelector(".usb-menu-selected"),
+          previouslySelected = cur.querySelector(".usb-menu-item-selected");
+      if (previouslySelected !== null) {
+          removeClass(previouslySelected, "usb-menu-item-selected");
+      }
+      addClass(elem, "usb-menu-item-selected");
+      menuSelected.textContent = elem.textContent;
+      console.log("DEBUG elem.tagName, elem.textContent? "+elem.tagName+" -> "+elem.textContent);
+      //FIXME: update resource/filter selection.
+
+      if (cur.id && cur.id === "usb-search-resources") {
+         // Find filters select button.
+         filtersSelectButton.focus();
+      } else {
+        cur.parentNode.querySelector("input[type=search]").focus();
+      }
+      toggleMenu(cur);
+    }
+
+    /* Add mouse handling to menu */
+    resourcesSelectButton.addEventListener("click", menuEventHandler, false);
+    for (i = 0; i < resourcesMenuItems.length; i++) {
+       addMenuItemListener(resourcesMenuItems[i], "click", menuItemEventHandler, false);
+    }
+    filtersSelectButton.addEventListener("click", menuEventHandler, false);
+    for (i = 0; i < filtersMenuItems.length; i++) {
+       addMenuItemListener(filtersMenuItems[i], "click", menuItemEventHandler, false);
+    }
+
+    /* Add keyboard tab handling to menu */
+    resourcesSelectButton.addEventListener("focus", menuEventHandler, false);
+    filtersSelectButton.addEventListener("focus", menuEventHandler, false);
+
+}(document, window));
+  </script>
+  <!--
+    SEARCH TARGET | LABEL | DESCRIPTION
+    --------------|-------|------------------
+    EDS           | Find It | Articles, Books, etc.
+    --------------|-------|------------------
+    TIND          | Library Catalog | Books and Print Journals
+    --------------|-------|------------------
+    SFX           | Find eJournals | Library Ejournal subscriptions
+    --------------|-------|------------------
+    TIND          | Course Reserves |
+    --------------|-------|------------------
+    Google Custom Search | CODA: Caltech Collection of Digital Archives | Caltech’s Institutional Repository
+    --------------|-------|------------------
+    Google Custom Search | Website search | Library website and LibGuides
+    --------------|-------|------------------
+    Link to web page | More search tools and Help |
+    --------------|-------|------------------
+  -->
+  </section>
+  <nav>
+    <h2>project prototypes</h2>
+    <ul>
+      <li><a href="index.html">home</a></li>
+      <li><a href="prototype1.html">prototype 1</a> a UL list as datastructure describing hetrogenious search forms</li>
+      <li><a href="prototype2.html">prototype 2</a> a more traditional element implementation</li>
+      <li><a href="prototype3.html">prototype 3</a> using the EDS form API</li>
+      <li><a href="prototype4.html">prototype 4</a> getting tab and focus working</li>
+      <li><a href="prototype5.html">prototyupe 5</a> another step towards a unified search box</li>
+    </ul>
+  </nav>
+  <footer>No droids, here. We're of no interest. Move along.</footer>
+</body>
+</html>
