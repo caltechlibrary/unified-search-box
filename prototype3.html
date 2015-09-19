@@ -1,97 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EDS search test</title>
-    <link href="css/page-basic.css" rel="stylesheet">
+  <title>Unified Search Box prototypes</title>
+  <link href="css/page-basic.css" rel="stylesheet">
 </head>
 <body>
-<header><h1>demo home</h1></header>
-<section>
+  <header><h1>prototype 3</h1></header>
+  <section>
     <!-- EBSCOhost Custom Search Box Begins -->
     <script src="http://support.ebscohost.com/eit/scripts/ebscohostsearch.js" type="text/javascript"></script>
     <style type="text/css">
-		.choose-db-list{ list-style-type:none;padding:0;margin:10px 0 0 0;font-family:Verdana,Arial,Helvetica,sans-serif;font-size:9pt;width:412px; }
-		.choose-db-check{ width:20px;float:left;padding-left:5px;padding-top:5px; }
-		.choose-db-detail{ margin-left:30px;border-left:solid 1px #E7E7E7;padding:5px 11px 7px 11px;line-height:1.4em; }
-		.summary { background-color:#1D5DA7;color:#FFFFFF;border:solid 1px #1D5DA7; }
-		.one { background-color: #FFFFFF;border:solid 1px #E7E7E7;border-top:solid 1px #FFFFFF; }
-		.two { background-color: #F5F5F5;border:solid 1px #E7E7E7;border-top:solid 1px #FFFFFF; }
-		.selected { background-color: #E0EFF7;border:solid 1px #E7E7E7;border-top:solid 1px #FFFFFF; }
-		#ebscohostCustomSearchBox #disciplineBlock { width:auto; }
-		#ebscohostCustomSearchBox .limiter { float:left;margin:0;padding:0;width:50%; }
-		
-		#ebscohostsearchtext { width: 324px; }
-		#ebscohostsearchtext.edspub { width: 245px; }
-		
-		.ebscohost-search-button.edspub {
-			border: 1px solid #156619;
-			padding: 5px 10px !important;
-			border-radius: 3px;
-			color: #fff;
-			font-weight: bold;
-			background-color: #156619;
-		}
-		
-		.ebscohost-title.edspub {
-			color: #1c7020;
-			font-weight: bold;
-		}
-	</style>
-	<form id="ebscohostCustomSearchBox" action="" onsubmit="return ebscoHostSearchGo(this);" method="post" style="width:412px; overflow:auto;">
-		<input id="ebscohostwindow" name="ebscohostwindow" type="hidden" value="0" />
-		<input id="ebscohosturl" name="ebscohosturl" type="hidden" value="https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip" />
-		<input id="ebscohostsearchsrc" name="ebscohostsearchsrc" type="hidden" value="db" />
-		<input id="ebscohostsearchmode" name="ebscohostsearchmode" type="hidden" value="+" />
-		<input id="ebscohostkeywords" name="ebscohostkeywords" type="hidden" value="" />
-		
-		<div style="background-repeat:no-repeat; height:66px; width:412px; font-family:Verdana,Arial,Helvetica,sans-serif; color:#353535; background-color:#EEF2FB">
-        <div style="padding-top:10px;padding-left:18px;">
-                <span style="font-weight:bold;">Search book, articles & more</span>
+  		.choose-db-list{ list-style-type:none;padding:0;margin:10px 0 0 0;font-family:Verdana,Arial,Helvetica,sans-serif;font-size:9pt;width:412px; }
+  		.choose-db-check{ width:20px;float:left;padding-left:5px;padding-top:5px; }
+  		.choose-db-detail{ margin-left:30px;border-left:solid 1px #E7E7E7;padding:5px 11px 7px 11px;line-height:1.4em; }
+  		.summary { background-color:#1D5DA7;color:#FFFFFF;border:solid 1px #1D5DA7; }
+  		.one { background-color: #FFFFFF;border:solid 1px #E7E7E7;border-top:solid 1px #FFFFFF; }
+  		.two { background-color: #F5F5F5;border:solid 1px #E7E7E7;border-top:solid 1px #FFFFFF; }
+  		.selected { background-color: #E0EFF7;border:solid 1px #E7E7E7;border-top:solid 1px #FFFFFF; }
+  		#ebscohostCustomSearchBox #disciplineBlock { width:auto; }
+  		#ebscohostCustomSearchBox .limiter { float:left;margin:0;padding:0;width:50%; }
 
-				<div>
-					<input id="ebscohostsearchtext" class="" name="ebscohostsearchtext" type="text" size="23"  style="font-size:9pt;padding-left:5px;margin-left:0px;" />
-					<input type="submit" value="Go" class="ebscohost-search-button " style="font-size:9pt;padding-left:5px;" />
-				</div>
-			</div>
-		</div>
+  		#ebscohostsearchtext { width: 324px; }
+  		#ebscohostsearchtext.edspub { width: 245px; }
 
-		<div id="limiterblock" style="margin-left:-px; overflow: auto; display:none;">
-			<div id="limitertitle" style="font-weight:bold;padding-top:25px;padding-bottom:5px;">Limit Your Results</div>
-			
-			<div class="limiter" style="display:none;">
-				<input type="checkbox" id="chkFullText" name="chkFullText"  />
-				<label for="chkFullText">Full Text</label>
-			</div>
-			
-			<div class="limiter" style="display:none;">
-				<input type="checkbox" id="chkPeerReviewed" name="chkPeerReviewed"  />
-				<label for="chkPeerReviewed">Peer Reviewed</label>
-			</div>
-			
-			<div class="limiter" style="display:none;">
-				<input type="checkbox" id="chkCatalogOnly" name="chkCatalogOnly"  />
-				<label for="chkCatalogOnly">Catalog Only</label>
-			</div>
-			
-		</div>
-	</form>
-	<!-- EBSCOhost Custom Search Box Ends -->
+  		.ebscohost-search-button.edspub {
+  			border: 1px solid #156619;
+  			padding: 5px 10px !important;
+  			border-radius: 3px;
+  			color: #fff;
+  			font-weight: bold;
+  			background-color: #156619;
+  		}
 
-<p>Some notes while I await access to the API documentation.</p>
-<ul>
-    <li>Overview of the discovery API for EBSCO can be found at <a href="https://www.ebscohost.com/discovery/api">https://www.ebscohost.com/discovery/api</a></li>
-    <li>Documentation on the discover API for EBSCO can be found at <a href="http://edswiki.ebscohost.com/EDS_API_Documentation">http://edswiki.ebscohost.com/EDS_API_Documentation</a></li>
-</ul>
-</section>
-<nav>
-   <ol>
-      <li><a href="index.html">start</a></li>
-      <li><a href="prototype1.html">prototype one</a></li>
-      <li><a href="prototype2.html">prototype two</a></li>
-      <li><a href="prototype3.html">prototype three</a> (not implemented, a test of the EDS form)</li>
-      <li><a href="prototype4.html">prototype four</a></li>
-  </ol>
-</nav>
+  		.ebscohost-title.edspub {
+  			color: #1c7020;
+  			font-weight: bold;
+  		}
+  	</style>
+  	<form id="ebscohostCustomSearchBox" action="" onsubmit="return ebscoHostSearchGo(this);" method="post" style="width:412px; overflow:auto;">
+  		<input id="ebscohostwindow" name="ebscohostwindow" type="hidden" value="0" />
+  		<input id="ebscohosturl" name="ebscohosturl" type="hidden" value="https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip" />
+  		<input id="ebscohostsearchsrc" name="ebscohostsearchsrc" type="hidden" value="db" />
+  		<input id="ebscohostsearchmode" name="ebscohostsearchmode" type="hidden" value="+" />
+  		<input id="ebscohostkeywords" name="ebscohostkeywords" type="hidden" value="" />
+
+  		<div style="background-repeat:no-repeat; height:66px; width:412px; font-family:Verdana,Arial,Helvetica,sans-serif; color:#353535; background-color:#EEF2FB">
+          <div style="padding-top:10px;padding-left:18px;">
+                  <span style="font-weight:bold;">Search book, articles & more</span>
+
+  				<div>
+  					<input id="ebscohostsearchtext" class="" name="ebscohostsearchtext" type="text" size="23"  style="font-size:9pt;padding-left:5px;margin-left:0px;" />
+  					<input type="submit" value="Go" class="ebscohost-search-button " style="font-size:9pt;padding-left:5px;" />
+  				</div>
+  			</div>
+  		</div>
+  		<div id="limiterblock" style="margin-left:-px; overflow: auto; display:none;">
+  			<div id="limitertitle" style="font-weight:bold;padding-top:25px;padding-bottom:5px;">Limit Your Results</div>
+
+  			<div class="limiter" style="display:none;">
+  				<input type="checkbox" id="chkFullText" name="chkFullText"  />
+  				<label for="chkFullText">Full Text</label>
+  			</div>
+
+  			<div class="limiter" style="display:none;">
+  				<input type="checkbox" id="chkPeerReviewed" name="chkPeerReviewed"  />
+  				<label for="chkPeerReviewed">Peer Reviewed</label>
+  			</div>
+
+  			<div class="limiter" style="display:none;">
+  				<input type="checkbox" id="chkCatalogOnly" name="chkCatalogOnly"  />
+  				<label for="chkCatalogOnly">Catalog Only</label>
+  			</div>
+  		</div>
+  	</form>
+  	<!-- EBSCOhost Custom Search Box Ends -->
+    <p>Some notes while I await access to the API documentation.</p>
+    <ul>
+        <li>Overview of the discovery API for EBSCO can be found at <a href="https://www.ebscohost.com/discovery/api">https://www.ebscohost.com/discovery/api</a></li>
+        <li>Documentation on the discover API for EBSCO can be found at <a href="http://edswiki.ebscohost.com/EDS_API_Documentation">http://edswiki.ebscohost.com/EDS_API_Documentation</a></li>
+    </ul>
+  </section>
+  <nav>
+    <ul>
+      <li><a href="index.html">general notes</a></li>
+      <li><a href="prototype1.html">prototype one</a> a UL list as datastructure describing hetrogenious search forms</li>
+      <li><a href="prototype2.html">prototype two</a> a more traditional element implementation</li>
+      <li><a href="prototype3.html">prototype three</a> using the EDS form API</li>
+      <li><a href="prototype4.html">prototype four</a> an implementation more like <a href="http://libraries.mit.edu">MIT Libraries homepage</a></li>
+    </ul>
+  </nav>
   <footer>No droids, here. We're of no interest. Move along.</footer>
 </body>
 </html>

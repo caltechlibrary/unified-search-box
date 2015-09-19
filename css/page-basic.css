@@ -2,7 +2,7 @@ body {
     font-size: 16px;
     margin: 0;
     padding: 0;
-    color: blue;
+    color: black;
     background-color: white;
 }
 
@@ -23,9 +23,7 @@ h1 {
     font-family: sans-serif;
     margin: 0;
     padding-top: 0.24em;
-    padding-bottom: 0;
     padding-left: 0.24em;
-    padding-right: 0;
     height: 100%;
     text-transform: uppercase;
 }
@@ -34,14 +32,6 @@ section {
     display: block;
     position: relative;
     height: auto;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
 }
 
 form {
@@ -53,12 +43,27 @@ p {
     padding: 1.24em;
 }
 
+a {
+  text-decoration: none;
+}
+
 nav {
+    position: absolute;
     display: block;
-    padding-top: 10em;
-    padding-bottom: 0;
+    bottom: 1.0em;
+    margin-top: 10em;
     padding-left: 0.24em;
-    padding-right: 0;
+    width: 100%;
+    background-color: orange;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul > li > a, nav ul > li > a:link, nav ul > li > a:visited, nav ul > li > a:active, nav ul > li > a:hover, nav ul > li > a:focus{
+  text-decoration: none;
+  color: white;
 }
 
 footer {
@@ -69,9 +74,8 @@ footer {
     height: auto;
     margin: 0;
     padding: 0;
-    color: white;
-    background-color: blue;
-    height: auto;
     border-top: 0.24em solid teal;
     text-align: center;
+    color: white;
+    background-color: blue;
 }

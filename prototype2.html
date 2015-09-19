@@ -1,162 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>page test</title>
+  <title>Unified Search Box prototypes</title>
   <link href="css/page-basic.css" rel="stylesheet">
   <style>
-    .search {
-        display:block;
-        color: white;
-        background-color: blue;
-        text-transform: uppercase;
-        font-family: sans-serif;
-        padding: 0.5em;
-        text-align: center;
-    }
-    .search a {
-        text-transform: none;
-        color: #ccc;
-    }
+.search {
+    display:block;
+    padding: 0.5em;
+    font-family: sans-serif;
+    text-align: center;
+    color: black;
+    background-color: white;
+}
 
-    .search div {
-        display: inline-block;
-    }
+.search a {
+    text-decoration: none;
+}
 
-    .search label {
-        max-height: 1.24em;
-    }
+.search div {
+    display: inline-block;
+}
 
-    .hide {
-        display:none;
-        visibility: hidden;
-        width: 0;
-    }
+.search label {
+    max-height: 1.24em;
+}
 
-    .show {
-        display: inline-block;
-        visibility: visible;
-        width: auto;
-    }
+.hide {
+    display:none;
+    visibility: hidden;
+    width: 0;
+}
 
-    .search select {
-        text-transform: uppercase;
-        color: white;
-        background-color: #ffa500; /* orange */
-        border: 0.24em solid #ff8c00; /* dark orange */
-        display:inline-block;
-        font-size: 0.84em;
-    }
+.show {
+    display: inline-block;
+    visibility: visible;
+    width: auto;
+}
 
-    .search input[type=search] {
-        position: relative;
-        font-size: 1.0em;
-        width: 24em;
-        display:inline-block;
-    }
+.search select {
+    display:inline-block;
+    font-size: 0.84em;
+    text-transform: uppercase;
+    color: blue;
+    background-color: white;
+}
 
-    .search button {
-        position: relative;
-        text-transform: uppercase;
-        color: white;
-        background-color: #ffa500; /* orange */
-        border: 0.24em solid #ff8c00; /* dark orange */
-        border-radius: 2.24em;
-        display:inline-block;
-        font-size: 1.0em;
-    }
-
+.search input[type=search] {
+    position: relative;
+    font-size: 1.0em;
+    width: 24em;
+    display:inline-block;
+}
   </style>
 </head>
 <body>
-<header><h1>prototype 2</h1></header>
-<section>
-    <!--
-    SEARCH TARGET | LABEL | DESCRIPTION
-    --------------|-------|------------------
-    EDS | Find It | Articles, Books, etc.
-    --------------|-------|------------------
-    TIND | Library Catalog | Books and Print Journals
-    --------------|-------|------------------
-    SFX | Find eJournals | Library Ejournal subscriptions
-    --------------|-------|------------------
-    TIND | Course Reserves |
-    --------------|-------|------------------
-    Google Custom Search | CODA: Caltech Collection of Digital Archives | Caltech’s Institutional Repository
-    --------------|-------|------------------
-    Google Custom Search | Website search | Library website and LibGuides
-    --------------|-------|------------------
-    Link to web page | More search tools and Help |
-    --------------|-------|------------------
-    -->
-<form class="search">
-<div>
-    <label for="resources">Search</label>
-    <select name="resources" class="resources">
+  <header><h1>prototype 2</h1></header>
+  <section>
+    <form class="search">
+    <div>
+      <label for="resources">Search</label>
+      <select name="resources" class="resources">
         <option value="eds">Fint It</option>
         <option value="tind" selected>Library Catalog</option>
         <option value="sfx">Find eJounrals</option>
         <option value="course-reserves">Course Reserves</option>
         <option value="coda">CODA: Caltech Collection of Digital Archives</option>
         <option value="website">Website</option>
-    </select>
-</div>
-<div>
-    <span class="books hide">
+      </select>
+    </div>
+    <div>
+      <span class="books hide">
         <label>By</label>
         <select>
-            <option value="keyword">Keyword</option>
-            <option value="title">Title</option>
-            <option value="author">Author</option>
-            <option value="subject">Subject</option>
+          <option value="keyword">Keyword</option>
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="subject">Subject</option>
         </select>
-    </span><!-- class="books"-->
-    <span class="journals hide">
+      </span><!-- class="books"-->
+      <span class="journals hide">
         <label>By</label>
         <select>
-            <option value="title">Journal Title</option>
-            <option value="author">Journal Author</option>
-            <option value="subject">Journal Subject</option>
+          <option value="title">Journal Title</option>
+          <option value="author">Journal Author</option>
+          <option value="subject">Journal Subject</option>
         </select>
-    </span><!-- class="journals"-->
-    <span class="articles hide">
+      </span><!-- class="journals"-->
+      <span class="articles hide">
         <label>By</label>
         <select>
-            <option value="title">Article Title</option>
-            <option value="author">Article Author</option>
-            <option value="subject">Article Subject</option>
-            <option value="keyword">Article Keyword</option>
+          <option value="title">Article Title</option>
+          <option value="author">Article Author</option>
+          <option value="subject">Article Subject</option>
+          <option value="keyword">Article Keyword</option>
         </select>
-    </span><!-- class="articles"-->
-    <span class="course-reserves hide">
-        <label>By</label>
-        <select>
+      </span><!-- class="articles"-->
+      <span class="course-reserves hide">
+          <label>By</label>
+          <select>
             <option value="cousre">Course</option>
             <option value="instructor">Instructor</option>
-        </select>
-    </span>
-</div>
-<div><label>For</label>
-    <input name="q" type="search" >
-    <button>Search</button>
-</div>
-<p>(<a href="">More search tools and Help</a>)
-</form>
+          </select>
+      </span><!-- class="course-reserves"-->
+    </div>
+    <div><label>For</label>
+        <input name="q" type="search" >
+        <button><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="16" viewBox="0 0 12 12" aria-hidden="true" class="icon-search">
+                <path d="M7.273 0.727q1.187 0 2.19 0.585t1.588 1.588 0.585 2.19-0.585 2.19-1.588 1.588-2.19 0.585q-1.278 0-2.33-0.676l-3.284 3.301q-0.295 0.284-0.688 0.284-0.403 0-0.688-0.284t-0.284-0.688 0.284-0.688l3.301-3.284q-0.676-1.051-0.676-2.33 0-1.188 0.585-2.19t1.588-1.588 2.19-0.585zM7.273 8q0.591 0 1.128-0.23t0.929-0.622 0.622-0.929 0.23-1.128-0.23-1.128-0.622-0.929-0.929-0.622-1.128-0.23-1.128 0.23-0.929 0.622-0.622 0.929-0.23 1.128 0.23 1.128 0.622 0.929 0.929 0.622 1.128 0.23z"></path>
+        </svg></button>
+    </div>
+    <p>(<a href="">More search tools and Help</a>)</p>
+  </form>
   <h3>Notes</h3>
-  <p>This is a demo of the look and feel or a form driven custom search. It has some advantages for easy ADA complience. 
+  <p>This is a demo of the look and feel or a form driven custom search. It has some advantages for easy ADA complience.
   The general approach would be to use the UL list for non-JavaScript enabled browsers and replace the UL list with a form
   like this one if JavaScript is available.</p>
   </section>
-<nav>
-   <ol>
-      <li><a href="index.html">start</a></li>
-      <li><a href="prototype1.html">prototype one</a></li>
-      <li><a href="prototype2.html">prototype two</a></li>
-      <li><a href="prototype3.html">prototype three</a> (not implemented, a test of the EDS form)</li>
-      <li><a href="prototype4.html">prototype four</a></li>
-  </ol>
-</nav>
-  <footer>No droids, here. We're of no interest. Move along.</footer>
-<script>
+  <script>
 (function (doc, win) {
     var search = document.querySelector(".search"),
         resources = search.querySelector("select.resources"),
@@ -166,7 +126,6 @@
         reserves = search.querySelector("span.course-reserves"),
         searchInput = search.querySelector("input[type=search]"),
         searchButton = search.querySelector("button");
-
 
     resources.tabIndex = 1;
     books.tabIndex = 2;
@@ -256,8 +215,17 @@
     resources.addEventListener("change", filterChange, false);
     // Now refresh the form based on default selection.
     refreshFilter(resources.options[resources.selectedIndex].value);
-}(document, window))
-</script>
-</p>
+}(document, window));
+  </script>
+  <nav>
+    <ul>
+      <li><a href="index.html">general notes</a></li>
+      <li><a href="prototype1.html">prototype one</a> a UL list as datastructure describing hetrogenious search forms</li>
+      <li><a href="prototype2.html">prototype two</a> a more traditional element implementation</li>
+      <li><a href="prototype3.html">prototype three</a> using the EDS form API</li>
+      <li><a href="prototype4.html">prototype four</a> an implementation more like <a href="http://libraries.mit.edu">MIT Libraries homepage</a></li>
+    </ul>
+  </nav>
+  <footer>No droids, here. We're of no interest. Move along.</footer>
 </body>
 </html>

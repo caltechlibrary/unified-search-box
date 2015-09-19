@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Unified Search Box Prototype</title>
+  <title>Unified Search Box prototypes</title>
   <link href="css/page-basic.css" rel="stylesheet">
   <style>
 /*
  * These are classes for general layout
  */
 body {
-   padding: 0em;
-   margin: 0.24em;
+   padding: 0;
+   margin: 0;
    font-size: 16px;
 }
 
@@ -54,7 +54,6 @@ a, a:hover, a:link, a:active, a:visited, a:focus {
     min-width: 35%;
 }
 
-
 .unified-search-filter {
     display: inline-block;
     vertical-align: top;
@@ -75,7 +74,6 @@ a, a:hover, a:link, a:active, a:visited, a:focus {
 }
 
 .unified-search-box {
-    min-width: 50%;
     display: inline-block;
     vertical-align: top;
     padding-top: 1em;
@@ -83,7 +81,7 @@ a, a:hover, a:link, a:active, a:visited, a:focus {
 
 .unified-search-box input {
     vertical-align: bottom;
-    min-width: 42.0em;
+    width: auto;
 }
 
 .unified-search-icon {
@@ -192,12 +190,10 @@ a, a:hover, a:link, a:active, a:visited, a:focus {
         <li><!-- START: CODA: Caltech Collections and Digital Archives -->
             <a href="https://cse.google.com/cse/publicurl?cx=005709273917748521174:b0g6d4sxowm&ie=UTF-8&q=CODA+-+Caltech+Collection+of+Open+Digital+Archives" data-action="https://cse.google.com/cse" data-input-name="q" data-hidden-fields="cx=005709273917748521174:b0g6d4sxowm&amp;ie=UTF-8" data-placeholder="Search Caltech’s Institutional Repository" title="Caltech’s Institutional Repository">CODA: Caltech Collections and Digital Archives</a>
         </li><!--  END: CODA: Caltech Collections and Digital Archives -->
-        <li><!-- START: Website -->
-            <a href="http://google.com/cse?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&q=Caltech+Library+Resources" data-action="http://google.com/cse" data-hidden-fields="cx=005709273917748521174:po9fevg5ksw&amp;ie=UTF-8" data-input-name="q" data-placeholder="Search the library website" title="Library and LibGuides">Website</a>
-        </li><!--  END: Website -->
+        <li><!-- START: Website --  </li><!--  END: Website -->
         <li><!-- START: More search tools -->
-            (<a class="more-tools" href="http://libguides.caltech.edu/">More search tools</a>)
-        </li>
+            (<a class="more-tools"="http://libguides.caltech.edu/">More search tools</a>)
+            </li>
       </ul><!--END .unified-search-resources -->
     </div>
     <div class="unified-search-filter"></div>
@@ -205,12 +201,9 @@ a, a:hover, a:link, a:active, a:visited, a:focus {
       <form method="get" action="http://clas.library.caltech.edu/">
         <!--NOTE: JavaScript will replace the input name based on the menu item selected. Needs to have a class of unified-query-box -->
         <input id="unified-query-box" type="text" name="search" value="" placeholder="Search for...">
-        <button type="submit">
-            <span class="visually-hidden">search</span><!-- per accessibility review/to be clipped via CSS -->
-    		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="16" viewBox="0 0 12 12" aria-hidden="true" class="unified-search-icon">
+        <button type="submit"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="16" viewBox="0 0 12 12" aria-hidden="true" class="unified-search-icon">
     			<path d="M7.273 0.727q1.187 0 2.19 0.585t1.588 1.588 0.585 2.19-0.585 2.19-1.588 1.588-2.19 0.585q-1.278 0-2.33-0.676l-3.284 3.301q-0.295 0.284-0.688 0.284-0.403 0-0.688-0.284t-0.284-0.688 0.284-0.688l3.301-3.284q-0.676-1.051-0.676-2.33 0-1.188 0.585-2.19t1.588-1.588 2.19-0.585zM7.273 8q0.591 0 1.128-0.23t0.929-0.622 0.622-0.929 0.23-1.128-0.23-1.128-0.622-0.929-0.929-0.622-1.128-0.23-1.128 0.23-0.929 0.622-0.622 0.929-0.23 1.128 0.23 1.128 0.622 0.929 0.929 0.622 1.128 0.23z"></path>
-    		</svg>
-		</button>
+    		</svg></button>
       </form>
     </div>
   </div><!--END .unified-search -->
@@ -219,16 +212,6 @@ a, a:hover, a:link, a:active, a:visited, a:focus {
   <p>&quot;Find It&quot; and &quot;Course Reserves&quot; are not fully functional. I am still doing research on the APIs for Tind and EBSCO.</p>
   </div>
   </section>
-<nav>
-   <ol>
-      <li><a href="index.html">start</a></li>
-      <li><a href="prototype1.html">prototype one</a></li>
-      <li><a href="prototype2.html">prototype two</a></li>
-      <li><a href="prototype3.html">prototype three</a> (not implemented, a test of the EDS form)</li>
-      <li><a href="prototype4.html">prototype four</a></li>
-  </ol>
-</nav>
-  <footer>No droids, here. We're of no interest. Move along.</footer>
   <script><!--  START: Unified Search Box behaviors -->
 /**
  * search.js - embed a unified search component for the Caltech library.
@@ -483,5 +466,15 @@ a, a:hover, a:link, a:active, a:visited, a:focus {
      setVisibility(unifiedSearch, "visible");
  }(window, document))
   </script><!--  END: Unified Search Box behaviors -->
+  <nav>
+    <ul>
+      <li><a href="index.html">general notes</a></li>
+      <li><a href="prototype1.html">prototype one</a> a UL list as datastructure describing hetrogenious search forms</li>
+      <li><a href="prototype2.html">prototype two</a> a more traditional element implementation</li>
+      <li><a href="prototype3.html">prototype three</a> using the EDS form API</li>
+      <li><a href="prototype4.html">prototype four</a> an implementation more like <a href="http://libraries.mit.edu">MIT Libraries homepage</a></li>
+    </ul>
+  </nav>
+  <footer>No droids, here. We're of no interest. Move along.</footer>
 </body>
 </html>
