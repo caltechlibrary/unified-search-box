@@ -1,6 +1,6 @@
 # user comments
 
-The primary desire behind the MIT UL approach is the desire to have second level text associated with the menu 
+The primary desire behind the MIT UL approach is the desire to have second level text associated with the menu
 
 ```
     BIG TEST STATEMENT
@@ -68,9 +68,8 @@ Other mentions&#8230;
 ### Polyfills to use web components today
 
 + [x-tag](http://x-tags.org/download) - building from source is currently broken (2015-09-19) so grabbing the bundle here is convienent
-+ 
++
 
 ## other resources
 
 + [Github trainining](https://training.github.com/kit/)
-+
