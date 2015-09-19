@@ -219,7 +219,7 @@ a, a:hover, a:link, a:active, a:visited, a:focus {
  *
  * @author R. S. Doiel, <rsdoiel@caltech.edu>
  */
- (function (window, document) {
+ (function (document, window) {
      "use strict";
      var menuElements = {},
         i = 0,
@@ -464,7 +464,7 @@ a, a:hover, a:link, a:active, a:visited, a:focus {
 
      // We should be ready to go so, make the unified search box visible!
      setVisibility(unifiedSearch, "visible");
- }(window, document))
+ }(document, window));
   </script><!--  END: Unified Search Box behaviors -->
   <nav>
     <ul>
