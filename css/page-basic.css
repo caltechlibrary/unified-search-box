@@ -15,7 +15,6 @@ header {
     color: white;
     background-color: blue;
     height: auto;
-    border-bottom: 0.24em solid teal;
 }
 
 h1 {
@@ -63,7 +62,8 @@ nav ul {
 
 nav ul > li > a, nav ul > li > a:link, nav ul > li > a:visited, nav ul > li > a:active, nav ul > li > a:hover, nav ul > li > a:focus{
   text-decoration: none;
-  color: white;
+  text-transform: uppercase;
+  color: ghostwhite;
 }
 
 footer {
@@ -74,7 +74,6 @@ footer {
     height: auto;
     margin: 0;
     padding: 0;
-    border-top: 0.24em solid teal;
     text-align: center;
     color: white;
     background-color: blue;
