@@ -1,0 +1,192 @@
+/**
+ * usb.css - the design for the Unified Search Box.
+ */
+
+.hide {
+    display: none;
+    visibility: hidden;
+}
+
+.usb-searchbox {
+    display: block;
+    position: relative;
+    padding: 1.0em;
+    color: black;
+    background-color: white;
+}
+
+.usb-search-resources {
+    position: relative;
+    display: inline-flex;
+    margin: 0.24em;
+    width: 25%;
+}
+
+.usb-search-resources label {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    text-align: right;
+}
+
+.usb-search-resources div {
+    position: relative;
+    display: inline-block;
+    width: 92%;
+    height: auto;
+}
+
+.usb-search-filters {
+    position: relative;
+    display: inline-flex;
+    margin: 0.24em;
+    width: 25%;
+}
+
+.usb-search-filters label {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    text-align: right;
+}
+
+.usb-search-filters div {
+    position: relative;
+    display: inline-block;
+    width: 92%;
+    height: auto;
+}
+
+.usb-menu {
+    position:relative;
+    margin-left: 0.52em;
+    min-width: 20%;
+    height: auto;
+    font-size: 1.0em;
+    color: white;
+    background-color: blue;
+    border-radius: 0.24em;
+}
+
+.usb-menu ul {
+    position:absolute;
+    display:none;
+    top:0;
+    left:0;
+    list-style:none;
+    margin:1.72em;
+    padding:0.24em;
+    border: 0.12em solid darkblue;
+    background-color: inherit;
+    box-shadow: 0.12em 0.12em darkblue;
+}
+
+.usb-menu ul li {
+    border-bottom: 0.12em solid black;
+}
+
+.usb-menu ul li:last-child {
+    border: none;
+}
+
+.usb-menu-selected {
+    position:relative;
+    display: inline-block;
+    width:90%;
+    padding-left: 2%;
+}
+
+.usb-menu-select-button {
+    position: relative;
+    display: inline-block;
+    width: 4%;
+    font-family:helvetica;
+    text-decoration:none;
+    text-align:center;
+}
+
+.usb-menu-select-button svg {
+    position: absolute;
+    bottom: -0.24em;
+    left: -0.12em;
+    fill: white;
+    width: 1em;
+    height: 1em;
+}
+
+.usb-menu-label {
+    display: inline-block;
+    position:relative;
+}
+
+.usb-menu-item-primary {
+    display: block;
+    font-weight: bold;
+    text-transform: none;
+    text-align: left;
+}
+
+.usb-menu-item-primary a, .usb-menu-item-primary a:link, .usb-menu-item-primary a.active, .usb-menu-item-secondary a:visited {
+    text-decoration: none;
+    color: white;
+    background-color: blue;
+}
+
+.usb-menu-item-primary a:hover, .usb-menu-item-primary a:focus {
+    text-decoration: none;
+    color: blue;
+    background: white  ;
+}
+
+.usb-menu-item-secondary {
+    display: block;
+    font-weight: lighter;
+    text-transform: none;
+    text-decoration: none;
+    text-align: left;
+}
+
+.usb-menu-item-selected {
+    text-decoration: underline;
+}
+
+.usb-search-query {
+    position: relative;
+    display: inline-flex;
+}
+
+.usb-query-label {
+    margin-right: 0.52em;
+    width: auto;
+    height: auto;
+}
+
+.usb-query-input {
+    display: inline-flex;
+    position: relative;
+    min-width: 20%;
+    max-width: 60%;
+}
+
+.usb-query-input > .usb-menu-label {
+    padding: 1.52;
+}
+.usb-query-input > input[type=search] {
+    width: auto;
+    height: auto;
+}
+
+.usb-more-search-tools {
+    position: absolute;
+    display: inline-flex;
+    top: 1.72em;
+    left: 33%;
+    width: 100%;
+    text-align: center;
+}
+
+.usb-more-search-tools a {
+    color: blue;
+}
