@@ -78,13 +78,13 @@
     list-style:none;
     margin:1.72em;
     padding:0.24em;
-    border: 0.12em solid darkblue;
+    border: 0.12em solid blue;
     background-color: inherit;
     box-shadow: 0.12em 0.12em darkblue;
 }
 
 .usb-menu ul li {
-    border-bottom: 0.12em solid black;
+    border-bottom: 0.12em solid orange;
 }
 
 .usb-menu ul li:last-child {
