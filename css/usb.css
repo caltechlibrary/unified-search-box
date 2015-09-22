@@ -77,22 +77,24 @@
 .usb-menu ul {
     position: absolute;
     display: none;
-    top: 0;
+    top: 1.24em;
     left: 0;
     list-style: none;
     margin: 2.72em;
     padding: 0.24em;
-    border: 0.12em solid blue;
+    /* border: 0.24em solid blue; */
+    border: 1px solid white;
     background-color: inherit;
     box-shadow: 0.12em 0.12em #043584;
 }
 
 .usb-menu ul li {
     border-bottom: 0.12em solid #043584;
+    height: 4em;
 }
 
-.usb-menu ul li: last-child {
-    border: none;
+.usb-menu ul li:last-child {
+    border-bottom: none;
 }
 
 .usb-menu-selected {
@@ -153,7 +155,7 @@
 }
 
 .usb-menu-item-selected {
-    text-decoration: underline;
+    text-decoration: underline dotted red;
 }
 
 .usb-search-query {
