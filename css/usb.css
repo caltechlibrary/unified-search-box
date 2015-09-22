@@ -1,7 +1,6 @@
 /**
  * usb.css - the design for the Unified Search Box.
  */
-
 .hide {
     display: none;
     visibility: hidden;
@@ -82,6 +81,7 @@
     list-style: none;
     margin: 2.72em;
     padding: 0.24em;
+    z-index: 10em;
     /* border: 0.24em solid blue; */
     border: 1px solid white;
     background-color: inherit;
@@ -178,12 +178,32 @@
 }
 
 .usb-query-input > .usb-menu-label {
-    padding: 1.52;
+    padding: 1.52em;
 }
 
-.usb-query-input > input[type=search] {
-    width: auto;
-    height: auto;
+.usb-query-input > form {
+    position: relative;
+    display: inline-flex;
+    height: 2em;
+    padding-left: 1.52em;
+}
+
+.usb-query-input > form > input {
+    position: relative;
+    display: inline-flex;
+    font-size: 0.8em;
+    height: 2.0em; /* for IE */
+    vertical-align: middle; /* This is optional but it makes legacy IEs look better */
+}
+
+ .usb-query-input > form > button {
+    position: relative;
+    display: inline-flex;
+}
+
+.usb-query-input > form > button > svg {
+    height: 2.42em;
+    width: 2.42em;
 }
 
 .usb-more-search-tools {
@@ -198,6 +218,5 @@
 }
 
 .usb-more-search-tools a {
-    color: blue;
+    color: darkblue;
 }
-
