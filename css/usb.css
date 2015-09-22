@@ -19,22 +19,24 @@
     position: relative;
     display: inline-flex;
     margin: 0.24em;
-    width: 25%;
+    width: 30%;
 }
 
 .usb-search-resources label {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
     width: auto;
-    height: auto;
+    height: 3.0em;
+    padding: 0.24em;
     text-align: right;
 }
 
 .usb-search-resources div {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
     width: 92%;
-    height: auto;
+    height: 3.0em;
+    padding: 0.24em;
 }
 
 .usb-search-filters {
@@ -46,55 +48,57 @@
 
 .usb-search-filters label {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
     width: auto;
-    height: auto;
+    height: 3.0em;
+    padding: 0.24em;
     text-align: right;
 }
 
 .usb-search-filters div {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
     width: 92%;
-    height: auto;
+    height: 3.0em;
+    padding: 0.24em;
 }
 
 .usb-menu {
-    position:relative;
+    position: relative;
     margin-left: 0.52em;
     min-width: 20%;
     height: auto;
     font-size: 1.0em;
-    color: white;
-    background-color: blue;
+    color: black;
+    background-color: #EEF2FB;
     border-radius: 0.24em;
 }
 
 .usb-menu ul {
-    position:absolute;
-    display:none;
-    top:0;
-    left:0;
-    list-style:none;
-    margin:1.72em;
-    padding:0.24em;
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    list-style: none;
+    margin: 2.72em;
+    padding: 0.24em;
     border: 0.12em solid blue;
     background-color: inherit;
-    box-shadow: 0.12em 0.12em darkblue;
+    box-shadow: 0.12em 0.12em #043584;
 }
 
 .usb-menu ul li {
-    border-bottom: 0.12em solid cyan;
+    border-bottom: 0.12em solid #043584;
 }
 
-.usb-menu ul li:last-child {
+.usb-menu ul li: last-child {
     border: none;
 }
 
 .usb-menu-selected {
-    position:relative;
+    position: relative;
     display: inline-block;
-    width:90%;
+    width: 90%;
     padding-left: 2%;
 }
 
@@ -102,23 +106,23 @@
     position: relative;
     display: inline-block;
     width: 4%;
-    font-family:helvetica;
-    text-decoration:none;
-    text-align:center;
+    font-family: helvetica;
+    text-decoration: none;
+    text-align: center;
 }
 
 .usb-menu-select-button svg {
-    position: absolute;
-    bottom: -0.24em;
-    left: -0.12em;
+    position: relative;
+    display: inline-flex;
+    padding: 0.24em;
+    width: 1.24em;
+    height: 1.24em;
     fill: white;
-    width: 1em;
-    height: 1em;
 }
 
 .usb-menu-label {
     display: inline-block;
-    position:relative;
+    position: relative;
 }
 
 .usb-menu-item-primary {
@@ -128,16 +132,16 @@
     text-align: left;
 }
 
-.usb-menu-item-primary a, .usb-menu-item-primary a:link, .usb-menu-item-primary a.active, .usb-menu-item-secondary a:visited {
+.usb-menu-item-primary a, .usb-menu-item-primary a: link, .usb-menu-item-primary a.active, .usb-menu-item-secondary a: visited {
     text-decoration: none;
-    color: white;
-    background-color: blue;
+    color: black;
+    background-color: #EEF2FB;
 }
 
-.usb-menu-item-primary a:hover, .usb-menu-item-primary a:focus {
+.usb-menu-item-primary a: hover, .usb-menu-item-primary a: focus {
     text-decoration: none;
-    color: blue;
-    background: white  ;
+    color: white;
+    background-color: #043584;
 }
 
 .usb-menu-item-secondary {
@@ -160,7 +164,8 @@
 .usb-query-label {
     margin-right: 0.52em;
     width: auto;
-    height: auto;
+    height: 2em;
+    padding: 0.24em;
 }
 
 .usb-query-input {
@@ -173,6 +178,7 @@
 .usb-query-input > .usb-menu-label {
     padding: 1.52;
 }
+
 .usb-query-input > input[type=search] {
     width: auto;
     height: auto;
@@ -181,12 +187,15 @@
 .usb-more-search-tools {
     position: absolute;
     display: inline-flex;
-    top: 1.72em;
+    top: 2.72em;
     left: 33%;
     width: 100%;
+    height: 2em;
+    padding: 0.24em;
     text-align: center;
 }
 
 .usb-more-search-tools a {
     color: blue;
 }
+

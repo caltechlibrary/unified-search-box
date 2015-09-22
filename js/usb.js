@@ -107,7 +107,7 @@
          // Find filters select button.
          filtersSelectButton.focus();
       } else {
-        cur.parentNode.querySelector("input[type=search]").focus();
+        searchQueryInput.focus();
       }
       toggleMenu(cur);
     }

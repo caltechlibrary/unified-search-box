@@ -13,7 +13,7 @@ header {
     margin: 0;
     padding: 0;
     color: white;
-    background-color: blue;
+    background-color: darkblue;
     height: auto;
 }
 
@@ -86,5 +86,5 @@ footer {
     padding: 0;
     text-align: center;
     color: white;
-    background-color: blue;
+    background-color: darkblue;
 }
