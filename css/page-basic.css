@@ -6,35 +6,27 @@ body {
     background-color: white;
 }
 
-header {
+header, footer {
     display: block;
     width: 100%;
-    min-height: 4.24em;
+    height: auto;
     margin: 0;
     padding: 0;
     color: white;
     background-color: darkblue;
-    height: auto;
 }
 
-h1 {
+header {
+    min-height: 4.24em;
+}
+
+h1, h2 {
     font-size: 1.72em;
     font-family: sans-serif;
     margin: 0;
     padding-top: 0.24em;
     padding-left: 0.24em;
     height: 100%;
-    text-transform: uppercase;
-}
-
-h2 {
-    font-size: 1.72em;
-    font-family: sans-serif;
-    margin: 0;
-    padding-top: 0.24em;
-    padding-left: 1.24em;
-    height: 100%;
-    text-transform: lowercase;
 }
 
 section {
@@ -79,13 +71,6 @@ nav ul > li > a, nav ul > li > a:link, nav ul > li > a:visited, nav ul > li > a:
 
 footer {
     position: absolute;
-    display: block;
     bottom: 0;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
     text-align: center;
-    color: white;
-    background-color: darkblue;
 }

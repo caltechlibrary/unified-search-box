@@ -235,7 +235,8 @@
       if (previouslySelected !== null) {
           removeClass(previouslySelected, "usb-menu-item-selected");
       }
-      addClass(elem, "usb-menu-item-selected");
+      console.log("DEBUG elem.parentNode.tagName --> "+elem.parentNode.parentNode.tagName);
+      addClass(elem.parentNode.parentNode, "usb-menu-item-selected");
       menuSelected.textContent = elem.textContent;
       console.log("DEBUG elem.tagName, elem.textContent? "+elem.tagName+" -> "+elem.textContent);
 
