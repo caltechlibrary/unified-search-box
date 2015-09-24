@@ -7,8 +7,9 @@
     var resources = doc.getElementById("usb-search-resources"),
         resourcesSelectButton = resources.querySelector(".usb-menu-select-button"),
         resourcesMenuItems = resources.querySelectorAll(".usb-menu-item-primary a"),
-        filters = doc.getElementById("usb-search-filters"),
-        filtersUL = doc.getElementById("usb-search-filter-ul"),
+        filtersContainer = doc.getElementById("usb-search-filters"),
+        filters = doc.getElementById("usb-filter"),
+        filtersUL = doc.getElementById("usb-filter-ul"),
         filtersSelectButton = filters.querySelector(".usb-menu-select-button"),
         filtersMenuItems = filters.querySelectorAll(".usb-menu-item-primary a"),
         searchQueryForm = doc.getElementById("usb-query-form"),
@@ -37,7 +38,7 @@
      */
         searchWidget = {
             "eds": {
-                filter: [{label: "Articles, Books, etc.", input: []}],
+                filter: [],
                 script: [{src: "http://support.ebscohost.com/eit/scripts/ebscohostsearch.js", type: "text/javascript"}],
                 form: {
                     method: "GET",
@@ -118,7 +119,7 @@
                 }
             },
             "coda": {
-                filter: [{label: "Keywords, titles or authors", input: []}],
+                filter: [],
                 form: {
                     method: "GET",
                     action: "https://cse.google.com/cse/publicurl",
@@ -130,7 +131,7 @@
                 }
             },
             "archivalImages": {
-                filter: [{label: "keywords", input: []}],
+                filter: [],
                 form: {
                     method: "GET",
                     action: "http://archives-dc.library.caltech.edu/islandora/search/KEYWORD",
@@ -141,7 +142,7 @@
                 }
             },
             "archivalMaterial": {
-                filter: [{label: "keywords", input: []}],
+                filter: [],
                 form: {
                     method: "GET",
                     action: "http://archives-dc.library.caltech.edu/islandora/search/KEYWORD",
@@ -152,7 +153,7 @@
                 }
             },
             "website": {
-                filter: [{label: "keywords, terms or phrases", input: []}],
+                filter: [],
                 form: {
                     method: "GET",
                     action: "http://google.com/cse",
@@ -176,6 +177,14 @@
         var currentClasses = elem.className || "";
         if (currentClasses.indexOf(className) !== -1) {
             elem.className = currentClasses.replace(className, "").replace("  ", " ");
+        }
+    }
+
+    function hideFilters(state) {
+        if (state === true) {
+            addClass(filtersContainer, "hide");
+        } else {
+            removeClass(filtersContainer, "hide");
         }
     }
 
@@ -234,7 +243,9 @@
         var inputs = form.querySelectorAll("input"),
             i = 0;
         for (i = 0; i < inputs.length; i += 1) {
-            form.removeChild(inputs[i]);
+            if (inputs[i].id === undefined || inputs[i].id !== 'usb-query-input') {
+                form.removeChild(inputs[i]);
+            }
         }
     }
 
@@ -273,25 +284,30 @@
         console.log("DEBUG updateFilterMenu not implemented. ", resourceId, resource);
         clearFilterMenu(ul, eventListener);
         //FIXME: Update the filter UL list
-        resource.filter.forEach(function (obj, i) {
-            var li = doc.createElement("li"),
-                a = null;
-            li.innerHTML = liTemplate.replace("{{label}}", obj.label);
-            if (i === 0) {
-                li.className = "usb-menu-item-selected";
-                if (filterMenuSelected !== null) {
-                    filterMenuSelected.textContent = obj.label;
+        if (resource.filter === undefined || resource.filter.length === 0) {
+            hideFilters(true);
+        } else {
+            hideFilters(false);
+            resource.filter.forEach(function (obj, i) {
+                var li = doc.createElement("li"),
+                    a = null;
+                li.innerHTML = liTemplate.replace("{{label}}", obj.label);
+                if (i === 0) {
+                    li.className = "usb-menu-item-selected";
+                    if (filterMenuSelected !== null) {
+                        filterMenuSelected.textContent = obj.label;
+                    }
                 }
-            }
-            a = li.querySelector("a");
-            //FIXME: Add new listeners UL
-            if (a !== null) {
-                //FIXME: Adjust query form if necessary
-                //FIXME: The event listener will need to add/update input fields to the form when selected.
-                a.addEventListener("click", eventListener);
-            }
-            ul.appendChild(li);
-        });
+                a = li.querySelector("a");
+                //FIXME: Add new listeners UL
+                if (a !== null) {
+                    //FIXME: Adjust query form if necessary
+                    //FIXME: The event listener will need to add/update input fields to the form when selected.
+                    a.addEventListener("click", eventListener);
+                }
+                ul.appendChild(li);
+            });
+        }
         console.log("DEBUG ul after update: ", ul.innerHTML);
     }
 
