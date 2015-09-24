@@ -56,41 +56,50 @@
             },
             "tind": {
                 filter: [
-                    {label: "Title", input: [
-                        {name: "f", value: "title", "type": "hidden"}
-                    ]},
-                    {label: "Author", input: [
-                        {name: "f", value: "author", "type": "hidden"}
-                    ]},
-                    {label: "Subject", input: [
-                        {name: "f", value: "subject", "type": "hidden"}
-                    ]},
-                    {label: "Keyword", input: [
-                        {name: "f", value: "keyword", "type": "hidden"}
-                    ]},
-                    {label: "ISBN", input: [
-                        {name: "f", value: "isbn", "type": "hidden"}
-                    ]},
-                    {label: "Journal", input: [
-                        {name: "f", value: "journal", "type": "hidden"}
-                    ]},
-                    {label: "Abstract", input: [
-                        {name: "f", value: "abstract", "type": "hidden"}
-                    ]},
-                    {label: "ISSN", input: [
-                        {name: "f", value: "issn", "type": "hidden"}
-                    ]}
+                    {
+                        label: "Title",
+                        input: {name: "f", value: "title", "type": "hidden"}
+                    },
+                    {
+                        label: "Author",
+                        input: {name: "f", value: "author", "type": "hidden"}
+                    },
+                    {
+                        label: "Subject",
+                        input: {name: "f", value: "subject", "type": "hidden"}
+                    },
+                    {
+                        label: "Keyword",
+                        input: {name: "f", value: "keyword", "type": "hidden"}
+                    },
+                    {
+                        label: "ISBN",
+                        input: {name: "f", value: "isbn", "type": "hidden"}
+                    },
+                    {
+                        label: "Journal",
+                        input: {name: "f", value: "journal", "type": "hidden"}
+                    },
+                    {
+                        label: "Abstract",
+                        input: {name: "f", value: "abstract", "type": "hidden"}
+                    },
+                    {
+                        label: "ISSN",
+                        input: {name: "f", value: "issn", "type": "hidden"}
+                    }
                 ],
                 form: {
                     method: "GET",
                     action: "http://caltech.tind.io/search",
                     input: [
+                        {name: "f", value: "title", "type": "hidden"},
                         {name: "q", value: "", placeholder: "Search library catalog", "type": "search", size: 23}
                     ]
                 }
             },
             "sfx": {
-                filter: [{label: 'eJournal Titles', input: []}],
+                filter: [],
                 form: {
                     method: "GET",
                     action: "http://sfx.caltech.edu:8088/caltech/az",
@@ -102,18 +111,21 @@
             },
             "tindCourseReserves": {
                 filter: [
-                    {label: "Course", input: [
-                        {name: "f", value: "coursereserves", "type": "hidden"}
-                    ]},
-                    {label: "Instructor", input: [
-                        {name: "f", value: "instructors", "type": "hidden"}
-                    ]}
+                    {
+                        label: "Course",
+                        input: {name: "f", value: "coursereserves", "type": "hidden"}
+                    },
+                    {
+                        label: "Instructor",
+                        input: {name: "f", value: "instructors", "type": "hidden"}
+                    }
                 ],
                 form: {
                     method: "GET",
                     action: "",
                     input: [
                         {name: "c", value: "Course Reserves", "type": "hidden"},
+                        {name: "f", value: "coursereserves", "type": "hidden"},
                         {name: "q", value: "", placeholder: "Search Course Reserves", "type": "search", size: 64}
                     ]
                 }
@@ -326,6 +338,41 @@
     }
 
     /**
+     * setHiddenInputField() - the hidden input element associated with filter selected
+     * @param searchWidget data structure describing the relationship from resource to filters and input form
+     * @param resourceId a string to use to locate the resource in searchWidget data structure.
+     * @param label the string to used as a label in the fitler list object
+     */
+    function setHiddenInputField(searchWidget, resourceId, label) {
+        var resource = searchWidget[resourceId],
+            filter = resource.filter,
+            i = 0,
+            foundIt = false,
+            elem = null;
+        console.log("DEBUG looking for ", resourceId, " label: ", label, " filter count", filter.length);
+        for (i = 0; i < filter.length && foundIt === false; i += 1) {
+            console.log("DEBUG checking", filter[i]);
+            if (filter[i].label === label) {
+                foundIt = true;
+                elem = searchQueryForm.querySelector("input[name="+filter[i].input.name+"]");
+                if (elem !== null) {
+                    console.log("DEBUG updating value for field: ", filter[i].input.name);
+                    elem.value = filter[i].input.value;
+                } else {
+                    console.log("DEBUG adding input: ", filter[i].input);
+                    elem = doc.createElement("input");
+                    elem.setAttribute("type", filter[i].input.type);
+                    elem.setAttribute("name", filter[i].input.name);
+                    elem.setAttribute("value", filter[i].input.value);
+                    console.log("DEBUG new input element", elem);
+                    searchQueryForm.appendChild(elem);
+                }
+            }
+        }
+        console.log("DEBUG foundIt should be true: ", foundIt);
+    }
+
+    /**
      * addMenuItemListener() - add a handler listing for eventName
      * @param elem - the menu item element
      * @param eventName - the string name of the event to listen for (e.g. click)
@@ -345,7 +392,20 @@
         var elem = ev.target,
             cur = getParentOfTagName(elem, "UL"),
             menuSelected = cur.querySelector(".usb-menu-selected"),
-            previouslySelected = cur.querySelector(".usb-menu-item-selected");
+            previouslySelected = cur.querySelector(".usb-menu-item-selected"),
+            resources = doc.getElementById("usb-search-resources"),
+            resourceSelected = resources.querySelector("li.usb-menu-item-selected") || null,
+            resourceId = "",
+            resourceAnchor = null;
+
+        console.log("DEBUG resourceSelected: ", resourceSelected);
+        if (resourceSelected !== null) {
+            console.log("DEBUG looking for anchor element")
+            resourceAnchor = resourceSelected.getElementsByTagName("a");
+            if (resourceAnchor !== null && resourceAnchor[0].id !== undefined) {
+                resourceId = resourceAnchor[0].id;
+            }
+        }
 
         if (previouslySelected !== null) {
             removeClass(previouslySelected, "usb-menu-item-selected");
@@ -354,8 +414,7 @@
         menuSelected.textContent = elem.textContent;
         console.log("DEBUG elem.id, elem.tagName, elem.textContent? " + elem.id + ": " + elem.tagName + " -> " + elem.textContent);
         console.log("DEBUG menuSelected.id, menuSelected.tagName, menuSelected.textContent? " + menuSelected.id + ": " + menuSelected.tagName + " -> " + menuSelected.textContent);
-
-        //FIXME: add or update hidden fields in the form the form with the selected item.
+        setHiddenInputField(searchWidget, resourceId, menuSelected.textContent);
         searchQueryInput.focus();
         toggleMenu(cur);
     }
