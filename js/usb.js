@@ -144,8 +144,8 @@
                     method: "GET",
                     action: "https://cse.google.com/cse/publicurl",
                     input: [
-                        {name: "cx", value: "005709273917748521174:b0g6d4sxowm"},
-                        {name: "ie", value: "UTF-8"},
+                        {name: "cx", value: "005709273917748521174:b0g6d4sxowm", "type": "hidden"},
+                        {name: "ie", value: "UTF-8", "type": "hidden"},
                         {name: "q", value: "", placeholder: "Search Caltech’s Institutional Repository", "type": "search", size: 64}
                     ]
                 }
@@ -181,8 +181,8 @@
                     method: "GET",
                     action: "http://google.com/cse",
                     input: [
-                        {type: "hidden", name: "cx", value: "005709273917748521174:po9fevg5ksw"},
-                        {type: "hidden", name: "ie", value: "UTF-8"},
+                        {type: "hidden", name: "cx", value: "005709273917748521174:po9fevg5ksw", "type": "hidden"},
+                        {type: "hidden", name: "ie", value: "UTF-8", "type": "hidden"},
                         {type: "text", name: "q", maxlength: "255", value: "", placeholder: "Search library website"}
                     ]
                 }
