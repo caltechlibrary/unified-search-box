@@ -20,7 +20,7 @@
          <!--
           SEARCH TARGET | LABEL | DESCRIPTION
           --------------|-------|------------------
-          EDS           | Find It | Articles, Books, etc.
+          * EDS           | Find It | Articles, Books, etc.
           --------------|-------|------------------
           TIND          | Library Catalog | Books and Print Journals
           --------------|-------|------------------
@@ -34,13 +34,13 @@
           --------------|-------|------------------
           Link to web page | More search tools and Help |
           --------------|-------|------------------
+          islandora     | Image Archives |
         -->
      */
         searchWidget = {
             "eds": {
-                quoteFilterValue: false,
-                filter: [],
                 script: [{src: "http://support.ebscohost.com/eit/scripts/ebscohostsearch.js", type: "text/javascript"}],
+                filter: [],
                 form: {
                     method: "GET",
                     action: "",
@@ -51,12 +51,11 @@
                         {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", type: "hidden", value: "db"},
                         {id: "ebscohostsearchmode", name: "ebscohostsearchmode", type: "hidden", value: "+"},
                         {id: "ebscohostkeywords", name: "ebscohostkeywords", type: "hidden", value: ""},
-                        {id: "ebscohostsearchtext", name: "ebscohostsearchtext,", type: "text", value: "", placeholder: "Search Articles, Books, etc.", size: 23}
+                        {id: "ebscohostsearchtext", name: "ebscohostsearchtext", type: "text", value: "", placeholder: "Search Articles, Books, etc.", size: 64, maxlength: 128}
                     ]
                 }
             },
             "tind": {
-                quoteFilterValue: true,
                 filter: [
                     {
                         label: "Title",
@@ -98,24 +97,22 @@
                         {name: "ln", value: "en", "type": "hidden"},
                         {name: "c", value: "Caltech", "type": "hidden"},
                         {name: "action_search", value: "Search", "type": "hidden"},
-                        {name: "p", value: "", placeholder: "Search library catalog", "type": "search", size: 23}
+                        {name: "p", value: "", placeholder: "Search library catalog", "type": "search", size: 64, maxlength: 128}
                     ]
                 }
             },
             "sfx": {
-                quoteFilterValue: false,
                 filter: [],
                 form: {
                     method: "GET",
                     action: "http://sfx.caltech.edu:8088/caltech/az",
                     input: [
                         {name: "param_perform_save", value: "searchTitle", "type": "hidden"},
-                        {name: "param_pattern_value", placeholder: "Library eJournal subscriptions", "type": "search", size: 23}
+                        {name: "param_pattern_value", placeholder: "Library eJournal subscriptions", "type": "search", size: 64, maxlength: 128}
                     ]
                 }
             },
             "tindCourseReserves": {
-                quoteFilterValue: true,
                 filter: [
                     {
                         label: "Course",
@@ -133,12 +130,11 @@
                         {name: "ln", value: "en", "type": "hidden"},
                         {name: "cc", value: "Course Reserves", "type": "hidden"},
                         {name: "action_search", value: "Search", "type": "hidden"},
-                        {name: "p", value: "", placeholder: "Search Course Reserves", "type": "search", size: 64}
+                        {name: "p", value: "", placeholder: "Search Course Reserves", "type": "search", size: 64, maxlength: 128}
                     ]
                 }
             },
             "coda": {
-                quoteFilterValue: false,
                 filter: [],
                 form: {
                     method: "GET",
@@ -146,36 +142,51 @@
                     input: [
                         {name: "cx", value: "005709273917748521174:b0g6d4sxowm", "type": "hidden"},
                         {name: "ie", value: "UTF-8", "type": "hidden"},
-                        {name: "q", value: "", placeholder: "Search Caltech’s Institutional Repository", "type": "search", size: 64}
+                        {name: "q", value: "", placeholder: "Search Caltech’s Institutional Repository", "type": "search", size: 64, maxlength: 128}
                     ]
                 }
             },
             "archivalImages": {
-                quoteFilterValue: false,
                 filter: [],
                 form: {
-                    method: "GET",
-                    action: "http://archives-dc.library.caltech.edu/islandora/search/KEYWORD",
+                    method: "POST",
+                    action: "http://archives-dc.library.caltech.edu/",
+                    /*NOTES: Copied from the embedded search form on the archives' homepage.
+
+                    <form action="/" method="post" id="islandora-solr-simple-search-form" accept-charset="UTF-8">
+                        <div>
+                            <div class="container-inline form-wrapper" id="edit-simple">
+                                <div class="form-item form-type-textfield form-item-islandora-simple-search-query">
+                                    <input type="text" id="edit-islandora-simple-search-query" name="islandora_simple_search_query" value="" size="15" maxlength="128" class="form-text" />
+                                </div>
+                                <input type="submit" id="edit-submit" name="op" value="search" class="form-submit" />
+                            </div>
+                            <input type="hidden" name="form_build_id" value="form-K83NaIRvMxcPkpUaVFu2yrlvZZQ6fYd3oiET4bj-ZpY" />
+                            <input type="hidden" name="form_id" value="islandora_solr_simple_search_form" />
+                        </div
+                   ></form>
+                   */
                     input: [
-                        {name: "type", value: "dismax", "type": "hidden"},
-                        {name: "q", value: "", placeholder: "Search Caltech’s Image Archives", "type": "search", size: 64}
+                        {name: "form_build_id", value: "form-K83NaIRvMxcPkpUaVFu2yrlvZZQ6fYd3oiET4bj-ZpY", "type": "hidden"},
+                        {name: "form_id", value: "islandora_solr_simple_search_form", "type": "hidden"},
+                        {name: "islandora_simple_search_query", type: "text", value:"", placeholder: "Search Caltech’s Image Archives", size: 64, maxlength: 128}
                     ]
                 }
             },
             "archivalMaterial": {
-                quoteFilterValue: false,
                 filter: [],
                 form: {
                     method: "GET",
-                    action: "http://archives-dc.library.caltech.edu/islandora/search/KEYWORD",
+                    action: "http://www.oac.cdlib.org/search",
                     input: [
-                        {name: "type", value: "dismax", "type": "hidden"},
-                        {name: "q", value: "", placeholder: "Search Caltech’s Image Archives", "type": "search", size: 64}
+                        {name: "x", value: "0", "type": "hidden"},
+                        {name: "y", value: "0", "type": "hidden"},
+                        {name: "institution", value: "California Institute of Technology", "type": "hidden"},
+                        {name: "query", value: "", placeholder: "Search Caltech Archives", "type": "search", size: 64, maxlength: 128}
                     ]
                 }
             },
             "website": {
-                quoteFilterValue: false,
                 filter: [],
                 form: {
                     method: "GET",
