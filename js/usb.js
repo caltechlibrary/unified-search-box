@@ -38,6 +38,7 @@
      */
         searchWidget = {
             "eds": {
+                quoteFilterValue: false,
                 filter: [],
                 script: [{src: "http://support.ebscohost.com/eit/scripts/ebscohostsearch.js", type: "text/javascript"}],
                 form: {
@@ -49,12 +50,13 @@
                         {id: "ebscohosturl", name: "ebscohosturl", type: "hidden", value: "https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip"},
                         {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", type: "hidden", value: "db"},
                         {id: "ebscohostsearchmode", name: "ebscohostsearchmode", type: "hidden", value: "+"},
-                        {id: "ebscohostkeywords", name: "ebscohostkeywords", type: "hidden", value: "", placeholder: "Search Articles, Books, etc."},
-                        {id: "ebscohostsearchtext", name: "ebscohostsearchtext,", type: "text", size: 23}
+                        {id: "ebscohostkeywords", name: "ebscohostkeywords", type: "hidden", value: ""},
+                        {id: "ebscohostsearchtext", name: "ebscohostsearchtext,", type: "text", value: "", placeholder: "Search Articles, Books, etc.", size: 23}
                     ]
                 }
             },
             "tind": {
+                quoteFilterValue: true,
                 filter: [
                     {
                         label: "Title",
@@ -91,14 +93,17 @@
                 ],
                 form: {
                     method: "GET",
-                    action: "http://caltech.tind.io/search",
+                    action: "https://caltech.tind.io/search",
                     input: [
-                        {name: "f", value: "title", "type": "hidden"},
-                        {name: "q", value: "", placeholder: "Search library catalog", "type": "search", size: 23}
+                        {name: "ln", value: "en", "type": "hidden"},
+                        {name: "c", value: "Caltech", "type": "hidden"},
+                        {name: "action_search", value: "Search", "type": "hidden"},
+                        {name: "p", value: "", placeholder: "Search library catalog", "type": "search", size: 23}
                     ]
                 }
             },
             "sfx": {
+                quoteFilterValue: false,
                 filter: [],
                 form: {
                     method: "GET",
@@ -110,27 +115,30 @@
                 }
             },
             "tindCourseReserves": {
+                quoteFilterValue: true,
                 filter: [
                     {
                         label: "Course",
-                        input: {name: "f", value: "coursereserves", "type": "hidden"}
+                        input: {name: "f", value: "coursereserve", "type": "hidden"}
                     },
                     {
                         label: "Instructor",
-                        input: {name: "f", value: "instructors", "type": "hidden"}
+                        input: {name: "f", value: "", "type": "hidden"}
                     }
                 ],
                 form: {
                     method: "GET",
-                    action: "",
+                    action: "https://caltech.tind.io/search",
                     input: [
-                        {name: "c", value: "Course Reserves", "type": "hidden"},
-                        {name: "f", value: "coursereserves", "type": "hidden"},
-                        {name: "q", value: "", placeholder: "Search Course Reserves", "type": "search", size: 64}
+                        {name: "ln", value: "en", "type": "hidden"},
+                        {name: "cc", value: "Course Reserves", "type": "hidden"},
+                        {name: "action_search", value: "Search", "type": "hidden"},
+                        {name: "p", value: "", placeholder: "Search Course Reserves", "type": "search", size: 64}
                     ]
                 }
             },
             "coda": {
+                quoteFilterValue: false,
                 filter: [],
                 form: {
                     method: "GET",
@@ -143,6 +151,7 @@
                 }
             },
             "archivalImages": {
+                quoteFilterValue: false,
                 filter: [],
                 form: {
                     method: "GET",
@@ -154,6 +163,7 @@
                 }
             },
             "archivalMaterial": {
+                quoteFilterValue: false,
                 filter: [],
                 form: {
                     method: "GET",
@@ -165,6 +175,7 @@
                 }
             },
             "website": {
+                quoteFilterValue: false,
                 filter: [],
                 form: {
                     method: "GET",
@@ -328,13 +339,43 @@
      * on the resource picked. It should remove any previously used input elements
      * as well as any listeners attached before adding the new input elements needed.
      * @param searchWidget data structure describing the relationship from resource to filters and input form
-     * @param form the form element with the id of usb-query-form
+     * @param formElement the form element with the id of usb-query-form
      * @param resourceId a string to use to locate the resource in searchWidget data structure.
      * @param addFilterInputs - if true add the filster inputs
      */
-    function updateQueryForm(searchWidget, form, resourceId) {
-        console.log("DEBUG updateQueryForm not implemented.");
-        clearQueryForm(form);
+    function updateQueryForm(searchWidget, formElement, resourceId) {
+        var resource = searchWidget[resourceId],
+            form = resource.form,
+            inputs = form.input,
+            i = 0,
+            elem = null;
+
+        console.log("DEBUG updateQueryForm implementation.");
+        clearQueryForm(formElement);
+        formElement.setAttribute("method", form.method);
+        formElement.setAttribute("action", form.action);
+
+        for (i = 0; i < inputs.length; i += 1) {
+            if (inputs[i].type === "search" || inputs[i].type === "text") {
+                searchQueryInput.setAttribute("name", inputs[i].name);
+                searchQueryInput.setAttribute("type", inputs[i].type);
+                //FIXME: Tind will want values quoted in some cases e.g. course names like "Ge 101"
+                searchQueryInput.setAttribute("value", inputs[i].value);
+                searchQueryInput.setAttribute("placeholder", inputs[i].placeholder);
+            } else {
+                elem = doc.createElement("input");
+                elem.setAttribute("type", inputs[i].type);
+                elem.setAttribute("name", inputs[i].name);
+                elem.setAttribute("value", inputs[i].value);
+                searchQueryForm.appendChild(elem);
+            }
+        }
+        if (form.onSubmit !== undefined) {
+            formElement.setAttribute("onSubmit", form.onSubmit);
+        } else if (formElement.hasAttribute("onSubmit") === true) {
+            formElement.removeAttribute("onsubmit");
+        }
+        console.log("DEBUG queryForm now", searchQueryForm);
     }
 
     /**
@@ -356,20 +397,19 @@
                 foundIt = true;
                 elem = searchQueryForm.querySelector("input[name="+filter[i].input.name+"]");
                 if (elem !== null) {
-                    console.log("DEBUG updating value for field: ", filter[i].input.name);
+                    elem.type = filter[i].input.type;
+                    elem.name = filter[i].input.name;
                     elem.value = filter[i].input.value;
                 } else {
-                    console.log("DEBUG adding input: ", filter[i].input);
                     elem = doc.createElement("input");
                     elem.setAttribute("type", filter[i].input.type);
                     elem.setAttribute("name", filter[i].input.name);
                     elem.setAttribute("value", filter[i].input.value);
-                    console.log("DEBUG new input element", elem);
                     searchQueryForm.appendChild(elem);
                 }
             }
         }
-        console.log("DEBUG foundIt should be true: ", foundIt);
+        console.log("DEBUG foundIt should be true: ", foundIt, elem);
     }
 
     /**
