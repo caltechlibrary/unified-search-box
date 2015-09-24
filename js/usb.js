@@ -1,7 +1,8 @@
 /**
  * usb.js - Unified Search Box behaviors.
  */
-(function (doc, win) {
+/*jslint browser: true */
+(function (doc) {
     "use strict";
     var resources = doc.getElementById("usb-search-resources"),
         resourcesSelectButton = resources.querySelector(".usb-menu-select-button"),
@@ -12,8 +13,7 @@
         filtersMenuItems = filters.querySelectorAll(".usb-menu-item-primary a"),
         searchQueryForm = doc.getElementById("usb-query-form"),
         searchQueryInput = doc.getElementById("usb-query-input"),
-        i = 0;
-
+        resourceId = "eds",
     /**
      * model the search engines options and form implementations
          <!--
@@ -35,10 +35,9 @@
           --------------|-------|------------------
         -->
      */
-    var resourceId = "eds",
         searchWidget = {
             "eds": {
-                filter: [{label: "Articles, Books, etc.", input:[]}],
+                filter: [{label: "Articles, Books, etc.", input: []}],
                 script: [{src: "http://support.ebscohost.com/eit/scripts/ebscohostsearch.js", type: "text/javascript"}],
                 form: {
                     method: "GET",
@@ -56,41 +55,41 @@
             },
             "tind": {
                 filter: [
-                    {label: "Title", input:[
-                        {name:"f", value:"title", "type": "hidden"}
+                    {label: "Title", input: [
+                        {name: "f", value: "title", "type": "hidden"}
                     ]},
-                    {label: "Author", input:[
-                        {name:"f", value:"author", "type": "hidden"}
+                    {label: "Author", input: [
+                        {name: "f", value: "author", "type": "hidden"}
                     ]},
-                    {label: "Subject", input:[
-                        {name:"f", value:"subject", "type": "hidden"}
+                    {label: "Subject", input: [
+                        {name: "f", value: "subject", "type": "hidden"}
                     ]},
-                    {label: "Keyword", input:[
-                        {name:"f", value:"keyword", "type": "hidden"}
+                    {label: "Keyword", input: [
+                        {name: "f", value: "keyword", "type": "hidden"}
                     ]},
-                    {label: "ISBN", input:[
-                        {name:"f", value:"isbn", "type": "hidden"}
+                    {label: "ISBN", input: [
+                        {name: "f", value: "isbn", "type": "hidden"}
                     ]},
-                    {label: "Journal", input:[
-                        {name:"f", value:"journal", "type": "hidden"}
+                    {label: "Journal", input: [
+                        {name: "f", value: "journal", "type": "hidden"}
                     ]},
-                    {label: "Abstract", input:[
-                        {name:"f", value:"abstract", "type": "hidden"}
+                    {label: "Abstract", input: [
+                        {name: "f", value: "abstract", "type": "hidden"}
                     ]},
-                    {label: "ISSN", input:[
-                        {name:"f", value:"issn", "type": "hidden"}
+                    {label: "ISSN", input: [
+                        {name: "f", value: "issn", "type": "hidden"}
                     ]}
                 ],
                 form: {
                     method: "GET",
                     action: "http://caltech.tind.io/search",
                     input: [
-                        {name:"q", value: "", placeholder: "Search library catalog", "type": "search", size: 23}
+                        {name: "q", value: "", placeholder: "Search library catalog", "type": "search", size: 23}
                     ]
                 }
             },
             "sfx": {
-                filter: [{label: 'eJournal Titles', input:[]}],
+                filter: [{label: 'eJournal Titles', input: []}],
                 form: {
                     method: "GET",
                     action: "http://sfx.caltech.edu:8088/caltech/az",
@@ -102,11 +101,11 @@
             },
             "tindCourseReserves": {
                 filter: [
-                    {label: "Course", input:[
-                        {name:"f", value:"coursereserves", "type": "hidden"}
+                    {label: "Course", input: [
+                        {name: "f", value: "coursereserves", "type": "hidden"}
                     ]},
-                    {label: "Instructor", input:[
-                        {name:"f", value:"instructors", "type": "hidden"}
+                    {label: "Instructor", input: [
+                        {name: "f", value: "instructors", "type": "hidden"}
                     ]}
                 ],
                 form: {
@@ -114,12 +113,12 @@
                     action: "",
                     input: [
                         {name: "c", value: "Course Reserves", "type": "hidden"},
-                        {name:"q", value: "", placeholder: "Search Course Reserves", "type": "search", size: 64}
+                        {name: "q", value: "", placeholder: "Search Course Reserves", "type": "search", size: 64}
                     ]
                 }
             },
             "coda": {
-                filter: [{label: "Keywords, titles or authors", input:[]}],
+                filter: [{label: "Keywords, titles or authors", input: []}],
                 form: {
                     method: "GET",
                     action: "https://cse.google.com/cse/publicurl",
@@ -131,7 +130,7 @@
                 }
             },
             "archivalImages": {
-                filter:[{label: "keywords", input:[]}],
+                filter: [{label: "keywords", input: []}],
                 form: {
                     method: "GET",
                     action: "http://archives-dc.library.caltech.edu/islandora/search/KEYWORD",
@@ -142,7 +141,7 @@
                 }
             },
             "archivalMaterial": {
-                filter:[{label: "keywords", input:[]}],
+                filter: [{label: "keywords", input: []}],
                 form: {
                     method: "GET",
                     action: "http://archives-dc.library.caltech.edu/islandora/search/KEYWORD",
@@ -153,7 +152,7 @@
                 }
             },
             "website": {
-                filter: [{label: "keywords, terms or phrases"}],
+                filter: [{label: "keywords, terms or phrases", input: []}],
                 form: {
                     method: "GET",
                     action: "http://google.com/cse",
@@ -169,14 +168,14 @@
     function addClass(elem, className) {
         var currentClasses = elem.className || "";
         if (currentClasses.indexOf(className) === -1) {
-           elem.className = (currentClasses+" "+className).trim();
+            elem.className = (currentClasses + " " + className).trim();
         }
     }
 
     function removeClass(elem, className) {
         var currentClasses = elem.className || "";
         if (currentClasses.indexOf(className) !== -1) {
-           elem.className = currentClasses.replace(className, "").replace("  ", " ");
+            elem.className = currentClasses.replace(className, "").replace("  ", " ");
         }
     }
 
@@ -184,7 +183,7 @@
         // Walk up to the parent of the UL.
         var cur = elem, prev = null;
         while (cur !== null) {
-          console.log("DEBUG walking? "+cur.tagName);
+            console.log("DEBUG walking? " + cur.tagName);
             prev = cur;
             cur = prev.parentNode;
             if (prev.tagName === tagName) {
@@ -194,11 +193,25 @@
         return cur;
     }
 
-    function menuEventHandler(evt) {
-        var elem = evt.target;
+    function toggleMenu(element) {
+        var ul = element.getElementsByTagName('ul').item(0);
+
+        if (ul.getAttribute('style') === "display:inline-block;") {
+            ul.setAttribute('style', 'display:none;');
+        } else {
+            ul.setAttribute('style', 'display:inline-block;');
+        }
+    }
+
+    /**
+     * menuEventHandler - toggles the menu visibility as necessary
+     * @param ev - the event trigger.
+     */
+    function menuEventHandler(ev) {
+        var elem = ev.target;
         // we don't use getParentOfTagName() here since we're already in a set of nested divs here.
         if (elem !== null) {
-            switch(elem.tagName.toLowerCase()) {
+            switch (elem.tagName.toLowerCase()) {
             case 'a':
                 toggleMenu(elem.parentNode);
                 break;
@@ -212,85 +225,181 @@
         }
     }
 
-    function toggleMenu(element){
-        var ul = element.getElementsByTagName('ul').item(0);
-
-        if (ul.getAttribute('style')=="display:inline-block;") {
-            ul.setAttribute('style','display:none;');
-        } else {
-            ul.setAttribute('style','display:inline-block;');
+    /**
+     * clearQueryForm - reset the form with id equal usb-query-form to an
+     * empty form withput any input elements.
+     * @param form the element with id equal to usb-query-form
+     */
+    function clearQueryForm(form) {
+        var inputs = form.querySelectorAll("input"),
+            i = 0;
+        for (i = 0; i < inputs.length; i += 1) {
+            form.removeChild(inputs[i]);
         }
     }
 
-    function addMenuItemListener(elem, eventName, listener, useCapture) {
-      elem.addEventListener(eventName, listener, useCapture);
+    /**
+     * clearFilterMenu() - remove any li, spans and anchors in the UL list as well
+     * as any listeners.
+     * @param ul - the ul element containg the li, spans and anchors to be cleared.
+     */
+    function clearFilterMenu(ul, eventListener) {
+        var anchors = ul.querySelectorAll("a") || [],
+            li = ul.querySelectorAll("li") || [],
+            i = 0;
+
+        for (i = 0; i < anchors.length; i += 1) {
+            anchors[i].removeEventListener("click", eventListener);
+        }
+        for (i = 0; i < li.length; i += 1) {
+            ul.removeChild(li[i]);
+        }
     }
 
-    function menuItemEventHandler(evt) {
-      var elem = evt.target;
-      var cur = getParentOfTagName(elem, "UL"),
-          menuSelected = cur.querySelector(".usb-menu-selected"),
-          previouslySelected = cur.querySelector(".usb-menu-item-selected");
 
-      if (previouslySelected !== null) {
-          removeClass(previouslySelected, "usb-menu-item-selected");
-      }
-      console.log("DEBUG elem.parentNode.tagName --> "+elem.parentNode.parentNode.tagName);
-      addClass(elem.parentNode.parentNode, "usb-menu-item-selected");
-      menuSelected.textContent = elem.textContent;
-      console.log("DEBUG elem.tagName, elem.textContent? "+elem.tagName+" -> "+elem.textContent);
+    /**
+     * updateFilterMenu - updates the filter menu based on what resource was selected.
+     * @param searchWidget data structure describing the relationship from resource to filters and input form
+     * @param ul the ul element which will contain an filters for the resource
+     * @param form the form element with id equal udb-query-form
+     * @param resourceId a string to use to locate the resource in searchWidget data structure.
+     * @param eventListener the event listener needs to be removed before removing the child to avoid memory leaks.
+     */
+    function updateFilterMenu(searchWidget, ul, form, resourceId, eventListener) {
+        var resource = searchWidget[resourceId] || null,
+            filterMenuSelected = doc.getElementById('usb-filter-menu-selected') || null,
+            liTemplate = '<span class="usb-menu-item-primary"><a href="#">{{label}}</a></span>';
 
-      if (cur.id && cur.id === "usb-search-resources") {
-          // Do we have a filter list? or do we go straight to query form?
-          // Find filters select button.
-          resourceId = elem.id;
-          updateQueryForm(searchWidget, searchQueryForm, resourceId);
-          updateFilterMenu(searchWidget, filtersUL, searchQueryForm, resourceId);
-          filtersSelectButton.focus();
-      } else {
-          updateQueryForm(searchWidget, resourceId);
-          searchQueryInput.focus();
-      }
-      toggleMenu(cur);
-    }
-
-    function clearQueryForm(form) {
-        console.log("DEBUG clearQueryForm not implemented.");
-        //FIXME: remove all inputs from query form
-        //FIXME: reset the actions and other form attributes
-    }
-
-    function updateFilterMenu(widget, ul, form, resourceId) {
-        console.log("DEBUG updateFilterMenu not implemented.");
-        //FIXME: remove any listeners on the filter list.
+        console.log("DEBUG updateFilterMenu not implemented. ", resourceId, resource);
+        clearFilterMenu(ul, eventListener);
         //FIXME: Update the filter UL list
-        //FIXME: Add new listeners UL
-        //FIXME: Adjust query form if necessary
+        resource.filter.forEach(function (obj, i) {
+            var li = doc.createElement("li"),
+                a = null;
+            li.innerHTML = liTemplate.replace("{{label}}", obj.label);
+            if (i === 0) {
+                li.className = "usb-menu-item-selected";
+                if (filterMenuSelected !== null) {
+                    filterMenuSelected.textContent = obj.label;
+                }
+            }
+            a = li.querySelector("a");
+            //FIXME: Add new listeners UL
+            if (a !== null) {
+                //FIXME: Adjust query form if necessary
+                //FIXME: The event listener will need to add/update input fields to the form when selected.
+                a.addEventListener("click", eventListener);
+            }
+            ul.appendChild(li);
+        });
+        console.log("DEBUG ul after update: ", ul.innerHTML);
     }
 
-    function updateQueryForm(widget, form, resourceId) {
+    /**
+     * updateQueryForm - setup the input fields (including hidden ones) based
+     * on the resource picked. It should remove any previously used input elements
+     * as well as any listeners attached before adding the new input elements needed.
+     * @param searchWidget data structure describing the relationship from resource to filters and input form
+     * @param form the form element with the id of usb-query-form
+     * @param resourceId a string to use to locate the resource in searchWidget data structure.
+     * @param addFilterInputs - if true add the filster inputs
+     */
+    function updateQueryForm(searchWidget, form, resourceId) {
         console.log("DEBUG updateQueryForm not implemented.");
         clearQueryForm(form);
     }
 
-    /* Add mouse handling to menu */
-    resourcesSelectButton.addEventListener("click", menuEventHandler, false);
-    for (i = 0; i < resourcesMenuItems.length; i++) {
-       addMenuItemListener(resourcesMenuItems[i], "click", menuItemEventHandler, false);
+    /**
+     * addMenuItemListener() - add a handler listing for eventName
+     * @param elem - the menu item element
+     * @param eventName - the string name of the event to listen for (e.g. click)
+     * @param listerner the event handler for that event.
+     * @param useCapture - pass through the useCapture flag for attached listener.
+     */
+    function addMenuItemListener(elem, eventName, listener, useCapture) {
+        elem.addEventListener(eventName, listener, useCapture);
     }
 
-    filtersSelectButton.addEventListener("click", menuEventHandler, false);
-    for (i = 0; i < filtersMenuItems.length; i++) {
-       addMenuItemListener(filtersMenuItems[i], "click", menuItemEventHandler, false);
+    /**
+     * filtersEventHandler() - handle menu item level events. Rerender the
+     * unified search box as appropriate.
+     * @param ev the event the resource menu is listening for.
+     */
+    function filtersEventHandler(ev) {
+        var elem = ev.target,
+            cur = getParentOfTagName(elem, "UL"),
+            menuSelected = cur.querySelector(".usb-menu-selected"),
+            previouslySelected = cur.querySelector(".usb-menu-item-selected");
+
+        if (previouslySelected !== null) {
+            removeClass(previouslySelected, "usb-menu-item-selected");
+        }
+        addClass(elem.parentNode.parentNode, "usb-menu-item-selected");
+        menuSelected.textContent = elem.textContent;
+        console.log("DEBUG elem.id, elem.tagName, elem.textContent? " + elem.id + ": " + elem.tagName + " -> " + elem.textContent);
+        console.log("DEBUG menuSelected.id, menuSelected.tagName, menuSelected.textContent? " + menuSelected.id + ": " + menuSelected.tagName + " -> " + menuSelected.textContent);
+
+        //FIXME: add or update hidden fields in the form the form with the selected item.
+        searchQueryInput.focus();
+        toggleMenu(cur);
     }
 
-    /* Add keyboard tab handling to menu */
-    resourcesSelectButton.addEventListener("focus", menuEventHandler, false);
-    filtersSelectButton.addEventListener("focus", menuEventHandler, false);
 
-    /* Set the initial focus, filter and query form */
-    updateQueryForm(searchWidget, searchQueryForm, resourceId);
-    updateFilterMenu(searchWidget, filtersUL, searchQueryForm, resourceId);
-    toggleMenu(resources);
-    resourcesSelectButton.focus();
-}(document, window));
+    /**
+     * resourcesEventHandler() - handle menu item level events. Rerender the
+     * unified search box as appropriate.
+     * @param ev the event the resource menu is listening for.
+     */
+    function resourcesEventHandler(ev) {
+        var elem = ev.target,
+            cur = getParentOfTagName(elem, "UL"),
+            menuSelected = cur.querySelector(".usb-menu-selected"),
+            previouslySelected = cur.querySelector(".usb-menu-item-selected");
+
+        if (previouslySelected !== null) {
+            removeClass(previouslySelected, "usb-menu-item-selected");
+        }
+        console.log("DEBUG elem.parentNode.tagName --> " + elem.parentNode.parentNode.tagName);
+        addClass(elem.parentNode.parentNode, "usb-menu-item-selected");
+        menuSelected.textContent = elem.textContent;
+        console.log("DEBUG elem.tagName, elem.textContent? " + elem.tagName + " -> " + elem.textContent);
+
+        resourceId = elem.id;
+        updateQueryForm(searchWidget, searchQueryForm, resourceId);
+        updateFilterMenu(searchWidget, filtersUL, searchQueryForm, resourceId, filtersEventHandler);
+        filtersSelectButton.focus();
+        toggleMenu(cur);
+    }
+
+
+    /**
+     * init() - initialize and start our unified search box
+     */
+    function init() {
+        var i = 0;
+        /* Add mouse handling to menu */
+        resourcesSelectButton.addEventListener("click", menuEventHandler, false);
+        for (i = 0; i < resourcesMenuItems.length; i += 1) {
+            addMenuItemListener(resourcesMenuItems[i], "click", resourcesEventHandler, false);
+        }
+
+        filtersSelectButton.addEventListener("click", menuEventHandler, false);
+        for (i = 0; i < filtersMenuItems.length; i += 1) {
+            addMenuItemListener(filtersMenuItems[i], "click", filtersEventHandler, false);
+        }
+
+        /* Add keyboard tab handling to menu */
+        resourcesSelectButton.addEventListener("focus", menuEventHandler, false);
+        filtersSelectButton.addEventListener("focus", menuEventHandler, false);
+
+        /* Set the initial focus, filter and query form */
+        updateQueryForm(searchWidget, searchQueryForm, resourceId);
+        updateFilterMenu(searchWidget, filtersUL, searchQueryForm, resourceId);
+        toggleMenu(resources);
+        resourcesSelectButton.focus();
+    }
+
+
+    /* Setup and run our unified search box */
+    init();
+}(document));
