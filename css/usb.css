@@ -76,8 +76,8 @@
 .usb-menu ul {
     position: absolute;
     display: none;
-    top: 2.24em;
-    left: 0;
+    top: 4.0em;
+    left: 1.0em;
     z-index: 10;
     list-style-type: none;
     background-color: inherit;
