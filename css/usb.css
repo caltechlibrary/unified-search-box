@@ -26,7 +26,7 @@
     position: relative;
     display: inline-flex;
     width: auto;
-    height: 3.0em;
+    height: auto;
     padding: 0.24em;
     text-align: right;
 }
@@ -35,7 +35,7 @@
     position: relative;
     display: inline-flex;
     width: 92%;
-    height: 3.0em;
+    height: auto;
     padding: 0.24em;
 }
 
@@ -50,7 +50,7 @@
     position: relative;
     display: inline-flex;
     width: auto;
-    height: 3.0em;
+    height: auto;
     padding: 0.24em;
     text-align: right;
 }
@@ -59,7 +59,7 @@
     position: relative;
     display: inline-flex;
     width: 92%;
-    height: 3.0em;
+    height: auto;
     padding: 0.24em;
 }
 
@@ -167,6 +167,7 @@
     width: auto;
     height: 2em;
     padding: 0.24em;
+    text-align: right;
 }
 
 .usb-query-input {
@@ -184,7 +185,6 @@
     position: relative;
     display: inline-flex;
     height: 2em;
-    padding-left: 1.52em;
 }
 
 .usb-query-input > form > input {
@@ -195,14 +195,8 @@
     vertical-align: middle; /* This is optional but it makes legacy IEs look better */
 }
 
- .usb-query-input > form > button {
-    position: relative;
-    display: inline-flex;
-}
-
-.usb-query-input > form > button > svg {
-    height: 2.42em;
-    width: 2.42em;
+.usb-query-input > form > button {
+    margin-left: 0.24em;
 }
 
 .usb-more-search-tools {

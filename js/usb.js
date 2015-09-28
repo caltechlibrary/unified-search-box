@@ -5,6 +5,7 @@
 (function (doc) {
     "use strict";
     var resources = doc.getElementById("usb-search-resources"),
+        resourceUL = doc.getElementById("usb-resource-ul"),
         resourcesSelectButton = resources.querySelector(".usb-menu-select-button"),
         resourcesMenuItems = resources.querySelectorAll(".usb-menu-item-primary a"),
         filtersContainer = doc.getElementById("usb-search-filters"),
@@ -15,28 +16,7 @@
         searchQueryForm = doc.getElementById("usb-query-form"),
         searchQueryInput = doc.getElementById("usb-query-input"),
         resourceId = "eds",
-    /**
-     * model the search engines options and form implementations
-         <!--
-          SEARCH TARGET | LABEL | DESCRIPTION
-          --------------|-------|------------------
-          * EDS           | Find It | Articles, Books, etc.
-          --------------|-------|------------------
-          TIND          | Library Catalog | Books and Print Journals
-          --------------|-------|------------------
-          SFX           | Find eJournals | Library Ejournal subscriptions
-          --------------|-------|------------------
-          TIND          | Course Reserves |
-          --------------|-------|------------------
-          Google Custom Search | CODA: Caltech Collection of Digital Archives | Caltech’s Institutional Repository
-          --------------|-------|------------------
-          Google Custom Search | Website search | Library website and LibGuides
-          --------------|-------|------------------
-          Link to web page | More search tools and Help |
-          --------------|-------|------------------
-          islandora     | Image Archives |
-        -->
-     */
+
         searchWidget = {
             "eds": {
                 script: [{src: "http://support.ebscohost.com/eit/scripts/ebscohostsearch.js", type: "text/javascript"}],
@@ -164,21 +144,6 @@
                 form: {
                     method: "POST",
                     action: "http://archives-dc.library.caltech.edu/",
-                    /*NOTES: Copied from the embedded search form on the archives' homepage.
-
-                    <form action="/" method="post" id="islandora-solr-simple-search-form" accept-charset="UTF-8">
-                        <div>
-                            <div class="container-inline form-wrapper" id="edit-simple">
-                                <div class="form-item form-type-textfield form-item-islandora-simple-search-query">
-                                    <input type="text" id="edit-islandora-simple-search-query" name="islandora_simple_search_query" value="" size="15" maxlength="128" class="form-text" />
-                                </div>
-                                <input type="submit" id="edit-submit" name="op" value="search" class="form-submit" />
-                            </div>
-                            <input type="hidden" name="form_build_id" value="form-K83NaIRvMxcPkpUaVFu2yrlvZZQ6fYd3oiET4bj-ZpY" />
-                            <input type="hidden" name="form_id" value="islandora_solr_simple_search_form" />
-                        </div
-                   ></form>
-                   */
                     input: [
                         {name: "form_build_id", value: "form-K83NaIRvMxcPkpUaVFu2yrlvZZQ6fYd3oiET4bj-ZpY", "type": "hidden"},
                         {name: "form_id", value: "islandora_solr_simple_search_form", "type": "hidden"},
@@ -205,9 +170,9 @@
                     method: "GET",
                     action: "http://google.com/cse",
                     input: [
-                        {type: "hidden", name: "cx", value: "005709273917748521174:po9fevg5ksw", "type": "hidden"},
-                        {type: "hidden", name: "ie", value: "UTF-8", "type": "hidden"},
-                        {type: "text", name: "q", maxlength: "255", value: "", placeholder: "Search library website"}
+                        {name: "cx", value: "005709273917748521174:po9fevg5ksw", "type": "hidden"},
+                        {name: "ie", value: "UTF-8", "type": "hidden"},
+                        {name: "q", maxlength: "255", value: "", placeholder: "Search library website", "type": "text"}
                     ]
                 }
             }
@@ -240,10 +205,19 @@
         return cur;
     }
 
-    function toggleMenu(element) {
-        var ul = element.getElementsByTagName('ul').item(0);
+    function closeMenu(ul) {
+        ul.setAttribute('style', 'display:none;');
+    }
 
-        if (ul.getAttribute('style') === "display:inline-block;") {
+    function openMenu(ul) {
+        ul.setAttribute('style', 'display:inline-block;');
+    }
+
+    function toggleMenu(element) {
+        var ul = element.getElementsByTagName('ul').item(0),
+            style = ul.getAttribute('style') || "";
+
+        if (style.indexOf("display:inline-block;") > -1) {
             ul.setAttribute('style', 'display:none;');
         } else {
             ul.setAttribute('style', 'display:inline-block;');
@@ -440,6 +414,8 @@
             menuSelected = cur.querySelector(".usb-menu-selected"),
             previouslySelected = cur.querySelector(".usb-menu-item-selected"),
             resources = doc.getElementById("usb-search-resources"),
+            resourceUL = doc.getElementById("usb-resource-ul"),
+            filterUL = doc.getElementById("usb-filter-ul"),
             resourceSelected = resources.querySelector("li.usb-menu-item-selected") || null,
             resourceId = "",
             resourceAnchor = null;
@@ -457,8 +433,9 @@
         addClass(elem.parentNode.parentNode, "usb-menu-item-selected");
         menuSelected.textContent = elem.textContent;
         setHiddenInputField(searchWidget, resourceId, menuSelected.textContent);
+        closeMenu(resourceUL);
+        closeMenu(filterUL);
         searchQueryInput.focus();
-        toggleMenu(cur);
     }
 
 
@@ -474,6 +451,8 @@
             menuSelected = cur.querySelector(".usb-menu-selected"),
             previouslySelected = cur.querySelector(".usb-menu-item-selected"),
             filterMenuSelected = doc.getElementById("usb-filter-menu-selected") || null,
+            filterUL = doc.getElementById("usb-filter-ul"),
+            resourceUL = doc.getElementById("usb-resource-ul"),
 	    queryInput = doc.getElementById('usb-query-input') || null;
 
         if (previouslySelected !== null) {
@@ -487,11 +466,14 @@
         menuCount = updateFilterMenu(searchWidget, filtersUL, searchQueryForm, resourceId, filtersEventHandler);
         if (menuCount > 0) {
             filtersSelectButton.focus();
+            openMenu(filterUL);
+            closeMenu(resourceUL);
         } else {
             filterMenuSelected.innerHTML = "";
+            closeMenu(resourceUL);
+            closeMenu(filterUL);
             queryInput.focus();
         }
-        toggleMenu(cur);
     }
 
 
@@ -499,7 +481,10 @@
      * init() - initialize and start our unified search box
      */
     function init() {
-        var i = 0;
+        var i = 0,
+            resourceUL = doc.getElementById("usb-resource-ul"),
+            filterUL = doc.getElementById("usb-filter-ul");
+
         /* Add mouse handling to menu */
         resourcesSelectButton.addEventListener("click", menuEventHandler, false);
         for (i = 0; i < resourcesMenuItems.length; i += 1) {
@@ -518,7 +503,8 @@
         /* Set the initial focus, filter and query form */
         updateQueryForm(searchWidget, searchQueryForm, resourceId);
         updateFilterMenu(searchWidget, filtersUL, searchQueryForm, resourceId);
-        toggleMenu(resources);
+        openMenu(resourceUL);
+        closeMenu(filterUL);
         resourcesSelectButton.focus();
     }
 
