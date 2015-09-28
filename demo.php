@@ -1,5 +1,5 @@
 <?php
-include_once("searchbox.php");
+require_once("searchbox.php");
 ?>
 <!DOCTYPE html>
 <html>

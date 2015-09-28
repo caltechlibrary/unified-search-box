@@ -2,11 +2,21 @@
 /**
  * searchbox.php - provide CSS, HTML fragment and JavaScript embed as functions returning them as strings.
  */
-function searchboxCSS() {
-    return PHP_EOL . '<style rel="stylesheet">' . file_get_contents("css/usb.css") . '</style>' . PHP_EOL; 
+
+function joinPath($p1, $p2) {
+   if ($p1 === "") {
+	return $p2;
+   }
+   return $p1 . '/' . $p2; 
 }
 
-function searchboxHTML() {
+function searchboxCSS($basepath = "") {
+    $css = file_get_contents(joinPath($basepath, 'css/usb.css'));
+    //return PHP_EOL . '<link rel="stylesheet" href="/searchbox/css/usb.css">' . PHP_EOL; 
+    return PHP_EOL .  '<style rel="stylesheet">' . $css .  '</style>' .  PHP_EOL;
+}
+
+function searchboxHTML($basepath = "") {
     $src = <<<HTML
 
   <div id="usb-searchbox" class="usb-searchbox">
@@ -63,7 +73,11 @@ HTML;
     return PHP_EOL. $src . PHP_EOL;
 }
 
-function searchboxJavaScript() {
-    return PHP_EOL . '<script rel="javascript" type="text/javascript">' . PHP_EOL . file_get_contents("js/usb.js") . PHP_EOL . '</script>' . PHP_EOL;
+function searchboxJavaScript($basepath = "") {
+    $js = file_get_contents(joinPath($basepath, "js/usb.js"));
+    return PHP_EOL . 
+	'<script src="http://support.ebscohost.com/eit/scripts/ebscohostsearch.js" type="text/javascript"></script>' . 
+	PHP_EOL .
+	'<script rel="javascript" type="text/javascript">' . PHP_EOL . $js . PHP_EOL . '</script>' . PHP_EOL;
 }
 ?>
