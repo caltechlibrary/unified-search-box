@@ -82,7 +82,7 @@
     list-style-type: none;
     background-color: inherit;
     border: 1px solid white;
-    box-shadow: 0.12em 0.12em #043584;
+    box-shadow: 0.24em 0 0.24em #043584;
     margin: 0;
     padding: 0;
 }
