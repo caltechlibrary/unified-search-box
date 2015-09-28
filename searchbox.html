@@ -1,3 +1,282 @@
+<!--START: include css/usb.css -->
+<style>
+/**
+ * usb.css - the design for the Unified Search Box.
+ */
+.hide {
+    display: none;
+    visibility: hidden;
+}
+
+.usb-searchbox {
+    display: block;
+    position: relative;
+    padding: 1.0em;
+    color: black;
+    background-color: white;
+}
+
+.usb-search-resources {
+    position: relative;
+    display: inline-flex;
+    margin: 0.24em;
+    width: 30%;
+}
+
+.usb-search-resources label {
+    position: relative;
+    display: inline-flex;
+    width: auto;
+    height: 3.0em;
+    padding: 0.24em;
+    text-align: right;
+}
+
+.usb-search-resources div {
+    position: relative;
+    display: inline-flex;
+    width: 92%;
+    height: 3.0em;
+    padding: 0.24em;
+}
+
+.usb-search-filters {
+    position: relative;
+    display: inline-flex;
+    margin: 0.24em;
+    width: 25%;
+}
+
+.usb-search-filters label {
+    position: relative;
+    display: inline-flex;
+    width: auto;
+    height: 3.0em;
+    padding: 0.24em;
+    text-align: right;
+}
+
+.usb-search-filters div {
+    position: relative;
+    display: inline-flex;
+    width: 92%;
+    height: 3.0em;
+    padding: 0.24em;
+}
+
+.usb-menu {
+    position: relative;
+    margin-left: 0.52em;
+    min-width: 20%;
+    height: auto;
+    font-size: 1.0em;
+    color: black;
+    background-color: #EEF2FB;
+    border-radius: 0.48em;
+}
+
+.usb-menu ul {
+    position: absolute;
+    display: none;
+    top: 1.24em;
+    left: 0;
+    list-style: none;
+    margin: 2.72em;
+    padding: 0.24em;
+    z-index: 10;
+    /* border: 0.24em solid blue; */
+    border: 1px solid white;
+    background-color: inherit;
+    box-shadow: 0.12em 0.12em #043584;
+}
+
+.usb-menu ul li {
+    border-bottom: 0.12em solid #043584;
+    padding: 0.42em;
+}
+
+.usb-menu-item-selected, .usb-menu-item-selected span, .usb-menu-item-selected a, .usb-menu-item-selected a:link, .usb-menu-item-selected a:visited {
+    background-color: lightgrey;
+}
+
+
+.usb-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.usb-menu-selected {
+    position: relative;
+    display: inline-flex;
+    padding-left: 0.24em;
+}
+
+.usb-menu-select-button {
+    position: relative;
+    display: inline-flex;
+    width: 1.24em;
+}
+
+.usb-menu-select-button svg {
+    position: relative;
+    display: inline-flex;
+    padding: 0.24em;
+    width: 1.24em;
+    height: 1.24em;
+    fill: darkblue;
+}
+
+.usb-menu-label {
+    display: inline-block;
+    position: relative;
+}
+
+.usb-menu-item-primary {
+    display: block;
+    font-weight: bold;
+    text-transform: none;
+    text-align: left;
+}
+
+.usb-menu-item-primary a, .usb-menu-item-primary a:link, .usb-menu-item-primary a:active {
+    text-decoration: none;
+    color: black;
+    background-color: #EEF2FB;
+}
+
+.usb-menu-item-primary a:hover, .usb-menu-item-primary a:focus, .usb-menu-item-secondary a:visited {
+    text-decoration: none;
+    color: white;
+    background-color: #043584;
+}
+
+.usb-menu-item-secondary {
+    display: block;
+    font-weight: lighter;
+    text-transform: none;
+    text-decoration: none;
+    text-align: left;
+}
+
+.usb-search-query {
+    position: relative;
+    display: inline-flex;
+}
+
+.usb-query-label {
+    margin-right: 0.52em;
+    width: auto;
+    height: 2em;
+    padding: 0.24em;
+}
+
+.usb-query-input {
+    display: inline-flex;
+    position: relative;
+    min-width: 20%;
+    max-width: 60%;
+}
+
+.usb-query-input > .usb-menu-label {
+    padding: 1.52em;
+}
+
+.usb-query-input > form {
+    position: relative;
+    display: inline-flex;
+    height: 2em;
+    padding-left: 1.52em;
+}
+
+.usb-query-input > form > input {
+    position: relative;
+    display: inline-flex;
+    font-size: 0.8em;
+    height: 2.0em; /* for IE */
+    vertical-align: middle; /* This is optional but it makes legacy IEs look better */
+}
+
+ .usb-query-input > form > button {
+    position: relative;
+    display: inline-flex;
+}
+
+.usb-query-input > form > button > svg {
+    height: 2.42em;
+    width: 2.42em;
+}
+
+.usb-more-search-tools {
+    position: absolute;
+    display: inline-flex;
+    top: 2.72em;
+    left: 33%;
+    width: 100%;
+    height: 2em;
+    padding: 0.24em;
+    text-align: center;
+}
+
+.usb-more-search-tools a {
+    color: darkblue;
+}
+</style>
+<!--   END: css/usb.css -->
+
+<!-- START: html fragment searchbox -->
+
+  <div id="usb-searchbox" class="usb-searchbox">
+    <div class="usb-search-resources">
+        <label class="usb-menu-label">Search</label>
+        <div id="usb-search-resources" class="usb-menu">
+            <div id="usb-resource-menu-selected" class="usb-menu-selected">Cross database search</div>
+            <a href="#" tabindex="1" class="usb-menu-select-button"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8.071px" height="14px" viewBox="0 0 8.071 14" enable-background="new 0 0 8.071 14" xml:space="preserve">
+                <path d="M0.069 8.74c0.08-0.159 0.252-0.264 0.436-0.274 0.023 0 1.743-0.104 3.531-0.104s3.508 0.104 3.53 0.104C7.751 8.476 7.911 8.581 8.003 8.74c0.092 0.161 0.092 0.356 0 0.517 -1.364 2.431-3.508 4.517-3.6 4.598 -0.206 0.194-0.528 0.194-0.734 0 -0.091-0.081-2.235-2.167-3.6-4.598C-0.023 9.096-0.023 8.901 0.069 8.74M8.003 5.259c-0.08 0.16-0.252 0.264-0.437 0.275 -0.022 0-1.742 0.103-3.53 0.103S0.528 5.535 0.505 5.535C0.321 5.523 0.161 5.419 0.069 5.259c-0.092-0.161-0.092-0.355 0-0.516 1.365-2.431 3.508-4.517 3.6-4.598 0.206-0.194 0.528-0.194 0.734 0 0.092 0.081 2.235 2.167 3.6 4.598C8.095 4.904 8.095 5.099 8.003 5.259"></path>
+            </svg></a>
+            <ul>
+                <li><span class="usb-menu-item-primary"><a id="eds" href="#">Cross database search</a></span> <span class="usb-menu-item-secondary">Articles, Books, etc.</span></li>
+                <li><span class="usb-menu-item-primary"><a id="tind" href="#">Library Catalog</a></span> <span class="usb-menu-item-secondary">Books and Print Journals</span></li>
+                <li><span class="usb-menu-item-primary"><a id="sfx" href="#">Find eJournals</a></span> <span class="usb-menu-item-secondary">Library eJournal Subscriptions</span></li>
+                <li><span class="usb-menu-item-primary"><a id="tindCourseReserves" href="#">Course Reserves</a></span></li>
+                <li><span class="usb-menu-item-primary"><a id="coda" href="#">CODA: Caltech Collection of Digital Archives</a></span> <span class="usb-menu-item-secondary">Caltech's Institutional Repository</span></li>
+                <li><span class="usb-menu-item-primary"><a id="archivalImages" href="#">Images</a></span> <span class="usb-menu-item-secondary">Caltech Archives</span></li>
+                <li><span class="usb-menu-item-primary"><a id="archivalMaterial" href="#">Archival materials</a></span> <span class="usb-menu-item-secondary">Caltech Archives</span></li>
+                <li><span class="usb-menu-item-primary"><a id="website" href="#">Search Website</a></span> <span class="usb-menu-item-secondary">Library website and LibGuides</span></li>
+            </ul>
+        </div><!-- END: id="usb-search-resources" -->
+    </div><!-- END: class="usb-search-resources" -->
+
+    <div id="usb-search-filters" class="usb-search-filters">
+        <label id="usb-filter-label" class="usb-menu-label">By</label>
+        <div id="usb-filter" class="usb-menu">
+            <div id="usb-filter-menu-selected" class="usb-menu-selected"></div>
+            <a href="#" tabindex="1" class="usb-menu-select-button"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8.071px" height="14px" viewBox="0 0 8.071 14" enable-background="new 0 0 8.071 14" xml:space="preserve">
+                <path d="M0.069 8.74c0.08-0.159 0.252-0.264 0.436-0.274 0.023 0 1.743-0.104 3.531-0.104s3.508 0.104 3.53 0.104C7.751 8.476 7.911 8.581 8.003 8.74c0.092 0.161 0.092 0.356 0 0.517 -1.364 2.431-3.508 4.517-3.6 4.598 -0.206 0.194-0.528 0.194-0.734 0 -0.091-0.081-2.235-2.167-3.6-4.598C-0.023 9.096-0.023 8.901 0.069 8.74M8.003 5.259c-0.08 0.16-0.252 0.264-0.437 0.275 -0.022 0-1.742 0.103-3.53 0.103S0.528 5.535 0.505 5.535C0.321 5.523 0.161 5.419 0.069 5.259c-0.092-0.161-0.092-0.355 0-0.516 1.365-2.431 3.508-4.517 3.6-4.598 0.206-0.194 0.528-0.194 0.734 0 0.092 0.081 2.235 2.167 3.6 4.598C8.095 4.904 8.095 5.099 8.003 5.259"></path>
+            </svg></a>
+            <ul id="usb-filter-ul">
+                <!-- EXAMPLE LI: <li><span class="usb-menu-item-primary"><a href="#" class="usb-menu-item-selected">Filter Item</a></span></li> -->
+            </ul>
+        </div><!-- END: id="usb-search-filters" -->
+    </div><!-- END: class="usb-search-filters" -->
+
+    <div class="usb-search-query">
+        <div class="usb-query-label">For</div>
+        <div class="usb-query-input">
+            <form id="usb-query-form">
+                <input id="usb-query-input" type="search" size="42">
+                <button><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="16" viewBox="0 0 12 12" aria-hidden="true" class="icon-search">
+                        <path d="M7.273 0.727q1.187 0 2.19 0.585t1.588 1.588 0.585 2.19-0.585 2.19-1.588 1.588-2.19 0.585q-1.278 0-2.33-0.676l-3.284 3.301q-0.295 0.284-0.688 0.284-0.403 0-0.688-0.284t-0.284-0.688 0.284-0.688l3.301-3.284q-0.676-1.051-0.676-2.33 0-1.188 0.585-2.19t1.588-1.588 2.19-0.585zM7.273 8q0.591 0 1.128-0.23t0.929-0.622 0.622-0.929 0.23-1.128-0.23-1.128-0.622-0.929-0.929-0.622-1.128-0.23-1.128 0.23-0.929 0.622-0.622 0.929-0.23 1.128 0.23 1.128 0.622 0.929 0.929 0.622 1.128 0.23z"></path>
+                </svg></button>
+            </form><!-- END: id="usb-query-form" -->
+        </div><!-- END: class="usb-query-input" -->
+        <div class="usb-more-search-tools">
+        (<a href="http://libguides.caltech.edu/">More search tools</a>)
+        </div>
+    </div><!-- END: class="usb-search-query-form" -->
+  </div><!-- END: id="usb-searchbox" -->
+<!--   END: html fragment searchbox -->
+
+<!-- START: js/usb.js -->
+<script>
 /**
  * usb.js - Unified Search Box behaviors.
  */
@@ -515,3 +794,5 @@
     /* Setup and run our unified search box */
     init();
 }(document));
+</script>
+<!--  END: js/usb.sj -->

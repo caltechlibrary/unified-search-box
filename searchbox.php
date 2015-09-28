@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Unified Search Box prototypes</title>
-  <link href="css/page-basic.css" rel="stylesheet">
-  <link href="css/usb.css" rel="stylesheet">
-  <script src="http://support.ebscohost.com/eit/scripts/ebscohostsearch.js" type="text/javascript"></script>
-</head>
-<body>
-  <header><h1>Prototype 5</h1></header>
-  <section>
+<?php 
+/**
+ * searchbox.php - provide CSS, HTML fragment and JavaScript embed as functions returning them as strings.
+ */
+function searchboxCSS() {
+    return PHP_EOL . '<style rel="stylesheet">' . file_get_contents("css/usb.css") . '</style>' . PHP_EOL; 
+}
+
+function searchboxHTML() {
+    $src = <<<HTML
+
   <div id="usb-searchbox" class="usb-searchbox">
     <div class="usb-search-resources">
         <label class="usb-menu-label">Search</label>
@@ -59,21 +59,11 @@
     </div><!-- END: class="usb-search-query-form" -->
   </div><!-- END: id="usb-searchbox" -->
 
-  <script src="js/usb.js"></script>
-  </section>
-  <nav>
-    <h2>project prototypes</h2>
-    <ul>
-      <li><a href="index.html">home</a></li>
-      <li><a href="prototype1.html">prototype 1</a> a UL list as datastructure describing hetrogenious search forms</li>
-      <li><a href="prototype2.html">prototype 2</a> a more traditional element implementation</li>
-      <li><a href="prototype3.html">prototype 3</a> using the EDS form API</li>
-      <li><a href="prototype4.html">prototype 4</a> getting tab and focus working</li>
-      <li><a href="prototype5.html">prototype 5</a> a working prototype</li>
-      <li><a href="demo.php">Demo PHP library implementation</a></li>
-      <li><a href="searchbox.html">HTML fragment implementation</a></li>
-    </ul>
-  </nav>
-  <footer>No droids, here. We're of no interest. Move along.</footer>
-</body>
-</html>
+HTML;
+    return PHP_EOL. $src . PHP_EOL;
+}
+
+function searchboxJavaScript() {
+    return PHP_EOL . '<script rel="javascript" type="text/javascript">' . PHP_EOL . file_get_contents("js/usb.js") . PHP_EOL . '</script>' . PHP_EOL;
+}
+?>
