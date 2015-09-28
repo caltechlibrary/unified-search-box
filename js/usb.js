@@ -40,7 +40,20 @@
         searchWidget = {
             "eds": {
                 script: [{src: "http://support.ebscohost.com/eit/scripts/ebscohostsearch.js", type: "text/javascript"}],
-                filter: [],
+                filter: [
+                    {
+                       label: "Keyword",
+                       input: {name: "ebscohostkeywords", value: "1", "type": "hidden"}
+                    },
+                    {
+                       label: "Title",
+                       input: {name: "ebscohostkeywords", value: "", "type": "hidden"}
+                    },
+                    {
+                       label: "Author",
+                       input: {name: "ebscohostkeywords", value: "", "type": "hidden"}
+                    }
+                ],
                 form: {
                     method: "GET",
                     action: "",
@@ -214,14 +227,6 @@
         }
     }
 
-    function hideFilters(state) {
-        if (state === true) {
-            addClass(filtersContainer, "hide");
-        } else {
-            removeClass(filtersContainer, "hide");
-        }
-    }
-
     function getParentOfTagName(elem, tagName) {
         // Walk up to the parent of the UL.
         var cur = elem, prev = null;
@@ -308,18 +313,17 @@
      * @param form the form element with id equal udb-query-form
      * @param resourceId a string to use to locate the resource in searchWidget data structure.
      * @param eventListener the event listener needs to be removed before removing the child to avoid memory leaks.
+     * @return number of filter items.
      */
     function updateFilterMenu(searchWidget, ul, form, resourceId, eventListener) {
         var resource = searchWidget[resourceId] || null,
+            queryInput = doc.getElementById('usb-query-input') || null,
             filterMenuSelected = doc.getElementById('usb-filter-menu-selected') || null,
             liTemplate = '<span class="usb-menu-item-primary"><a href="#">{{label}}</a></span>';
 
         clearFilterMenu(ul, eventListener);
-        //FIXME: Update the filter UL list
-        if (resource.filter === undefined || resource.filter.length === 0) {
-            hideFilters(true);
-        } else {
-            hideFilters(false);
+        //NOTE: Update the filter UL list
+        if (resource.filter !== undefined && resource.filter.length > 0) {
             resource.filter.forEach(function (obj, i) {
                 var li = doc.createElement("li"),
                     a = null;
@@ -331,15 +335,14 @@
                     }
                 }
                 a = li.querySelector("a");
-                //FIXME: Add new listeners UL
                 if (a !== null) {
-                    //FIXME: Adjust query form if necessary
-                    //FIXME: The event listener will need to add/update input fields to the form when selected.
                     a.addEventListener("click", eventListener);
                 }
                 ul.appendChild(li);
             });
+            return resource.filter.length;
         }
+        return 0;
     }
 
     /**
@@ -465,10 +468,13 @@
      * @param ev the event the resource menu is listening for.
      */
     function resourcesEventHandler(ev) {
-        var elem = ev.target,
+        var menuCount = 0,
+            elem = ev.target,
             cur = getParentOfTagName(elem, "UL"),
             menuSelected = cur.querySelector(".usb-menu-selected"),
-            previouslySelected = cur.querySelector(".usb-menu-item-selected");
+            previouslySelected = cur.querySelector(".usb-menu-item-selected"),
+            filterMenuSelected = doc.getElementById("usb-filter-menu-selected") || null,
+	    queryInput = doc.getElementById('usb-query-input') || null;
 
         if (previouslySelected !== null) {
             removeClass(previouslySelected, "usb-menu-item-selected");
@@ -478,8 +484,13 @@
 
         resourceId = elem.id;
         updateQueryForm(searchWidget, searchQueryForm, resourceId);
-        updateFilterMenu(searchWidget, filtersUL, searchQueryForm, resourceId, filtersEventHandler);
-        filtersSelectButton.focus();
+        menuCount = updateFilterMenu(searchWidget, filtersUL, searchQueryForm, resourceId, filtersEventHandler);
+        if (menuCount > 0) {
+            filtersSelectButton.focus();
+        } else {
+            filterMenuSelected.innerHTML = "";
+            queryInput.focus();
+        }
         toggleMenu(cur);
     }
 
