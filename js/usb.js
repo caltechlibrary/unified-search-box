@@ -5,19 +5,14 @@
 (function (doc) {
     "use strict";
     var resources = doc.getElementById("usb-search-resources"),
-        resourceUL = doc.getElementById("usb-resource-ul"),
         resourcesSelectButton = resources.querySelector(".usb-menu-select-button"),
-        resourcesMenuItems = resources.querySelectorAll(".usb-menu-item-primary a"),
         filtersContainer = doc.getElementById("usb-search-filters"),
         filters = doc.getElementById("usb-filter"),
-        filtersUL = doc.getElementById("usb-filter-ul"),
         filtersSelectButton = filters.querySelector(".usb-menu-select-button"),
-        filtersMenuItems = filters.querySelectorAll(".usb-menu-item-primary a"),
         searchQueryForm = doc.getElementById("usb-query-form"),
         searchQueryInput = doc.getElementById("usb-query-input"),
-        resourceId = "eds",
-
         searchWidget = {
+/*
             "eds": {
                 script: [{src: "http://support.ebscohost.com/eit/scripts/ebscohostsearch.js", type: "text/javascript"}],
                 filter: [
@@ -48,6 +43,7 @@
                     ]
                 }
             },
+*/
             "tind": {
                 filter: [
                     {
@@ -142,6 +138,7 @@
                     ]
                 }
             },
+/*
             "archivalImages": {
                 filter: [],
                 form: {
@@ -167,6 +164,7 @@
                     ]
                 }
             },
+*/
             "website": {
                 filter: [],
                 form: {
@@ -418,7 +416,9 @@
         }
         addClass(elem.parentNode.parentNode, "usb-menu-item-selected");
         menuSelected.textContent = elem.textContent;
-        setHiddenInputField(searchWidget, resourceId, menuSelected.textContent);
+        if (resourceId !== "" ) {
+            setHiddenInputField(searchWidget, resourceId, menuSelected.textContent);
+        }
         closeMenu(resourceUL);
         closeMenu(filterUL);
         searchQueryInput.focus();
@@ -432,6 +432,7 @@
      */
     function resourcesEventHandler(ev) {
         var menuCount = 0,
+            resourceId = "",
             elem = ev.target,
             filterUL = doc.getElementById("usb-filter-ul"),
             resourceUL = doc.getElementById("usb-resource-ul"),
@@ -439,9 +440,8 @@
             menuSelected = cur.querySelector(".usb-menu-selected"),
             previouslySelected = cur.querySelector(".usb-menu-item-selected"),
             filterMenuSelected = doc.getElementById("usb-filter-menu-selected") || null,
-	    queryInput = doc.getElementById('usb-query-input') || null;
+	        queryInput = doc.getElementById('usb-query-input') || null;
 
-console.log("DEBUG cur and resourcesUL.parent?", cur, resourceUL.parentNode);
         if (previouslySelected !== null) {
             removeClass(previouslySelected, "usb-menu-item-selected");
         }
@@ -450,7 +450,7 @@ console.log("DEBUG cur and resourcesUL.parent?", cur, resourceUL.parentNode);
 
         resourceId = elem.id;
         updateQueryForm(searchWidget, searchQueryForm, resourceId);
-        menuCount = updateFilterMenu(searchWidget, filtersUL, searchQueryForm, resourceId, filtersEventHandler);
+        menuCount = updateFilterMenu(searchWidget, filterUL, searchQueryForm, resourceId, filtersEventHandler);
         if (menuCount > 0) {
             filtersSelectButton.focus();
             openMenu(filterUL);
@@ -469,31 +469,39 @@ console.log("DEBUG cur and resourcesUL.parent?", cur, resourceUL.parentNode);
      */
     function init() {
         var i = 0,
+            resourceId = "",
+            activeResource = searchWidget[resourceId],
+            queryInput = doc.getElementById("usb-query-input"),
             resourceUL = doc.getElementById("usb-resource-ul"),
+            resourceMenuItems = resourceUL.querySelectorAll(".usb-menu-item-primary a"),
             filterUL = doc.getElementById("usb-filter-ul"),
-            searchResources = doc.getElementById("usb-search-resources");
+            searchResources = doc.getElementById("usb-search-resources"),
+            filterMenuSelected = doc.getElementById('usb-filter-menu-selected'),
+            resourceMenuSelected = doc.getElementById('usb-resource-menu-selected'),
+            liTemplate = '<span class="usb-menu-item-primary"><a href="#">{{label}}</a></span>';
+        
 
         /* Add mouse handling to menu */
         resourcesSelectButton.addEventListener("click", menuEventHandler, false);
-        for (i = 0; i < resourcesMenuItems.length; i += 1) {
-            addMenuItemListener(resourcesMenuItems[i], "click", resourcesEventHandler, false);
-        }
-
         filtersSelectButton.addEventListener("click", menuEventHandler, false);
-        for (i = 0; i < filtersMenuItems.length; i += 1) {
-            addMenuItemListener(filtersMenuItems[i], "click", filtersEventHandler, false);
-        }
 
         /* Add keyboard tab handling to menu */
         resourcesSelectButton.addEventListener("focus", menuEventHandler, false);
         filtersSelectButton.addEventListener("focus", menuEventHandler, false);
 
-        /* Set the initial focus, filter and query form */
+        // Add resource listeners and find correct resourceId to initialize query form an filter with.
+        for (i = 0; i < resourceMenuItems.length; i += 1) {
+            if (i === 0) {
+                resourceId = resourceMenuItems[i].id;
+                addClass(resourceMenuItems[i].parentNode.parentNode, "usb-menu-item-selected");
+            }
+            addMenuItemListener(resourceMenuItems[i], "click", resourcesEventHandler, false);
+        }
+
+        /* Set the initial focus and query form */
         updateQueryForm(searchWidget, searchQueryForm, resourceId);
-        updateFilterMenu(searchWidget, filtersUL, searchQueryForm, resourceId);
-        openMenu(resourceUL);
-        closeMenu(filterUL);
-        resourcesSelectButton.focus();
+        updateFilterMenu(searchWidget, filterUL, searchQueryForm, resourceId, filtersEventHandler);
+        queryInput.focus();
     }
 
 
