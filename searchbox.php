@@ -21,7 +21,7 @@ function searchboxHTML($basepath = "") {
 
   <div id="usb-searchbox" class="usb-searchbox">
     <div class="usb-search-resources">
-        <label class="usb-menu-label">Search</label>
+        <label id="usb-resource-label" class="usb-menu-label">Search</label>
         <div id="usb-search-resources" class="usb-menu">
             <div id="usb-resource-menu-selected" class="usb-menu-selected">Library Catalog</div>
             <a id="usb-resource-menu-selector" href="#" tabindex="1" class="usb-menu-select-button"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8.071px" height="14px" viewBox="0 0 8.071 14" enable-background="new 0 0 8.071 14" xml:space="preserve">
@@ -29,14 +29,15 @@ function searchboxHTML($basepath = "") {
             </svg></a>
             <ul id="usb-resource-ul">
                 <li><span class="usb-menu-item-primary"><a id="tind" href="#">Library Catalog</a></span> <span class="usb-menu-item-secondary">Books and Print Journals</span></li>
-                <li><span class="usb-menu-item-primary"><a id="sfx" href="#">Find eJournals</a></span> <span class="usb-menu-item-secondary">Library eJournal Subscriptions</span></li>
+                <li><span class="usb-menu-item-primary"><a id="sfx" href="#">Find eJournals</a></span> <span class="usb-menu-item-secondary">Access by Title</span></li>
                 <li><span class="usb-menu-item-primary"><a id="tindCourseReserves" href="#">Course Reserves</a></span></li>
-                <li><span class="usb-menu-item-primary"><a id="coda" href="#">CODA: Caltech Collection of Digital Archives</a></span> <span class="usb-menu-item-secondary">Caltech's Institutional Repository</span></li>
+                <li><span class="usb-menu-item-primary"><a id="coda" href="#">Caltech CODA</a></span> <span class="usb-menu-item-secondary">Collection of Open Digital Archives, Institutional Repository</span></li>
                 <li><span class="usb-menu-item-primary"><a id="website" href="#">Search Website</a></span> <span class="usb-menu-item-secondary">Library website and LibGuides</span></li>
 <!-- EDS, Archives is not ready for prime time.
                 <li><span class="usb-menu-item-primary"><a id="eds" href="#">Cross database search</a></span> <span class="usb-menu-item-secondary">Articles, Books, etc.</span></li>
                 <li><span class="usb-menu-item-primary"><a id="archivalMaterial" href="#">Archival materials</a></span> <span class="usb-menu-item-secondary">Caltech Archives</span></li>
                 <li><span class="usb-menu-item-primary"><a id="archivalImages" href="#">Images</a></span> <span class="usb-menu-item-secondary">Caltech Archives</span></li>
+                <li><span class="usb-menu-item-primary"><a id="moreSearchTools" href="#">More Search Tools</a></span></li>
 -->
             </ul>
         </div><!-- END: id="usb-search-resources" -->
@@ -56,7 +57,7 @@ function searchboxHTML($basepath = "") {
     </div><!-- END: class="usb-search-filters" -->
 
     <div class="usb-search-query">
-        <div class="usb-query-label">For</div>
+        <label class="usb-query-label">For</label>
         <div class="usb-query-input">
             <form id="usb-query-form">
  		<input id="usb-query-input" tabindex="3" type="search" size="42">
@@ -68,9 +69,6 @@ function searchboxHTML($basepath = "") {
                 </svg></button>
             </form><!-- END: id="usb-query-form" -->
         </div><!-- END: class="usb-query-input" -->
-        <div class="usb-more-search-tools">
-        (<a href="http://libguides.caltech.edu/">More search tools</a>)
-        </div>
     </div><!-- END: class="usb-search-query-form" -->
   </div><!-- END: id="usb-searchbox" -->
 

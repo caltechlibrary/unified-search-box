@@ -60,7 +60,6 @@
                     },
                     {
                         label: "Keyword",
-                        //FIXME: I need to know the value to use for keyword searches. Is it ""?
                         input: {name: "f", value: "", "type": "hidden"}
                     },
                     {
@@ -68,17 +67,12 @@
                         input: {name: "f", value: "isbn", "type": "hidden"}
                     },
                     {
-                        label: "Abstract",
-                        input: {name: "f", value: "abstract", "type": "hidden"}
-                    },
-                    {
                         label: "ISSN",
                         input: {name: "f", value: "issn", "type": "hidden"}
                     },
                     {
                         label: "Call Number",
-                        //FIXME: I need to know the value for call number searches. Is it sysno?
-                        input: {name: "f", value: "sysno", "type": "hidden"}
+                        input: {name: "f", value: "callnumber", "type": "hidden"}
                     }
                 ],
                 form: {
@@ -93,13 +87,18 @@
                 }
             },
             "sfx": {
-                filter: [],
+                filter: [
+                    {
+                        label: "Title",
+                        input: {name: "ejournaltitle", value: "", "type": "hidden"}
+                    }
+                ],
                 form: {
                     method: "GET",
                     action: "http://sfx.caltech.edu:8088/caltech/az",
                     input: [
                         {name: "param_perform_save", value: "searchTitle", "type": "hidden"},
-                        {name: "param_pattern_value", value: "", placeholder: "Library eJournal subscriptions", "type": "search", size: 64, maxlength: 128}
+                        {name: "param_pattern_value", value: "", placeholder: "search by journal title", "type": "search", size: 64, maxlength: 128}
                     ]
                 }
             },
@@ -127,7 +126,12 @@
                 }
             },
             "coda": {
-                filter: [],
+                filter: [
+                    {
+                        label: "Keyword",
+                        input: {name:"keyword", value: "", "type": "hidden"}
+                    }
+                ],
                 form: {
                     method: "GET",
                     action: "https://cse.google.com/cse/publicurl",
@@ -166,7 +170,12 @@
             },
 */
             "website": {
-                filter: [],
+                filter: [
+                    {
+                        label: "Keyword",
+                        input: {name: "keyword", value: "", "type": "hidden"}
+                    }
+                ],
                 form: {
                     method: "GET",
                     action: "http://google.com/cse",
