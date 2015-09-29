@@ -44,6 +44,7 @@
     position: relative;
     display: inline-block;
     margin: 0;
+    padding-top: 0.24em; 
     padding-right: 0.42em;
     min-width: 3.42em;
     color: black;
@@ -148,23 +149,26 @@
 .usb-query-input > form {
     position: relative;
     display: inline-flex;
-    height: 2em;
 }
 
 .usb-query-input > form > input {
     position: relative;
-    display: inline-flex;
-    font-size: 1.0em;
-    height: 2.0em; /* for IE */
+    display: inline-block;
     vertical-align: middle; /* This is optional but it makes legacy IEs look better */
+    font-size: 1.0em;
+    text-align: left;
+    height: 2em;
+    top: 0.1em;
+    -webkit-appearance: none;/* Fix to allow styling in webkit */
 }
 
 .usb-query-input > form > button {
-    margin-left: 0.42em;
-    vertical-align: middle; /* This is optional but it makes legacy IEs look better */
+    position: relative;
+    display: inline-block;
     min-width: 3.42em;
+    margin-left: 0.42em;
     font-size: 1em;
+    vertical-align: middle; /* This is optional but it makes legacy IEs look better */
     text-align: center;
-    text-vertical-align: middle;
 }
 
