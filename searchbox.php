@@ -32,11 +32,11 @@ function searchboxHTML($basepath = "") {
                 <li><span class="usb-menu-item-primary"><a id="sfx" href="#">Find eJournals</a></span> <span class="usb-menu-item-secondary">Library eJournal Subscriptions</span></li>
                 <li><span class="usb-menu-item-primary"><a id="tindCourseReserves" href="#">Course Reserves</a></span></li>
                 <li><span class="usb-menu-item-primary"><a id="coda" href="#">CODA: Caltech Collection of Digital Archives</a></span> <span class="usb-menu-item-secondary">Caltech's Institutional Repository</span></li>
-                <li><span class="usb-menu-item-primary"><a id="archivalImages" href="#">Images</a></span> <span class="usb-menu-item-secondary">Caltech Archives</span></li>
+                <li><span class="usb-menu-item-primary"><a id="website" href="#">Search Website</a></span> <span class="usb-menu-item-secondary">Library website and LibGuides</span></li>
 <!-- EDS, Archives is not ready for prime time.
                 <li><span class="usb-menu-item-primary"><a id="eds" href="#">Cross database search</a></span> <span class="usb-menu-item-secondary">Articles, Books, etc.</span></li>
                 <li><span class="usb-menu-item-primary"><a id="archivalMaterial" href="#">Archival materials</a></span> <span class="usb-menu-item-secondary">Caltech Archives</span></li>
-                <li><span class="usb-menu-item-primary"><a id="website" href="#">Search Website</a></span> <span class="usb-menu-item-secondary">Library website and LibGuides</span></li>
+                <li><span class="usb-menu-item-primary"><a id="archivalImages" href="#">Images</a></span> <span class="usb-menu-item-secondary">Caltech Archives</span></li>
 -->
             </ul>
         </div><!-- END: id="usb-search-resources" -->
