@@ -31,9 +31,7 @@ require_once("searchbox.php");
       <li><a href="prototype3.html">prototype 3</a> using the EDS form API</li>
       <li><a href="prototype4.html">prototype 4</a> getting tab and focus working</li>
       <li><a href="prototype5.html">prototype 5</a> a working prototype</li>
-      <li><a href="searchbox.php">PHP library Implementation</a></li>
-      <li><a href="test.php">Test PHP Library Implementation</a></li>
-      <li><a href="searchbox.html">HTML fragment implementation</a></li>
+      <li><a href="demo.php">Demo PHP Library Implementation</a></li>
     </ul>
   </nav>
   <footer>No droids, here. We're of no interest. Move along.</footer>
