@@ -197,6 +197,11 @@
 
 .usb-query-input > form > button {
     margin-left: 0.24em;
+    vertical-align: middle; /* This is optional but it makes legacy IEs look better */
+    min-width: 3em;
+    font-size: 1em;
+    text-align: center;
+    text-vertical-align: middle;
 }
 
 .usb-more-search-tools {

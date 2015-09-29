@@ -64,15 +64,11 @@
                     },
                     {
                         label: "Keyword",
-                        input: {name: "f", value: "keyword", "type": "hidden"}
+                        input: {name: "f", value: "", "type": "hidden"}
                     },
                     {
                         label: "ISBN",
                         input: {name: "f", value: "isbn", "type": "hidden"}
-                    },
-                    {
-                        label: "Journal",
-                        input: {name: "f", value: "journal", "type": "hidden"}
                     },
                     {
                         label: "Abstract",
@@ -229,8 +225,13 @@
      * @param ev - the event trigger.
      */
     function menuEventHandler(ev) {
-        var elem = ev.target;
+        var elem = ev.target,
+            resourceUL = doc.getElementById("usb-resource-ul"),
+            filterUL = doc.getElementById("usb-filter-ul");
         // we don't use getParentOfTagName() here since we're already in a set of nested divs here.
+        closeMenu(resourceUL);
+        closeMenu(filterUL);
+     
         if (elem !== null) {
             switch (elem.tagName.toLowerCase()) {
             case 'a':
@@ -255,7 +256,7 @@
         var inputs = form.querySelectorAll("input"),
             i = 0;
         for (i = 0; i < inputs.length; i += 1) {
-            if (inputs[i].id === undefined || inputs[i].id !== 'usb-query-input') {
+            if (inputs[i].id == undefined || inputs[i].id !== "usb-query-input") {
                 form.removeChild(inputs[i]);
             }
         }
