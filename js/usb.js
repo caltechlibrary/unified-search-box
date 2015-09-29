@@ -188,19 +188,6 @@
         }
     }
 
-    function getParentOfTagName(elem, tagName) {
-        // Walk up to the parent of the UL.
-        var cur = elem, prev = null;
-        while (cur !== null) {
-            prev = cur;
-            cur = prev.parentNode;
-            if (prev.tagName === tagName) {
-                break;
-            }
-        }
-        return cur;
-    }
-
     function closeMenu(ul) {
         ul.setAttribute('style', 'display:none;');
     }
@@ -209,9 +196,8 @@
         ul.setAttribute('style', 'display:inline-block;');
     }
 
-    function toggleMenu(element) {
-        var ul = element.getElementsByTagName('ul').item(0),
-            style = ul.getAttribute('style') || "";
+    function toggleMenu(ul) {
+        var style = ul.getAttribute('style') || "";
 
         if (style.indexOf("display:inline-block;") > -1) {
             ul.setAttribute('style', 'display:none;');
@@ -228,22 +214,13 @@
         var elem = ev.target,
             resourceUL = doc.getElementById("usb-resource-ul"),
             filterUL = doc.getElementById("usb-filter-ul");
-        // we don't use getParentOfTagName() here since we're already in a set of nested divs here.
-        closeMenu(resourceUL);
-        closeMenu(filterUL);
-     
-        if (elem !== null) {
-            switch (elem.tagName.toLowerCase()) {
-            case 'a':
-                toggleMenu(elem.parentNode);
-                break;
-            case 'path':
-                toggleMenu(elem.parentNode.parentNode.parentNode);
-                break;
-            default:
-                toggleMenu(elem.parentNode.parentNode);
-                break;
-            }
+        if (elem.id === "usb-resource-menu-selector" || elem.parentNode.id === "usb-resource-menu-selector") {
+            closeMenu(filterUL);
+            toggleMenu(resourceUL);
+        } 
+        if (elem.id === "usb-filter-menu-selector" || elem.parentNode.id === "usb-filter-menu-selector") {
+            closeMenu(resourceUL);
+            toggleMenu(filterUL);
         }
     }
 
@@ -411,12 +388,12 @@
      */
     function filtersEventHandler(ev) {
         var elem = ev.target,
-            cur = getParentOfTagName(elem, "UL"),
+            resourceUL = doc.getElementById("usb-resource-ul"),
+            filterUL = doc.getElementById("usb-filter-ul"),
+            cur = filterUL.parentNode, 
             menuSelected = cur.querySelector(".usb-menu-selected"),
             previouslySelected = cur.querySelector(".usb-menu-item-selected"),
             resources = doc.getElementById("usb-search-resources"),
-            resourceUL = doc.getElementById("usb-resource-ul"),
-            filterUL = doc.getElementById("usb-filter-ul"),
             resourceSelected = resources.querySelector("li.usb-menu-item-selected") || null,
             resourceId = "",
             resourceAnchor = null;
@@ -448,14 +425,15 @@
     function resourcesEventHandler(ev) {
         var menuCount = 0,
             elem = ev.target,
-            cur = getParentOfTagName(elem, "UL"),
+            filterUL = doc.getElementById("usb-filter-ul"),
+            resourceUL = doc.getElementById("usb-resource-ul"),
+            cur = resourceUL.parentNode,
             menuSelected = cur.querySelector(".usb-menu-selected"),
             previouslySelected = cur.querySelector(".usb-menu-item-selected"),
             filterMenuSelected = doc.getElementById("usb-filter-menu-selected") || null,
-            filterUL = doc.getElementById("usb-filter-ul"),
-            resourceUL = doc.getElementById("usb-resource-ul"),
 	    queryInput = doc.getElementById('usb-query-input') || null;
 
+console.log("DEBUG cur and resourcesUL.parent?", cur, resourceUL.parentNode);
         if (previouslySelected !== null) {
             removeClass(previouslySelected, "usb-menu-item-selected");
         }
@@ -484,7 +462,8 @@
     function init() {
         var i = 0,
             resourceUL = doc.getElementById("usb-resource-ul"),
-            filterUL = doc.getElementById("usb-filter-ul");
+            filterUL = doc.getElementById("usb-filter-ul"),
+            searchResources = doc.getElementById("usb-search-resources");
 
         /* Add mouse handling to menu */
         resourcesSelectButton.addEventListener("click", menuEventHandler, false);
