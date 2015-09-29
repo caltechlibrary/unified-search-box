@@ -64,6 +64,7 @@
                     },
                     {
                         label: "Keyword",
+                        //FIXME: I need to know the value to use for keyword searches. Is it ""?
                         input: {name: "f", value: "", "type": "hidden"}
                     },
                     {
@@ -77,6 +78,11 @@
                     {
                         label: "ISSN",
                         input: {name: "f", value: "issn", "type": "hidden"}
+                    },
+                    {
+                        label: "Call Number",
+                        //FIXME: I need to know the value for call number searches. Is it sysno?
+                        input: {name: "f", value: "sysno", "type": "hidden"}
                     }
                 ],
                 form: {
@@ -109,6 +115,7 @@
                     },
                     {
                         label: "Instructor",
+                        //FIXME: I need to know the value for instructor searches. Is it instructor?
                         input: {name: "f", value: "", "type": "hidden"}
                     }
                 ],
@@ -321,7 +328,8 @@
             if (inputs[i].type === "search" || inputs[i].type === "text") {
                 searchQueryInput.setAttribute("name", inputs[i].name);
                 searchQueryInput.setAttribute("type", inputs[i].type);
-                //FIXME: Tind will want values quoted in some cases e.g. course names like "Ge 101"
+                //FIXME: Tind will want values quoted in some cases e.g. 
+                // "Ge 101" for complete course name, or 'Ge 101' for partial match course name
                 searchQueryInput.setAttribute("value", inputs[i].value);
                 searchQueryInput.setAttribute("placeholder", inputs[i].placeholder);
             } else {
