@@ -19,7 +19,16 @@ function searchboxCSS($basepath = "") {
 function searchboxHTML($basepath = "") {
     $src = <<<HTML
 
-  <div id="usb-searchbox" class="usb-searchbox">
+  <noscript>
+            <ul class="usb-no-js">
+                <li><a href="https://caltech.tind.io">Library Catalog</a></li>
+                <li><a href="http://sfx.caltech.edu:8088/caltech/az">Find eJournals</a></li>
+                <li><a href="https://caltech.tind.io/search?ln=en&cc=Course+Reserves&p=&f=&action_search=Search">Course Reserves</a></li>
+                <li><a href="http://libguides.caltech.edu/CODA">Caltech CODA</a></li>
+            </ul>
+  </noscript>
+
+  <div id="usb-searchbox" class="usb-searchbox usb-hide">
     <div class="usb-search-resources">
         <label id="usb-resource-label" class="usb-menu-label">Search</label>
         <div id="usb-search-resources" class="usb-menu">

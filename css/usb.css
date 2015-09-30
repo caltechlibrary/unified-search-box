@@ -1,9 +1,13 @@
 /**
  * usb.css - the design for the Unified Search Box.
  */
-.hide {
+.usb-hide {
     display: none;
     visibility: hidden;
+}
+
+.usb-no-js {
+    display:block;
 }
 
 .usb-searchbox {

@@ -495,6 +495,7 @@
      */
     function init() {
         var i = 0,
+            searchbox = doc.getElementById("usb-searchbox"),
             resourceId = "",
             resourcesSelectButton = doc.getElementById("usb-resource-menu-selector"),
             filtersSelectButton = doc.getElementById("usb-filter-menu-selector"),
@@ -508,6 +509,8 @@
             resourceMenuSelected = doc.getElementById('usb-resource-menu-selected'),
             liTemplate = '<span class="usb-menu-item-primary"><a href="#">{{label}}</a></span>';
         
+        /* Make the searchbox visible */
+        removeClass(searchbox, "usb-hide");
 
         /* Add mouse handling to menu */
         resourcesSelectButton.addEventListener("click", menuEventHandler, false);
