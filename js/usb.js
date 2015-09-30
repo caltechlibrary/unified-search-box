@@ -505,8 +505,6 @@
         filtersSelectButton.addEventListener("click", menuEventHandler, false);
 
         /* Add keyboard tab handling to menu */
-        resourcesSelectButton.addEventListener("focus", menuEventHandler, false);
-        filtersSelectButton.addEventListener("focus", menuEventHandler, false);
         queryInput.addEventListener("focus", menuEventHandler, false);
 
         // Add resource listeners and find correct resourceId to initialize query form an filter with.
