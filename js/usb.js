@@ -205,16 +205,20 @@
     }
 
     function openMenu(ul) {
+        var firstAnchor = ul.querySelector("a") || null;
         ul.setAttribute('style', 'display:inline-block;');
+        if (firstAnchor !== null) {
+            firstAnchor.focus();
+        }
     }
 
     function toggleMenu(ul) {
         var style = ul.getAttribute('style') || "";
 
         if (style.indexOf("display:inline-block;") > -1) {
-            ul.setAttribute('style', 'display:none;');
+            closeMenu(ul);
         } else {
-            ul.setAttribute('style', 'display:inline-block;');
+            openMenu(ul);
         }
     }
 
