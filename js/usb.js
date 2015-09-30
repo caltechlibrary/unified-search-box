@@ -508,8 +508,8 @@
             filterMenuSelected = doc.getElementById('usb-filter-menu-selected'),
             resourceMenuSelected = doc.getElementById('usb-resource-menu-selected'),
             liTemplate = '<span class="usb-menu-item-primary"><a href="#">{{label}}</a></span>';
-        
-        /* Make the searchbox visible */
+
+        /* Make the searchbox visible, we have JavaScript working */
         removeClass(searchbox, "usb-hide");
 
         /* Add mouse handling to menu */
