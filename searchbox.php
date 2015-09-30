@@ -23,8 +23,9 @@ function searchboxHTML($basepath = "") {
     <div class="usb-search-resources">
         <label id="usb-resource-label" class="usb-menu-label">Search</label>
         <div id="usb-search-resources" class="usb-menu">
-            <div id="usb-resource-menu-selected" class="usb-menu-selected">Library Catalog</div>
-            <a id="usb-resource-menu-selector" href="#" tabindex="1" class="usb-menu-select-button"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8.071px" height="14px" viewBox="0 0 8.071 14" enable-background="new 0 0 8.071 14" xml:space="preserve">
+            <a id="usb-resource-menu-selector" href="#" tabindex="1" class="usb-menu-select-button">
+            <span id="usb-resource-menu-selected" class="usb-menu-selected">Library Catalog</span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8.071px" height="14px" viewBox="0 0 8.071 14" enable-background="new 0 0 8.071 14" xml:space="preserve">
                 <path d="M0.069 8.74c0.08-0.159 0.252-0.264 0.436-0.274 0.023 0 1.743-0.104 3.531-0.104s3.508 0.104 3.53 0.104C7.751 8.476 7.911 8.581 8.003 8.74c0.092 0.161 0.092 0.356 0 0.517 -1.364 2.431-3.508 4.517-3.6 4.598 -0.206 0.194-0.528 0.194-0.734 0 -0.091-0.081-2.235-2.167-3.6-4.598C-0.023 9.096-0.023 8.901 0.069 8.74M8.003 5.259c-0.08 0.16-0.252 0.264-0.437 0.275 -0.022 0-1.742 0.103-3.53 0.103S0.528 5.535 0.505 5.535C0.321 5.523 0.161 5.419 0.069 5.259c-0.092-0.161-0.092-0.355 0-0.516 1.365-2.431 3.508-4.517 3.6-4.598 0.206-0.194 0.528-0.194 0.734 0 0.092 0.081 2.235 2.167 3.6 4.598C8.095 4.904 8.095 5.099 8.003 5.259"></path>
             </svg></a>
             <ul id="usb-resource-ul">
@@ -46,8 +47,9 @@ function searchboxHTML($basepath = "") {
     <div id="usb-search-filters" class="usb-search-filters">
         <label id="usb-filter-label" class="usb-menu-label">By</label>
         <div id="usb-filter" class="usb-menu">
-            <div id="usb-filter-menu-selected" class="usb-menu-selected"></div>
-            <a id="usb-filter-menu-selector" href="#" tabindex="2" class="usb-menu-select-button"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8.071px" height="14px" viewBox="0 0 8.071 14" enable-background="new 0 0 8.071 14" xml:space="preserve">
+            <a id="usb-filter-menu-selector" href="#" tabindex="2" class="usb-menu-select-button">
+            <span id="usb-filter-menu-selected" class="usb-menu-selected"></span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8.071px" height="14px" viewBox="0 0 8.071 14" enable-background="new 0 0 8.071 14" xml:space="preserve">
                 <path d="M0.069 8.74c0.08-0.159 0.252-0.264 0.436-0.274 0.023 0 1.743-0.104 3.531-0.104s3.508 0.104 3.53 0.104C7.751 8.476 7.911 8.581 8.003 8.74c0.092 0.161 0.092 0.356 0 0.517 -1.364 2.431-3.508 4.517-3.6 4.598 -0.206 0.194-0.528 0.194-0.734 0 -0.091-0.081-2.235-2.167-3.6-4.598C-0.023 9.096-0.023 8.901 0.069 8.74M8.003 5.259c-0.08 0.16-0.252 0.264-0.437 0.275 -0.022 0-1.742 0.103-3.53 0.103S0.528 5.535 0.505 5.535C0.321 5.523 0.161 5.419 0.069 5.259c-0.092-0.161-0.092-0.355 0-0.516 1.365-2.431 3.508-4.517 3.6-4.598 0.206-0.194 0.528-0.194 0.734 0 0.092 0.081 2.235 2.167 3.6 4.598C8.095 4.904 8.095 5.099 8.003 5.259"></path>
             </svg></a>
             <ul id="usb-filter-ul">

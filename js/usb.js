@@ -5,10 +5,8 @@
 (function (doc) {
     "use strict";
     var resources = doc.getElementById("usb-search-resources"),
-        resourcesSelectButton = resources.querySelector(".usb-menu-select-button"),
         filtersContainer = doc.getElementById("usb-search-filters"),
         filters = doc.getElementById("usb-filter"),
-        filtersSelectButton = filters.querySelector(".usb-menu-select-button"),
         searchQueryForm = doc.getElementById("usb-query-form"),
         searchQueryInput = doc.getElementById("usb-query-input"),
         searchWidget = {
@@ -236,6 +234,10 @@
             closeMenu(resourceUL);
             toggleMenu(filterUL);
         }
+        if (elem.id === "usb-query-input") {
+            closeMenu(filterUL);
+            closeMenu(resourceUL);
+        }
     }
 
     /**
@@ -444,6 +446,7 @@
             resourceId = "",
             elem = ev.target,
             filterUL = doc.getElementById("usb-filter-ul"),
+            filtersSelectButton = doc.getElementById("usb-filter-menu-selector"),
             resourceUL = doc.getElementById("usb-resource-ul"),
             cur = resourceUL.parentNode,
             menuSelected = cur.querySelector(".usb-menu-selected"),
@@ -479,6 +482,8 @@
     function init() {
         var i = 0,
             resourceId = "",
+            resourcesSelectButton = doc.getElementById("usb-resource-menu-selector"),
+            filtersSelectButton = doc.getElementById("usb-filter-menu-selector"),
             activeResource = searchWidget[resourceId],
             queryInput = doc.getElementById("usb-query-input"),
             resourceUL = doc.getElementById("usb-resource-ul"),
@@ -497,6 +502,7 @@
         /* Add keyboard tab handling to menu */
         resourcesSelectButton.addEventListener("focus", menuEventHandler, false);
         filtersSelectButton.addEventListener("focus", menuEventHandler, false);
+        queryInput.addEventListener("focus", menuEventHandler, false);
 
         // Add resource listeners and find correct resourceId to initialize query form an filter with.
         for (i = 0; i < resourceMenuItems.length; i += 1) {

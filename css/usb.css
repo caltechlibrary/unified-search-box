@@ -18,16 +18,44 @@
     position: relative;
     display: inline-flex;
     margin: 0.24em;
-    min-width: 20em;
+    width: 20em;
+    height: auto;
     background-color: #EEF2FB;
 }
 
-.usb-search-resources div, .usb-search-filters div {
+.usb-search-resources span, .usb-search-filters span {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 15em;
+    height: inherit;
+    padding: 0.32em;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/*
+.usb-search-resources svg, .usb-search-filters svg {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 15em;
+    width: 2em;
+    height: inherit;
+    padding: 0.32em;
+}
+*/
+.usb-menu-select-button svg {
     position: relative;
-    display: inline-flex;
-    width: 90%;
-    height: auto;
+    display: inline-block;
+    top: 0;
+    left: 15em;
     padding: 0.24em;
+    width: 1.24em;
+    height: 1.24em;
+    fill: darkblue;
+    /* border: 1px solid darkblue;*/
 }
 
 .usb-menu {
@@ -50,15 +78,12 @@
     color: black;
     background-color: white;
     text-align: right;
-    vertical-align: middle; /* This is optional but it makes legacy IEs look better */
 }
 
 
 .usb-menu ul {
     position: absolute;
     display: none;
-    top: 2.0em;
-    left: 0.42em;
     z-index: 10;
     list-style-type: none;
     background-color: inherit;
@@ -67,12 +92,20 @@
     margin: 0;
     padding: 0;
     min-width: 16em;
+    height: auto;
 }
 
 .usb-menu ul li {
-    border-bottom: 0.12em solid #043584;
+    position: relative;
+    display: block;
     margin: 0;
-    padding: 0.42em;
+    padding: 0;
+    border-bottom: 0.12em solid #043584;
+}
+
+.usb-menu ul li > span {
+    position:relative;
+    display: block;
 }
 
 .usb-menu-item-selected, .usb-menu-item-selected span, .usb-menu-item-selected a, .usb-menu-item-selected a:link, .usb-menu-item-selected a:visited {
@@ -96,14 +129,6 @@
     width: 1.24em;
 }
 
-.usb-menu-select-button svg {
-    position: relative;
-    display: inline-flex;
-    padding: 0.24em;
-    width: 1.24em;
-    height: 1.24em;
-    fill: darkblue;
-}
 
 
 .usb-menu-item-primary {
