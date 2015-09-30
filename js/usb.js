@@ -32,6 +32,8 @@
                     action: "",
                     onSubmit: "return ebscoHostSearchGo(this);",
                     input: [
+                        // the default filter value
+                        {name: "ebscohostkeywords", value: "1", "type": "hidden"},
                         {id: "ebscohostwindow", name: "ebscohostwindow", type: "hidden", value: "0"},
                         {id: "ebscohosturl", name: "ebscohosturl", type: "hidden", value: "https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip"},
                         {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", type: "hidden", value: "db"},
@@ -77,6 +79,8 @@
                     method: "GET",
                     action: "https://caltech.tind.io/search",
                     input: [
+                        // the default filter value
+                        {name: "f", value: "title", "type": "hidden"},
                         {name: "ln", value: "en", "type": "hidden"},
                         {name: "c", value: "Caltech", "type": "hidden"},
                         {name: "action_search", value: "Search", "type": "hidden"},
@@ -87,8 +91,7 @@
             "sfx": {
                 filter: [
                     {
-                        label: "Title",
-                        input: {name: "ejournaltitle", value: "", "type": "hidden"}
+                        label: "Title"
                     }
                 ],
                 form: {
@@ -116,6 +119,8 @@
                     method: "GET",
                     action: "https://caltech.tind.io/search",
                     input: [
+                        // the default filter value
+                        {name: "f", value: "coursereserve", "type": "hidden"},
                         {name: "ln", value: "en", "type": "hidden"},
                         {name: "cc", value: "Course Reserves", "type": "hidden"},
                         {name: "action_search", value: "Search", "type": "hidden"},
@@ -126,8 +131,7 @@
             "coda": {
                 filter: [
                     {
-                        label: "Keyword",
-                        input: {name:"keyword", value: "", "type": "hidden"}
+                        label: "Keyword"
                     }
                 ],
                 form: {
@@ -170,8 +174,7 @@
             "website": {
                 filter: [
                     {
-                        label: "Keyword",
-                        input: {name: "keyword", value: "", "type": "hidden"}
+                        label: "Keyword"
                     }
                 ],
                 form: {
@@ -375,17 +378,19 @@
         for (i = 0; i < filter.length && foundIt === false; i += 1) {
             if (filter[i].label === label) {
                 foundIt = true;
-                elem = searchQueryForm.querySelector("input[name="+filter[i].input.name+"]");
-                if (elem !== null) {
-                    elem.type = filter[i].input.type;
-                    elem.name = filter[i].input.name;
-                    elem.value = filter[i].input.value;
-                } else {
-                    elem = doc.createElement("input");
-                    elem.setAttribute("type", filter[i].input.type);
-                    elem.setAttribute("name", filter[i].input.name);
-                    elem.setAttribute("value", filter[i].input.value);
-                    searchQueryForm.appendChild(elem);
+                if (filter[i].input !== undefined) {
+                    elem = searchQueryForm.querySelector("input[name="+filter[i].input.name+"]");
+                    if (elem !== null) {
+                        elem.type = filter[i].input.type;
+                        elem.name = filter[i].input.name;
+                        elem.value = filter[i].input.value;
+                    } else {
+                        elem = doc.createElement("input");
+                        elem.setAttribute("type", filter[i].input.type);
+                        elem.setAttribute("name", filter[i].input.name);
+                        elem.setAttribute("value", filter[i].input.value);
+                        searchQueryForm.appendChild(elem);
+                    }
                 }
             }
         }
