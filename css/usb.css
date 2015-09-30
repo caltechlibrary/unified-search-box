@@ -39,17 +39,6 @@
     vertical-align: middle;
 }
 
-/*
-.usb-search-resources svg, .usb-search-filters svg {
-    position: absolute;
-    display: inline-block;
-    top: 0;
-    left: 15em;
-    width: 2em;
-    height: inherit;
-    padding: 0.32em;
-}
-*/
 .usb-menu-select-button svg {
     position: relative;
     display: inline-block;
@@ -59,7 +48,6 @@
     width: 1.24em;
     height: 1.24em;
     fill: darkblue;
-    /* border: 1px solid darkblue;*/
 }
 
 .usb-menu {

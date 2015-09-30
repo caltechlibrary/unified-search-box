@@ -10,40 +10,6 @@
         searchQueryForm = doc.getElementById("usb-query-form"),
         searchQueryInput = doc.getElementById("usb-query-input"),
         searchWidget = {
-/*
-            "eds": {
-                script: [{src: "http://support.ebscohost.com/eit/scripts/ebscohostsearch.js", type: "text/javascript"}],
-                filter: [
-                    {
-                       label: "Keyword",
-                       input: {name: "ebscohostkeywords", value: "1", "type": "hidden"}
-                    },
-                    {
-                       label: "Title",
-                       input: {name: "ebscohostkeywords", value: "", "type": "hidden"}
-                    },
-                    {
-                       label: "Author",
-                       input: {name: "ebscohostkeywords", value: "", "type": "hidden"}
-                    }
-                ],
-                form: {
-                    method: "GET",
-                    action: "",
-                    onSubmit: "return ebscoHostSearchGo(this);",
-                    input: [
-                        // the default filter value
-                        {name: "ebscohostkeywords", value: "1", "type": "hidden"},
-                        {id: "ebscohostwindow", name: "ebscohostwindow", type: "hidden", value: "0"},
-                        {id: "ebscohosturl", name: "ebscohosturl", type: "hidden", value: "https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip"},
-                        {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", type: "hidden", value: "db"},
-                        {id: "ebscohostsearchmode", name: "ebscohostsearchmode", type: "hidden", value: "+"},
-                        {id: "ebscohostkeywords", name: "ebscohostkeywords", type: "hidden", value: ""},
-                        {id: "ebscohostsearchtext", name: "ebscohostsearchtext", type: "text", value: "", placeholder: "Search Articles, Books, etc.", size: 64, maxlength: 128}
-                    ]
-                }
-            },
-*/
             "tind": {
                 filter: [
                     {
@@ -144,33 +110,6 @@
                     ]
                 }
             },
-/*
-            "archivalImages": {
-                filter: [],
-                form: {
-                    method: "POST",
-                    action: "http://archives-dc.library.caltech.edu/",
-                    input: [
-                        {name: "form_build_id", value: "form-K83NaIRvMxcPkpUaVFu2yrlvZZQ6fYd3oiET4bj-ZpY", "type": "hidden"},
-                        {name: "form_id", value: "islandora_solr_simple_search_form", "type": "hidden"},
-                        {name: "islandora_simple_search_query", type: "text", value:"", placeholder: "Search Caltech’s Image Archives", size: 64, maxlength: 128}
-                    ]
-                }
-            },
-            "archivalMaterial": {
-                filter: [],
-                form: {
-                    method: "GET",
-                    action: "http://www.oac.cdlib.org/search",
-                    input: [
-                        {name: "x", value: "0", "type": "hidden"},
-                        {name: "y", value: "0", "type": "hidden"},
-                        {name: "institution", value: "California Institute of Technology", "type": "hidden"},
-                        {name: "query", value: "", placeholder: "Search Caltech Archives", "type": "search", size: 64, maxlength: 128}
-                    ]
-                }
-            },
-*/
             "website": {
                 filter: [
                     {
