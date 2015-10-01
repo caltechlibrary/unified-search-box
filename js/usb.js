@@ -413,19 +413,6 @@
         updateFilterMenu(searchWidget, filterUL, searchQueryForm, resourceId, filtersEventHandler);
         // Per K.A. we're not going to pop the filterUL and instead jump to the search input box.
         queryInput.focus();
-        /*
-        menuCount = updateFilterMenu(searchWidget, filterUL, searchQueryForm, resourceId, filtersEventHandler);
-        if (menuCount > 0) {
-            filtersSelectButton.focus();
-            openMenu(filterUL);
-            closeMenu(resourceUL);
-        } else {
-            filterMenuSelected.innerHTML = "";
-            closeMenu(resourceUL);
-            closeMenu(filterUL);
-            queryInput.focus();
-        }
-        */
     }
 
 
