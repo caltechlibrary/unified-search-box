@@ -172,11 +172,17 @@
         var elem = ev.target,
             resourceUL = doc.getElementById("usb-resource-ul"),
             filterUL = doc.getElementById("usb-filter-ul");
-        if (elem.id === "usb-resource-menu-selector" || elem.parentNode.id === "usb-resource-menu-selector") {
+        if (elem.tagName.toLowerCase() === "path") {
+            elem = elem.parentNode;
+        }
+        if (elem.tagName.toLowerCase() === "svg") {
+            elem = elem.parentNode;
+        }
+        if (elem.id === "usb-resource-menu-selector" || elem.id === "usb-resource-menu-selected") {
             closeMenu(filterUL);
             toggleMenu(resourceUL);
         } 
-        if (elem.id === "usb-filter-menu-selector" || elem.parentNode.id === "usb-filter-menu-selector") {
+        if (elem.id === "usb-filter-menu-selector" || elem.id === "usb-filter-menu-selected") {
             closeMenu(resourceUL);
             toggleMenu(filterUL);
         }
