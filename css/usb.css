@@ -21,10 +21,9 @@
 .usb-search-resources, .usb-search-filters {
     position: relative;
     display: inline-flex;
-    margin: 0.24em;
+    margin: 1em;
     width: 20em;
     height: auto;
-    background-color: #EEF2FB;
 }
 
 .usb-search-resources span, .usb-search-filters span {
@@ -32,12 +31,13 @@
     display: inline-block;
     top: 0;
     left: 0;
-    width: 15em;
-    height: inherit;
+    width: 16em;
+    height: auto;
     padding: 0.32em;
     text-align: left;
     vertical-align: middle;
     background-color: #EEF2FB;
+    z-index: 1;
 }
 
 .usb-menu-select-button svg {
@@ -49,16 +49,17 @@
     width: 1.24em;
     height: 1.24em;
     background-color: #EEF2FB;
+    z-index: 2;
 }
 
 .usb-menu {
     position: relative;
     height: auto;
     font-size: 1.0em;
-    color: black;
-    background-color: #EEF2FB;
     margin: 0;
     padding: 0;
+    color: black;
+    background-color: white;
 }
 
 .usb-menu-label, .usb-query-label {
