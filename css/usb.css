@@ -52,16 +52,6 @@
     z-index: 2;
 }
 
-.usb-menu {
-    position: relative;
-    height: auto;
-    font-size: 1.0em;
-    margin: 0;
-    padding: 0;
-    color: black;
-    background-color: white;
-}
-
 .usb-menu-label, .usb-query-label {
     position: relative;
     display: inline-block;
