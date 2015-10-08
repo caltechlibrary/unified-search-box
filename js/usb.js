@@ -10,6 +10,41 @@
         searchQueryForm = doc.getElementById("usb-query-form"),
         searchQueryInput = doc.getElementById("usb-query-input"),
         searchWidget = {
+            "eds": {
+                filter: [
+                    {
+                        label: "Keyword",
+                        input: {name: "ebscohostkeywords", value: "", "type": "hidden"}
+                    },
+                    {
+                        label: "Title",
+                        input: {name: "ebscohostkeywords", value: "TI", "type": "hidden"}
+                    },
+                    {
+                        label: "Author",
+                        input: {name: "ebscohostkeywords", value: "AU", "type": "hidden"}
+                    },
+                    {
+                        label: "Subject",
+                        input: {name: "ebscohostkeywords", value: "SU", "type": "hidden"}
+                    }
+                ],
+                form: {
+                    id: "ebscohostCustomSearchBox",
+                    "onSubmit": "return ebscoHostSearchGo(this);",
+                    method: "POST",
+                    action: "",
+                    input: [
+                        {id: "ebscohostwindow", name: "ebscohostwindow", "type": "hidden", value: "0"},
+                		{id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip"},
+                		{id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", "type": "hidden", value: "db"},
+                		{id: "ebscohostsearchmode", name: "ebscohostsearchmode", "type": "hidden", value: "+"},
+                		{id: "ebscohostkeywords", name: "ebscohostkeywords", "type": "hidden", value: ""},
+                        {id: "usb-query-input", name: "ebscohostsearchtext", value: "", placeholder: "Search books, articles & more", "type": "text"}
+                    ]
+                }
+
+            },
             "tind": {
                 filter: [
                     {
@@ -181,7 +216,7 @@
         if (elem.id === "usb-resource-menu-selector" || elem.id === "usb-resource-menu-selected") {
             closeMenu(filterUL);
             toggleMenu(resourceUL);
-        } 
+        }
         if (elem.id === "usb-filter-menu-selector" || elem.id === "usb-filter-menu-selected") {
             closeMenu(resourceUL);
             toggleMenu(filterUL);
@@ -281,15 +316,20 @@
             i = 0,
             elem = null;
 
+
         clearQueryForm(formElement);
         formElement.setAttribute("method", form.method);
-        formElement.setAttribute("action", form.action);
+        if (form.action !== "") {
+            formElement.setAttribute("action", form.action);
+        } else {
+            formElement.removeAttribute("action");            
+        }
 
         for (i = 0; i < inputs.length; i += 1) {
             if (inputs[i].type === "search" || inputs[i].type === "text") {
                 searchQueryInput.setAttribute("name", inputs[i].name);
                 searchQueryInput.setAttribute("type", inputs[i].type);
-                //FIXME: Tind will want values quoted in some cases e.g. 
+                //FIXME: Tind will want values quoted in some cases e.g.
                 // "Ge 101" for complete course name, or 'Ge 101' for partial match course name
                 searchQueryInput.setAttribute("value", inputs[i].value);
                 searchQueryInput.setAttribute("placeholder", inputs[i].placeholder);
@@ -302,8 +342,10 @@
             }
         }
         if (form.onSubmit !== undefined) {
+            console.log("DEBUG adding onSubmit", form.onSubmit);
             formElement.setAttribute("onSubmit", form.onSubmit);
         } else if (formElement.hasAttribute("onSubmit") === true) {
+            console.log("DEBUG removing onSubmit");
             formElement.removeAttribute("onsubmit");
         }
     }
@@ -320,6 +362,7 @@
             i = 0,
             foundIt = false,
             elem = null;
+
         for (i = 0; i < filter.length && foundIt === false; i += 1) {
             if (filter[i].label === label) {
                 foundIt = true;
@@ -361,7 +404,7 @@
         var elem = ev.target,
             resourceUL = doc.getElementById("usb-resource-ul"),
             filterUL = doc.getElementById("usb-filter-ul"),
-            cur = filterUL.parentNode, 
+            cur = filterUL.parentNode,
             menuSelected = cur.querySelector(".usb-menu-selected"),
             previouslySelected = cur.querySelector(".usb-menu-item-selected"),
             resources = doc.getElementById("usb-search-resources"),

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * searchbox.php - provide CSS, HTML fragment and JavaScript embed as functions returning them as strings.
  */
@@ -7,20 +7,24 @@ function joinPath($p1, $p2) {
    if ($p1 === "") {
 	return $p2;
    }
-   return $p1 . '/' . $p2; 
+   return $p1 . '/' . $p2;
 }
 
 function searchboxCSS($basepath = "") {
     $css = file_get_contents(joinPath($basepath, 'css/usb.css'));
-    //return PHP_EOL . '<link rel="stylesheet" href="/searchbox/css/usb.css">' . PHP_EOL; 
+    //return PHP_EOL . '<link rel="stylesheet" href="/searchbox/css/usb.css">' . PHP_EOL;
     return PHP_EOL . '<style rel="stylesheet">' . PHP_EOL . $css . PHP_EOL . '</style>' . PHP_EOL;
 }
 
 function searchboxHTML($basepath = "") {
     $src = <<<HTML
 
+  <!-- START: include ebsco search JS -->
+  <script src="js/ebscohostsearch.js" type="text/javascript"></script>
+  <!--   END: include ebsco search JS -->
   <noscript>
     <ul class="usb-no-js">
+      <li><a href="https://library.caltech.edu/index-eds.php">Seach books, articles &amp; more</a></li>
       <li><a href="https://caltech.tind.io">Library Catalog</a></li>
       <li><a href="http://sfx.caltech.edu:8088/caltech/az">Find eJournals</a></li>
       <li><a href="https://caltech.tind.io/search?ln=en&cc=Course+Reserves&p=&f=&action_search=Search">Course Reserves</a></li>
@@ -28,17 +32,17 @@ function searchboxHTML($basepath = "") {
       <li><a href="https://cse.google.com/cse/home?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&sa=Search+Site#gsc.tab=0&gsc.q=test&gsc.page=1">Search Website</a></li>
     </ul>
   </noscript>
-
   <div id="usb-searchbox" class="usb-searchbox usb-hide">
     <div class="usb-search-resources">
         <label id="usb-resource-label" class="usb-menu-label">Search</label>
         <div id="usb-search-resources" class="usb-menu">
             <a id="usb-resource-menu-selector" href="#" tabindex="1" class="usb-menu-select-button">
-            <span id="usb-resource-menu-selected" class="usb-menu-selected">Library Catalog</span>
+            <span id="usb-resource-menu-selected" class="usb-menu-selected">Search books, articles and more</span>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="8.071px" height="14px" viewBox="0 0 8.071 14" enable-background="new 0 0 8.071 14" xml:space="preserve">
                 <path d="M0.069 8.74c0.08-0.159 0.252-0.264 0.436-0.274 0.023 0 1.743-0.104 3.531-0.104s3.508 0.104 3.53 0.104C7.751 8.476 7.911 8.581 8.003 8.74c0.092 0.161 0.092 0.356 0 0.517 -1.364 2.431-3.508 4.517-3.6 4.598 -0.206 0.194-0.528 0.194-0.734 0 -0.091-0.081-2.235-2.167-3.6-4.598C-0.023 9.096-0.023 8.901 0.069 8.74M8.003 5.259c-0.08 0.16-0.252 0.264-0.437 0.275 -0.022 0-1.742 0.103-3.53 0.103S0.528 5.535 0.505 5.535C0.321 5.523 0.161 5.419 0.069 5.259c-0.092-0.161-0.092-0.355 0-0.516 1.365-2.431 3.508-4.517 3.6-4.598 0.206-0.194 0.528-0.194 0.734 0 0.092 0.081 2.235 2.167 3.6 4.598C8.095 4.904 8.095 5.099 8.003 5.259"></path>
             </svg></a>
             <ul id="usb-resource-ul">
+                <li><span class="usb-menu-item-primary"><a id="eds" href="#">Seach books, articles &amp; more</a></span> <span class="usb-menu-item-secondary">Search book, articles &amp; more</span></li>
                 <li><span class="usb-menu-item-primary"><a id="tind" href="#">Library Catalog</a></span> <span class="usb-menu-item-secondary">Books and Print Journals</span></li>
                 <li><span class="usb-menu-item-primary"><a id="sfx" href="#">Find eJournals</a></span> <span class="usb-menu-item-secondary">Access by Title</span></li>
                 <li><span class="usb-menu-item-primary"><a id="tindCourseReserves" href="#">Course Reserves</a></span></li>
@@ -80,7 +84,7 @@ HTML;
 
 function searchboxJavaScript($basepath = "") {
     $js = file_get_contents(joinPath($basepath, "js/usb.js"));
-    // return PHP_EOL . '<script src="http://support.ebscohost.com/eit/scripts/ebscohostsearch.js" type="text/javascript"></script>' . 
+    // return PHP_EOL . '<script src="http://support.ebscohost.com/eit/scripts/ebscohostsearch.js" type="text/javascript"></script>' .
 	return PHP_EOL .
 	'<script rel="javascript" type="text/javascript">' . PHP_EOL . $js . PHP_EOL . '</script>' . PHP_EOL;
 }
