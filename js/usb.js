@@ -35,11 +35,11 @@
                     method: "POST",
                     action: "",
                     input: [
-                        {id: "ebscohostwindow", name: "ebscohostwindow", "type": "hidden", value: "0"},
-                		{id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip"},
-                		{id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", "type": "hidden", value: "db"},
-                		{id: "ebscohostsearchmode", name: "ebscohostsearchmode", "type": "hidden", value: "+"},
-                		{id: "ebscohostkeywords", name: "ebscohostkeywords", "type": "hidden", value: ""},
+                        {id: "ebscohostwindow", name: "ebscohostwindow", "type": "hidden", value: "0" },
+                        {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip"},
+                        {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", "type": "hidden", value: "db" },
+                        {id: "ebscohostsearchmode", name: "ebscohostsearchmode", "type": "hidden", value: "+" },
+                        {id: "ebscohostkeywords", name: "ebscohostkeywords", "type": "hidden", value: "" },
                         {id: "usb-query-input", name: "ebscohostsearchtext", value: "", placeholder: "Search books, articles & more", "type": "text"}
                     ]
                 }
@@ -342,8 +342,9 @@
             }
         }
         if (form.onSubmit !== undefined) {
-            console.log("DEBUG adding onSubmit", form.onSubmit);
+            console.log("DEBUG adding onSubmit", form.onSubmit, " formElement", formElement);
             formElement.setAttribute("onSubmit", form.onSubmit);
+            console.log("DEBUG formElement after", formElement);
         } else if (formElement.hasAttribute("onSubmit") === true) {
             console.log("DEBUG removing onSubmit");
             formElement.removeAttribute("onsubmit");
