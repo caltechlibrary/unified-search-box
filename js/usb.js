@@ -342,11 +342,8 @@
             }
         }
         if (form.onSubmit !== undefined) {
-            console.log("DEBUG adding onSubmit", form.onSubmit, " formElement", formElement);
             formElement.setAttribute("onSubmit", form.onSubmit);
-            console.log("DEBUG formElement after", formElement);
         } else if (formElement.hasAttribute("onSubmit") === true) {
-            console.log("DEBUG removing onSubmit");
             formElement.removeAttribute("onsubmit");
         }
     }
