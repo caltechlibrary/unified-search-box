@@ -14,7 +14,7 @@
                 filter: [
                     {
                         label: "Keyword",
-                        input: {name: "ebscohostkeywords", value: "", "type": "hidden"}
+                        input: {name: "ebscohostkeywords", "type": "hidden", value: "" }
                     },
                     {
                         label: "Title",
@@ -31,12 +31,12 @@
                 ],
                 form: {
                     id: "ebscohostCustomSearchBox",
-                    "onSubmit": "return ebscoHostSearchGo(this);",
+                    onSubmit: "return ebscoHostSearchGo(this);",
                     method: "POST",
                     action: "",
                     input: [
                         {id: "ebscohostwindow", name: "ebscohostwindow", "type": "hidden", value: "0" },
-                        {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip"},
+                        {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?authtype=guest&direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip"},
                         {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", "type": "hidden", value: "db" },
                         {id: "ebscohostsearchmode", name: "ebscohostsearchmode", "type": "hidden", value: "+" },
                         {id: "ebscohostkeywords", name: "ebscohostkeywords", "type": "hidden", value: "" },
