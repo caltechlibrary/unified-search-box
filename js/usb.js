@@ -12,28 +12,28 @@
         searchWidget = {
             "eds": {
                 filter: [
+                    /*
                     {
                         label: "Keyword",
                         input: {name: "ebscohostkeywords", value: "", "type": "hidden" }
                     }
-                    /*
+                    */
                     {
                         label: "Keyword",
-                        input: {id: "guidedField_0", name: "searchFieldSelector", value: "", "type": "hidden" }
+                        input: {name: "searchFieldSelector", value: "", "type": "hidden" }
                     },
                     {
                         label: "Title",
-                        input: {id: "guidedField_1", name: "searchFieldSelector", value: "TI", "type": "hidden"}
+                        input: {name: "searchFieldSelector", value: "TI", "type": "hidden"}
                     },
                     {
                         label: "Author",
-                        input: {id: "guidedField_2", name: "searchFieldSelector", value: "AU", "type": "hidden"}
+                        input: {name: "searchFieldSelector", value: "AU", "type": "hidden"}
                     },
                     {
                         label: "Subject",
-                        input: {id: "guidedField_3", name: "searchFieldSelector", value: "SU", "type": "hidden"}
+                        input: {name: "searchFieldSelector", value: "SU", "type": "hidden"}
                     }
-                    */
                 ],
                 form: {
                     id: "ebscohostCustomSearchBox",

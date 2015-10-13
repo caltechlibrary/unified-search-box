@@ -1,3 +1,7 @@
+/* This file was retrieved from https://support.ebscohost.com/eit/scripts/ebscohostsearch.js
+ * Modifications required for integratation with the unified search box on the library homepage.
+ * 2015-10-13 RSD
+ */
 /****************************************************************************************************************************************************
  This file is used to process the search that comes from a pre-created (or test-driven) search box.  It does not affect the Search Box Builder page.
 ******************************************************************************************************************************************************/
@@ -176,6 +180,7 @@ function ebscoHostSearchGo(form) {
 	if (ebscohostkeywords!="")
 		ebscohostkeywords=ebscoHostSearchParse(ebscohostkeywords,ebscohostsearchmode)+'\+AND\+';
 
+    /*Rewrote this block 2015-10-13 RSD
 	var keywordSelector = document.getElementById("guidedField_0"),
 		titleSelector = document.getElementById("guidedField_1"),
 		authorSelector = document.getElementById("guidedField_2");
@@ -183,6 +188,27 @@ function ebscoHostSearchGo(form) {
 		ebscohosturl+='&bquery=AU+('+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode)+')';
 	} else if(!_isEmpty(titleSelector) && titleSelector.checked) {
 		ebscohosturl+='&bquery=TI+('+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode)+')';
+	} else {
+		ebscohosturl+='&bquery='+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode);
+	}
+	*/
+	var fieldSelector = document.querySelector("input[name=searchFieldSelector]");
+    console.log("DEBUG fieldSelector", fieldSelector);
+	if (fieldSelector !== null && fieldSelector.value !== undefined) {
+		switch (fieldSelector.value) {
+			case 'AU':
+				ebscohosturl+='&bquery=AU+('+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode)+')';
+				break;
+			case 'TI':
+				ebscohosturl+='&bquery=TI+('+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode)+')';
+				break;
+			case 'SU':
+				ebscohosturl+='&bquery=SU+('+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode)+')';
+				break;
+			default:
+				ebscohosturl+='&bquery='+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode);
+				break;
+		}
 	} else {
 		ebscohosturl+='&bquery='+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode);
 	}
