@@ -80,10 +80,9 @@ HTML;
 }
 
 function searchboxJavaScript($basepath = "") {
-    //$js = file_get_contents(joinPath($basepath, "js/usb.js"));
-    // return PHP_EOL . '<script src="http://support.ebscohost.com/eit/scripts/ebscohostsearch.js" type="text/javascript"></script>' .
 	return PHP_EOL .
-	    '<script src="' . joinPath($basepath, 'js/ebscohostsearch.js') . '" rel="javascript" type="text/javascript">' . PHP_EOL . $js . PHP_EOL . '</script>' . PHP_EOL .
-	    '<script src="' . joinPath($basepath, 'js/usb.js') . '" rel="javascript" type="text/javascript">' . PHP_EOL . $js . PHP_EOL . '</script>' . PHP_EOL;
+        '<script src="' . joinPath($basepath, 'js/ebscohostsearch.js') . '" rel="javascript" type="text/javascript"></script>' . PHP_EOL .
+        '<script src="' . joinPath($basepath, 'js/tindhostsearch.js') . '" rel="javascript" type="text/javascript"></script>' . PHP_EOL .
+	    '<script src="' . joinPath($basepath, 'js/usb.js') . '" rel="javascript" type="text/javascript"></script>' . PHP_EOL;
 }
 ?>

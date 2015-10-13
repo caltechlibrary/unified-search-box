@@ -83,6 +83,7 @@
                     }
                 ],
                 form: {
+                    onSubmit: "return tindHostSearchGo(this);",
                     method: "GET",
                     action: "https://caltech.tind.io/search",
                     input: [
@@ -123,6 +124,7 @@
                     }
                 ],
                 form: {
+                    onSubmit: "return tindHostSearchGo(this);",
                     method: "GET",
                     action: "https://caltech.tind.io/search",
                     input: [
@@ -348,6 +350,7 @@
             }
         }
         if (form.onSubmit !== undefined) {
+            console.log("DEBUG onsubmit being added", form.onSubmit, " for ", resourceId);
             formElement.setAttribute("onSubmit", form.onSubmit);
         } else if (formElement.hasAttribute("onSubmit") === true) {
             formElement.removeAttribute("onsubmit");
