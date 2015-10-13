@@ -288,8 +288,8 @@
         //NOTE: Update the filter UL list
         if (resource.filter !== undefined && resource.filter.length > 0) {
             resource.filter.forEach(function (obj, i) {
-                var li = doc.createElement("li"),
-                    a = null;
+                var li = doc.createElement("li");/* , a = null; */
+                
                 li.innerHTML = liTemplate.replace("{{label}}", obj.label);
                 if (i === 0) {
                     li.className = "usb-menu-item-selected";
@@ -297,10 +297,13 @@
                         filterMenuSelected.textContent = obj.label;
                     }
                 }
+                li.addEventListener("click", eventListener);
+                /*note: we can listen for the LI and catch the link click.
                 a = li.querySelector("a");
                 if (a !== null) {
                     a.addEventListener("click", eventListener);
                 }
+                */
                 ul.appendChild(li);
             });
             return resource.filter.length;
