@@ -2,6 +2,12 @@
 
 This should probably go in a basecamp project but I don’t have rights to create one. So here’s my current general list of things to be dealt with
 
+## EBSCO
+
++ Adding Author, Title, Subject requires rewriting ebscohostsearch.js to match how our unified searchbox is setup.
+    + The bquery input field needs to wrap the Field Code, a plus and parens for filtered results.
+    + AU+(Feynman) would search author named Feynman.
+
 ## Invenio related
 
 1. Course Reserves/Instructor: I am getting index missing errors when I specify the f=instructor

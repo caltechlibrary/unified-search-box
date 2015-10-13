@@ -11,17 +11,14 @@ function joinPath($p1, $p2) {
 }
 
 function searchboxCSS($basepath = "") {
-    $css = file_get_contents(joinPath($basepath, 'css/usb.css'));
+    //$css = file_get_contents(joinPath($basepath, 'css/usb.css'));
     //return PHP_EOL . '<link rel="stylesheet" href="/searchbox/css/usb.css">' . PHP_EOL;
-    return PHP_EOL . '<style rel="stylesheet">' . PHP_EOL . $css . PHP_EOL . '</style>' . PHP_EOL;
+    //return PHP_EOL . '<style rel="stylesheet">' . PHP_EOL . $css . PHP_EOL . '</style>' . PHP_EOL;
+    return PHP_EOL . '<link rel="stylesheet" href="' . joinPath($basepath, 'css/usb.css') . '">' . PHP_EOL;
 }
 
 function searchboxHTML($basepath = "") {
     $src = <<<HTML
-
-  <!-- START: include ebsco search JS -->
-  <script src="js/ebscohostsearch.js" type="text/javascript"></script>
-  <!--   END: include ebsco search JS -->
   <noscript>
     <ul class="usb-no-js">
       <li><a href="https://library.caltech.edu/index-eds.php">Seach books, articles &amp; more</a></li>
@@ -83,9 +80,10 @@ HTML;
 }
 
 function searchboxJavaScript($basepath = "") {
-    $js = file_get_contents(joinPath($basepath, "js/usb.js"));
+    //$js = file_get_contents(joinPath($basepath, "js/usb.js"));
     // return PHP_EOL . '<script src="http://support.ebscohost.com/eit/scripts/ebscohostsearch.js" type="text/javascript"></script>' .
 	return PHP_EOL .
-	'<script rel="javascript" type="text/javascript">' . PHP_EOL . $js . PHP_EOL . '</script>' . PHP_EOL;
+	    '<script src="' . joinPath($basepath, 'js/ebscohostsearch.js') . '" rel="javascript" type="text/javascript">' . PHP_EOL . $js . PHP_EOL . '</script>' . PHP_EOL .
+	    '<script src="' . joinPath($basepath, 'js/usb.js') . '" rel="javascript" type="text/javascript">' . PHP_EOL . $js . PHP_EOL . '</script>' . PHP_EOL;
 }
 ?>

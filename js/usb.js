@@ -14,20 +14,26 @@
                 filter: [
                     {
                         label: "Keyword",
-                        input: {name: "ebscohostkeywords", "type": "hidden", value: "" }
+                        input: {name: "ebscohostkeywords", value: "", "type": "hidden" }
+                    }
+                    /*
+                    {
+                        label: "Keyword",
+                        input: {id: "guidedField_0", name: "searchFieldSelector", value: "", "type": "hidden" }
                     },
                     {
                         label: "Title",
-                        input: {name: "ebscohostkeywords", value: "TI", "type": "hidden"}
+                        input: {id: "guidedField_1", name: "searchFieldSelector", value: "TI", "type": "hidden"}
                     },
                     {
                         label: "Author",
-                        input: {name: "ebscohostkeywords", value: "AU", "type": "hidden"}
+                        input: {id: "guidedField_2", name: "searchFieldSelector", value: "AU", "type": "hidden"}
                     },
                     {
                         label: "Subject",
-                        input: {name: "ebscohostkeywords", value: "SU", "type": "hidden"}
+                        input: {id: "guidedField_3", name: "searchFieldSelector", value: "SU", "type": "hidden"}
                     }
+                    */
                 ],
                 form: {
                     id: "ebscohostCustomSearchBox",
@@ -36,7 +42,7 @@
                     action: "",
                     input: [
                         {id: "ebscohostwindow", name: "ebscohostwindow", "type": "hidden", value: "0" },
-                        {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://clsproxy.library.caltech.edu/login?url=http://search.ebscohost.com/login.aspx?authtype=guest&direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip"},
+                        {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://clsproxy.library.caltech.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip,guest&ssl=Y"},
                         {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", "type": "hidden", value: "db" },
                         {id: "ebscohostsearchmode", name: "ebscohostsearchmode", "type": "hidden", value: "+" },
                         {id: "ebscohostkeywords", name: "ebscohostkeywords", "type": "hidden", value: "" },
@@ -322,7 +328,7 @@
         if (form.action !== "") {
             formElement.setAttribute("action", form.action);
         } else {
-            formElement.removeAttribute("action");            
+            formElement.removeAttribute("action");
         }
 
         for (i = 0; i < inputs.length; i += 1) {
