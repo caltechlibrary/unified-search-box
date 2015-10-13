@@ -6,7 +6,7 @@
     'use strict';
 
     function tindQuoteSearch(s) {
-        if (s.indexOf('"') < 0 && s.indexOf("'") < 0) {
+        if (s.indexOf('"') < 0 && s.indexOf("'") < 0 && s.indexOf(':') < 0) {
             return "'" + s + "'";
         }
         return s;
