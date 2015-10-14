@@ -12,12 +12,6 @@
         searchWidget = {
             "eds": {
                 filter: [
-                    /*
-                    {
-                        label: "Keyword",
-                        input: {name: "ebscohostkeywords", value: "", "type": "hidden" }
-                    }
-                    */
                     {
                         label: "Keyword",
                         input: {name: "searchFieldSelector", value: "", "type": "hidden" }
@@ -288,8 +282,8 @@
         //NOTE: Update the filter UL list
         if (resource.filter !== undefined && resource.filter.length > 0) {
             resource.filter.forEach(function (obj, i) {
-                var li = doc.createElement("li");/* , a = null; */
-                
+                var li = doc.createElement("li");
+
                 li.innerHTML = liTemplate.replace("{{label}}", obj.label);
                 if (i === 0) {
                     li.className = "usb-menu-item-selected";
@@ -298,12 +292,6 @@
                     }
                 }
                 li.addEventListener("click", eventListener);
-                /*note: we can listen for the LI and catch the link click.
-                a = li.querySelector("a");
-                if (a !== null) {
-                    a.addEventListener("click", eventListener);
-                }
-                */
                 ul.appendChild(li);
             });
             return resource.filter.length;
@@ -353,7 +341,6 @@
             }
         }
         if (form.onSubmit !== undefined) {
-            console.log("DEBUG onsubmit being added", form.onSubmit, " for ", resourceId);
             formElement.setAttribute("onSubmit", form.onSubmit);
         } else if (formElement.hasAttribute("onSubmit") === true) {
             formElement.removeAttribute("onsubmit");
@@ -450,8 +437,9 @@
      */
     function resourcesEventHandler(ev) {
         var menuCount = 0,
-            resourceId = "",
             elem = ev.target,
+            resourceId = elem.getAttribute("data-resource"),
+            anchor = document.getElementById(resourceId),
             filterUL = doc.getElementById("usb-filter-ul"),
             filtersSelectButton = doc.getElementById("usb-filter-menu-selector"),
             resourceUL = doc.getElementById("usb-resource-ul"),
@@ -464,10 +452,10 @@
         if (previouslySelected !== null) {
             removeClass(previouslySelected, "usb-menu-item-selected");
         }
-        addClass(elem.parentNode.parentNode, "usb-menu-item-selected");
+
+        addClass(anchor.parentNode.parentNode, "usb-menu-item-selected");
         menuSelected.textContent = elem.textContent;
 
-        resourceId = elem.id;
         updateQueryForm(searchWidget, searchQueryForm, resourceId);
         updateFilterMenu(searchWidget, filterUL, searchQueryForm, resourceId, filtersEventHandler);
         // Per K.A. we're not going to pop the filterUL and instead jump to the search input box.
@@ -487,7 +475,10 @@
             activeResource = searchWidget[resourceId],
             queryInput = doc.getElementById("usb-query-input"),
             resourceUL = doc.getElementById("usb-resource-ul"),
+            /*
             resourceMenuItems = resourceUL.querySelectorAll(".usb-menu-item-primary a"),
+            */
+            resourceMenuItems = resourceUL.querySelectorAll("li"),
             filterUL = doc.getElementById("usb-filter-ul"),
             searchResources = doc.getElementById("usb-search-resources"),
             filterMenuSelected = doc.getElementById('usb-filter-menu-selected'),
@@ -507,8 +498,9 @@
         // Add resource listeners and find correct resourceId to initialize query form an filter with.
         for (i = 0; i < resourceMenuItems.length; i += 1) {
             if (i === 0) {
-                resourceId = resourceMenuItems[i].id;
-                addClass(resourceMenuItems[i].parentNode.parentNode, "usb-menu-item-selected");
+                resourceId = resourceMenuItems[i].getAttribute("data-resource");
+                /*addClass(resourceMenuItems[i].parentNode.parentNode, "usb-menu-item-selected");*/
+                addClass(resourceMenuItems[i], "usb-menu-item-selected");
             }
             addMenuItemListener(resourceMenuItems[i], "click", resourcesEventHandler, false);
         }
