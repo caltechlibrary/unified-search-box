@@ -2,30 +2,12 @@
 
 This should probably go in a basecamp project but I don’t have rights to create one. So here’s my current general list of things to be dealt with
 
-## EBSCO
-
-+ Adding Author, Title, Subject requires rewriting ebscohostsearch.js to match how our unified searchbox is setup.
-    + The bquery input field needs to wrap the Field Code, a plus and parens for filtered results.
-    + AU+(Feynman) would search author named Feynman.
-
-## Invenio related
-
-1. Course Reserves/Instructor: I am getting index missing errors when I specify the f=instructor
-2. Library Catalog/Call Number: I need to find out the right value of “f” in the URL parameters
-3. Library Catalog/Keyword: Using f=keyword returns an index missing error, what is the value for "f"?
-
 ## UI behavior issues (JS)
 
-+ Initial page load query with out explicit selecting filter does not set the query form properly (i.e. Library Catalog, Title should have f=title)
-+ SVG does not appear to be hot for click, figure out why this event is not propogating to wrapping anchor (on IE)
-+ Resource menu should not be open by default but the focus should be on the element to open that menu.
-+ Tabbing seems to disappear if you click some place else on the page, also tab order when you have a menu box open is not obvious (e.g. Should you be able to tab down the links in the menu or should tab take you to the next top level menu)
-+ ARIA is not implemented yet
-+ I need to implement the non-JavaScript version of the search box
++ Clicking anywhere on the filter menu box should select the LI not just on the anchor itself, attaching the event listener to the LI isn't making a difference on Windows Firefox according to K.B. 2015-10-13
 
 ## UI visual issues (CSS)
 
-+ I am not really happy with the up/down triangles for our select boxes
-+ I am not really happy with the magnifying glass for the search submit button
-+ Not happy with the alignments at differing screen sizes
++ The 'select box' should open/close on mouse hover, this should be added via CSS, prototyp1 on caltechlibrary.github.io has some experiments that maybe helpful.
+
 
