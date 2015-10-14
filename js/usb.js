@@ -405,15 +405,11 @@
             menuSelected = cur.querySelector(".usb-menu-selected"),
             previouslySelected = cur.querySelector(".usb-menu-item-selected"),
             resources = doc.getElementById("usb-search-resources"),
-            resourceSelected = resources.querySelector("li.usb-menu-item-selected") || null,
-            resourceId = "",
-            resourceAnchor = null;
+            resourceSelected = resources.querySelector(".usb-menu-item-selected") || null,
+            resourceId = "";
 
         if (resourceSelected !== null) {
-            resourceAnchor = resourceSelected.getElementsByTagName("a");
-            if (resourceAnchor !== null && resourceAnchor[0].id !== undefined) {
-                resourceId = resourceAnchor[0].id;
-            }
+            resourceId = resourceSelected.getAttribute("data-resource");
         }
 
         if (previouslySelected !== null) {
@@ -439,7 +435,7 @@
         var menuCount = 0,
             elem = ev.target,
             resourceId = elem.getAttribute("data-resource"),
-            anchor = document.getElementById(resourceId),
+            anchor = doc.getElementById(resourceId),
             filterUL = doc.getElementById("usb-filter-ul"),
             filtersSelectButton = doc.getElementById("usb-filter-menu-selector"),
             resourceUL = doc.getElementById("usb-resource-ul"),
@@ -453,8 +449,8 @@
             removeClass(previouslySelected, "usb-menu-item-selected");
         }
 
-        addClass(anchor.parentNode.parentNode, "usb-menu-item-selected");
-        menuSelected.textContent = elem.textContent;
+        addClass(anchor.parentNode, "usb-menu-item-selected");
+        menuSelected.textContent = anchor.textContent;
 
         updateQueryForm(searchWidget, searchQueryForm, resourceId);
         updateFilterMenu(searchWidget, filterUL, searchQueryForm, resourceId, filtersEventHandler);

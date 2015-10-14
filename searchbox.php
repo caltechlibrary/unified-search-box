@@ -39,12 +39,12 @@ function searchboxHTML($basepath = "") {
                 <path d="M0.069 8.74c0.08-0.159 0.252-0.264 0.436-0.274 0.023 0 1.743-0.104 3.531-0.104s3.508 0.104 3.53 0.104C7.751 8.476 7.911 8.581 8.003 8.74c0.092 0.161 0.092 0.356 0 0.517 -1.364 2.431-3.508 4.517-3.6 4.598 -0.206 0.194-0.528 0.194-0.734 0 -0.091-0.081-2.235-2.167-3.6-4.598C-0.023 9.096-0.023 8.901 0.069 8.74M8.003 5.259c-0.08 0.16-0.252 0.264-0.437 0.275 -0.022 0-1.742 0.103-3.53 0.103S0.528 5.535 0.505 5.535C0.321 5.523 0.161 5.419 0.069 5.259c-0.092-0.161-0.092-0.355 0-0.516 1.365-2.431 3.508-4.517 3.6-4.598 0.206-0.194 0.528-0.194 0.734 0 0.092 0.081 2.235 2.167 3.6 4.598C8.095 4.904 8.095 5.099 8.003 5.259"></path>
             </svg></a>
             <ul id="usb-resource-ul">
-                <li><span class="usb-menu-item-primary"><a id="eds" href="#">Seach books, articles &amp; more</a></span></li>
-                <li><span class="usb-menu-item-primary"><a id="tind" href="#">Library Catalog</a></span> <span class="usb-menu-item-secondary">Books and Print Journals</span></li>
-                <li><span class="usb-menu-item-primary"><a id="sfx" href="#">Find eJournals</a></span> <span class="usb-menu-item-secondary">Access by Title</span></li>
-                <li><span class="usb-menu-item-primary"><a id="tindCourseReserves" href="#">Course Reserves</a></span></li>
-                <li><span class="usb-menu-item-primary"><a id="coda" href="#">Caltech CODA</a></span> <span class="usb-menu-item-secondary">Collection of Open Digital Archives, Institutional Repository</span></li>
-                <li><span class="usb-menu-item-primary"><a id="website" href="#">Search Website</a></span> <span class="usb-menu-item-secondary">Library website and LibGuides</span></li>
+                <li data-resource="eds"><span data-resource="eds" class="usb-menu-item-primary"><a data-resource="eds" id="eds" href="#">Seach books, articles &amp; more</a></span></li>
+                <li data-resource="tind"><span data-resource="tind" class="usb-menu-item-primary"><a data-resource="tind" id="tind" href="#">Library Catalog</a></span> <span data-resource="tind" class="usb-menu-item-secondary">Books and Print Journals</span></li>
+                <li data-resource="sfx"><span data-resource="sfx" class="usb-menu-item-primary"><a data-resource="sfx" id="sfx" href="#">Find eJournals</a></span> <span data-resource="sfx" class="usb-menu-item-secondary">Access by Title</span></li>
+                <li data-resource="tindCourseReserves"><span data-resource="tindCourseReserves" class="usb-menu-item-primary"><a data-resource="tindCourseReserves" id="tindCourseReserves" href="#">Course Reserves</a></span></li>
+                <li data-resource="coda"><span data-resource="coda" class="usb-menu-item-primary"><a data-resource="coda" id="coda" href="#">Caltech CODA</a></span> <span data-resource="coda" class="usb-menu-item-secondary">Collection of Open Digital Archives, Institutional Repository</span></li>
+                <li data-resource="website"><span data-resource="website" class="usb-menu-item-primary"><a data-resource="website" id="website" href="#">Search Website</a></span> <span data-resource="website" class="usb-menu-item-secondary">Library website and LibGuides</span></li>
             </ul>
         </div><!-- END: id="usb-search-resources" -->
     </div><!-- END: class="usb-search-resources" -->
