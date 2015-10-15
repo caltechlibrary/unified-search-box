@@ -464,7 +464,7 @@
             removeClass(previouslySelected, "usb-menu-item-selected");
         }
 
-        addClass(anchor.parentNode, "usb-menu-item-selected");
+        addClass(anchor.parentNode.parentNode, "usb-menu-item-selected");
         menuSelected.textContent = anchor.textContent;
 
         updateQueryForm(searchWidget, searchQueryForm, resourceId);
