@@ -19,6 +19,21 @@ function searchboxCSS($basepath = "") {
 
 function searchboxHTML($basepath = "") {
     $src = <<<HTML
+<!-- START: Google Searchbox, 2015-12-10 -->
+<script>
+  (function() {
+     var cx = '005709273917748521174:po9fevg5ksw';
+     var gcse = document.createElement('script');
+     gcse.type = 'text/javascript';
+     gcse.async = true;
+     gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+         '//cse.google.com/cse.js?cx=' + cx;
+     var s = document.getElementsByTagName('script')[0];
+         s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<!-- END: Google Searchbox, 2015-12-10 -->
+
   <noscript>
     <ul class="usb-no-js">
       <li><a href="https://library.caltech.edu/index-eds.php">Seach books, articles &amp; more</a></li>
@@ -75,6 +90,17 @@ function searchboxHTML($basepath = "") {
     </div><!-- END: class="usb-search-query-form" -->
   </div><!-- END: id="usb-searchbox" -->
 
+<!-- START: Google Analytics include -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-11436911-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!--   END: Google Analytics include -->
 HTML;
     return PHP_EOL. $src . PHP_EOL;
 }
