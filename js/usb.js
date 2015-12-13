@@ -170,10 +170,10 @@
                 ],
                 form: {
                     method: "GET",
-                    action: "http://google.com/cse",
+                    action: "http://cse.google.com/cse",
                     input: [
                         {name: "cx", value: "005709273917748521174:po9fevg5ksw", "type": "hidden"},
-                        {name: "ie", value: "UTF-8", "type": "hidden"},
+                        /* {name: "ie", value: "UTF-8", "type": "hidden"},*/
                         {name: "q", maxlength: "255", value: "", placeholder: "Search library website", "type": "text"}
                     ]
                 }
