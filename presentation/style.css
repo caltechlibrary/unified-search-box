@@ -1,14 +1,17 @@
 body {
-    color: #bbbbbb;
+    color: #dedede;
     background-color: #111;
 }
 
 h1, h2, h3, h4, h5, h6 {
-/*  color: green;*/
   text-transform: lowercase;
 }
 
 a, a:link, a:visited, a:active, a:hover {
     color: orange;
     text-decoration: none;
+}
+
+code {
+    color: yellow;
 }
