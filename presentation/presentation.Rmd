@@ -1,0 +1,218 @@
+---
+output: 
+  slidy_presentation:
+    css: style.css
+    header: Caltech Library, Unified Search Box
+    footer: http://caltechlibrary.github.com/unified-search-box
+---
+
+# A Unified Search Box
+## SoCal Code4Lib Meetup 
+###  2015-12-15
+
+R. S. Doiel <rsdoiel@caltech.edu>  
+Application Development for  Caltech Library  
+[github.com/rsdoiel](http://github.com/rsdoiel)
+
+Project:  [http://caltechlibrary.github.com/unified-search-box](http://caltechlibrary.github.com/unified-search-box)
+
+---
+
+# Your mission, should you accept it...
+
+The [Caltech library](http://library.caltech.edu) website is due for a renewal. That process has started. In the mean time we need to improve what we can quickly and [search](http://library.caltech.edu/index-beta.php) is a good choice.
+
+---
+
+# backstory
+
+I am relatively new to Caltech Library and modern library systems (since April 2015). I have been building things for the web since Gopher, Lynx, NCSA web server and Mosiac. I still have lots to learn (and that makes it fun).
+
++ My training is in computer science and software engineering
+    + not web design or visual design
++ I implement web systems with a specialization in middle-ware and system integration
+    + content management systems typically
++ I am not a CSS guru though I understand how it work (mostly)
++ I believe I can be a generalist when needed ;-)
+
+---
+
+# the problem
+
++ Libraries have many search systems
++ Caltech's were each on a separate page tab
++ Useful for Librarians or to book mark
++ But many patrons prefer a one-box search approach
+
+---
+
+# a solution?
+
+Librarians to the rescue!!!  
+
++ MIT Library has a nice implementation close to what we need
+    + [MIT Library](http://libraries.mit.edu/)
+        + Implemented in [Wordpress](http://libraries.mit.edu/feed/)
+        + Relies on jQuery
++ But not exactly suited to the current evolution of [library.caltech.edu](https://library.caltech.edu)
+
+---
+
+# some constraints
+
++ We are planning a complete website re-design but that is 6-12 months out
++ We need to take an evolutionary approach to improving out web infrastructure
+    + not be specifically tied to Wordpress, Drupal or custom PHP
++ We need to support browser with JS turned off
++ We don't yet have a Graded browser support list
+
+---
+
+# some more constraints
+
++ I'm still learning about libraries as well as Caltech
+    + that meant the problem was fuzzy for me
+    + I needed to discover what was really needed (in terms I could understand)
++ It would be nice to have SSL straight through the search process
++ Ideally you'd just implement your multi-search as a web component
+    + But Web Components not quiet ready for prime time (still 12-18 months out)
+
+---
+
+# initial technical choices
+
++ Progressively enhance from no-JS to everygreen browsers
++ Rely on CSS as much as possible
++ Build everything static (at least initially)
+    + Default links to individual search pages in NOSCRIPT element for no-JS
+    + Use JS to load MIT like implementation
++ Take an iterative prototyping at each iteration
++ Needed to decide what my base line browser support was
++ Put configuration of the unified search box into the HTML data attrbiutes 
+    + spoiler alert: this didn't work out as I expected
+
+---
+
+# graded browsers support
+
++ Approach was made popular at Yahoo many years ago
++ It lets you breakdown the browser support challenges into something manageable
++ It can be revised moving forward
++ Historically you base this on browser version accessing your website
++ Today you decide based browser capabilities
+    + typically the minimum set of capabilities you need
+
+---
+
+# three browser grades
+
++ Our Grade A browser have to support `document.querySelector()` and `document.querySelectorAll()`
+    + Desktop: IE 10/Edge 13, Firefox 42, Chrome 47, Safari 9
+    + Mobile: iOS Safari 9.2, Chrome for Android 47
++ Grade B, browsers with JS disabled (or not available)
++ Grade C, everything else to be addressed as time permits
+
+---
+
+# impact on implementation
+
+1. You punt on Grade C, wring or wave your hands a bit
+    + You say, "oh wally, wally, I knean this would happen..." 
+        + Stage left enter the Nac Mac Feegle
+2. You start by implementing Grade B 
+    + Quick and easy, just HTML and a dusting of CSS
+3. Then you then implement Grade A 
+    + start with one browser, moved to the next in the list
+    + make time to revisit each browser with each new version released
+    + this takes a while
+
+---
+
+# prototypes
+
++ This project went through five [prototypes](http://caltechlibrary.github.io/unified-search-box/index.html)
++ All hosted on Github
++ Why choosing Github?
+    + Easy to share, edit and deploy
+    + Supports static file hosting which is nice for prototyping
+    + Did I say easy to share, edit and deploy from? 8^)
+
+---
+
+# why prototype?
+
++ Reduces development risks
+    + Lowering risk in large measure means allowing yourself to fail early as possible
++ Gives you, the developer, space to learn and work the problem
++ Provides a sense of progress and discovery for your client
++ Gives you permission to really find out what the requirements are
++ Easy to justify iteration as it is self evident with imperfections revealed by the prototype
+
+---
+
+# our prototypes revealed...
+
++ Defaulting to our discovery system puts us close to a single search box
+    + Except this wasn't ready as we just implemented a new catalog system...
++ Pull downs selections allowed us to keep supporting specific search systems
++ The split labeling on the MIT implementation was what our librarians responded to in addition to the functionality of selecting different search systems with contextualized search options
+    + This ruled out the easy way of just using an HTML select box and being done
+
+---
+
+
+"All projects have at least one catch", Steve Doiel (1936 -- 2006)
+    
+
+---
+
+# GOTCHAS!
+## Browser side
+
++ Web Components still not quite ready for prime time (maybe in 6-18 months)
++ Some search integrations have lots of configuration (EBSCO I'm looking at you)
+    + This means configuration via HTML data element attributes not a good choice :-(
+        + Plan B for JS version of boxes is configuration as a JS data structure
++ CSS can be still be really painful thing to debug
++ Each Browser security release triggers another round of browser testing
+    + It would be good to automate as much of this as possible
+
+---
+
+# GOTCHAS!
+## Server side
+
++ CORS now widely supported but not necessarily configured in systems
+    + wrapping pages in PHP to generate appropraite CORS header was easy short term fix
++ SSL vs. non-SSL in legacy implementation decisions
++ We needed to a wild cards CERT in our proxy server
+    + without that some CSS and JavaScript inclusion was broken
+    + that change impacted other systems that also used the proxy
+    + that required coordination
+    + Thank you Betsy for coming to the rescue!!!
+
+---
+
+# revised implementation choices
+
++ Configuration moved from data attributes in HTML to JSON/JavaScript data structure
++ Used a web components to guide approach but implemented as old-school HTML+CSS+JS
++ Deployed in phases (e.g. with our EDS implementation currently in beta)
++ Bit the bullet and took the SSL everywhere approach in upcoming release
+
+---
+
+# Present project status
+
++ v1 has been in use since early Fall term
++ v2 EDS support being tested by Library Staff
++ v2 Schedule for general deployment Dec 21st, after finals but before Winter break
+
+---
+
+# road map
+
++ [V2 Beta](https://library.caltech.edu/index-beta.php) becomes production version
++ V3, Add some requested features (e.g. sticky search option selection)
++ V4? turn into a Web Component?
+
