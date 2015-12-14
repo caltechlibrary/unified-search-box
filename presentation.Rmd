@@ -1,8 +1,8 @@
 ---
 output: 
   slidy_presentation:
-    css: style.css
-    footer: http://caltechlibrary.github.io/unified-search-box/presentation/presentation.html
+    css: css/presentation.css
+    footer: http://caltechlibrary.github.io/unified-search-box/presentation.html
     header: Caltech Library, Unified Search Box
 ---
 
@@ -193,6 +193,8 @@ Thank you Betsy for coming to the rescue!!!
 
 thank you
 
-+ Presentation is at [caltechlibrary.github.io/unified-search-box/presentation/presentation.html](http://caltechlibrary.github.io/unified-search-box/presentation/presentation.html)
-+ R. S. Doiel, <rsdoiel@caltech.edu>, [rsdoiel.github.io](http://rsdoiel.github.io)
+Presentation:  
+[caltechlibrary.github.io/unified-search-box/presentation.html](http://caltechlibrary.github.io/unified-search-box/presentation.html)  
+R. S. Doiel, <rsdoiel@caltech.edu>  
+[rsdoiel.github.io](http://rsdoiel.github.io)
 
