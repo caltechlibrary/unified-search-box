@@ -10,9 +10,8 @@ output:
 ## SoCal Code4Lib Meetup 
 ### Decemember 15, 2015
 
-R. S. Doiel <rsdoiel@caltech.edu>  
+R. S. Doiel, <rsdoiel@caltech.edu> / [rsdoiel.github.io](http://rsdoiel.github.io)  
 Application Development for  Caltech Library  
-[github.com/rsdoiel](http://github.com/rsdoiel)
 
 Project:  [http://caltechlibrary.github.io/unified-search-box](http://caltechlibrary.github.io/unified-search-box)
 
@@ -96,11 +95,11 @@ But not exactly suited to the current evolution of [library.caltech.edu](https:/
 
 # impact on implementation
 
-1. You punt on Grade C, wring or wave your hands a bit
-    + You say, "oh wally, wally, I knean this would happen..." 
+1. You punt on Grade C leveraging this highly technical software secret...
 
+Enter the [Nac Mac Feegle](https://en.wikipedia.org/wiki/Nac_Mac_Feegle)  
 ![Nac Mac Feegle](https://s-media-cache-ak0.pinimg.com/736x/8f/85/7f/8f857fa95369d42abe7e437cf6bef171.jpg)   
-Stage left enter the [Nac Mac Feegle](https://en.wikipedia.org/wiki/Nac_Mac_Feegle)
+Wring your hands, pull your hair, and wave your arms while shouting, "oh wally, wally, I knean this would happen..." 
 
 2. You start by implementing Grade B 
     + Quick and easy, just HTML and a dusting of CSS
@@ -189,4 +188,11 @@ Thank you Betsy for coming to the rescue!!!
 + [V2 Beta](https://library.caltech.edu/index-beta.php) becomes production version
 + V3, Add some requested features (e.g. sticky search option selection)
 + V4? turn into a Web Component?
+
+---
+
+thank you
+
++ Presentation is at [caltechlibrary.github.io/unified-search-box/presentation/presentation.html](http://caltechlibrary.github.io/unified-search-box/presentation/presentation.html)
++ R. S. Doiel, <rsdoiel@caltech.edu>, [rsdoiel.github.io](http://rsdoiel.github.io)
 
