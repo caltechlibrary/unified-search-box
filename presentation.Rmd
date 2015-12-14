@@ -6,9 +6,10 @@ output:
     header: Caltech Library, Unified Search Box
 ---
 
-# A Unified Search Box
-## SoCal Code4Lib Meetup 
-### Decemember 15, 2015
+# a unified search box
+
+SoCal Code4Lib Meetup  
+Decemember 15, 2015
 
 R. S. Doiel, <rsdoiel@caltech.edu> / [rsdoiel.github.io](http://rsdoiel.github.io)  
 Application Development for  Caltech Library  
@@ -35,10 +36,11 @@ I am relatively new to Caltech Library and modern library systems (since April 2
 
 Our Librarians spotted a solution
 
-+ MIT Library has a nice implementation close to what we need
-    + [MIT Library](http://libraries.mit.edu/)
-        + Implemented in [Wordpress](http://libraries.mit.edu/feed/)
-        + Relies on jQuery
+MIT Library has a nice implementation close to what we need
+
++ [MIT Library](http://libraries.mit.edu/)
+    + Implemented in [Wordpress](http://libraries.mit.edu/feed/)
+    + Relies on jQuery
 
 But not exactly suited to the current evolution of [library.caltech.edu](https://library.caltech.edu)
 
@@ -95,7 +97,7 @@ But not exactly suited to the current evolution of [library.caltech.edu](https:/
 
 # impact on implementation
 
-1. You punt on Grade C leveraging this highly technical software secret...
+1. Grade C leveraging this highly technical software secret... you punt
 
 Enter the [Nac Mac Feegle](https://en.wikipedia.org/wiki/Nac_Mac_Feegle)  
 ![Nac Mac Feegle](https://s-media-cache-ak0.pinimg.com/736x/8f/85/7f/8f857fa95369d42abe7e437cf6bef171.jpg)   
@@ -132,10 +134,6 @@ Wring your hands, pull your hair, and wave your arms while shouting, "oh wally, 
 
 ---
 
-[The prototypes](http://caltechlibrary.github.io/unified-search-box)
-
----
-
 # GOTCHAS!
 ## Browser side
 
@@ -149,6 +147,10 @@ Wring your hands, pull your hair, and wave your arms while shouting, "oh wally, 
 + Each Browser security release triggers another round of browser testing
     + It would be good to automate as much of this as possible
     + I relied on a human readable test list
+
+---
+
+The prototypes can be viewed at http://caltechlibrary.github.io/unified-search-box
 
 ---
 
@@ -177,8 +179,8 @@ Thank you Betsy for coming to the rescue!!!
 
 # Present project status
 
-+ [v1](https://library.caltech.edu/index.php) has been in use since early Fall term
-+ [v2](https://library.caltech.edu/index-beta.php) EDS support being tested by Library Staff
++ [v1](https://library.caltech.edu/index.php) has been in use since early Fall
++ [v2](https://library.caltech.edu/index-beta.php) EDS support being tested now
     + Scheduled for general deployment Dec 21st after finals but before Winter break
 
 ---
@@ -186,12 +188,12 @@ Thank you Betsy for coming to the rescue!!!
 # road map
 
 + [V2 Beta](https://library.caltech.edu/index-beta.php) becomes production version
-+ V3, Add some requested features (e.g. sticky search option selection)
++ V3 adding some requested features (e.g. sticky search option selection)
 + V4? turn into a Web Component?
 
 ---
 
-thank you
+# thank you
 
 Presentation:  
 [caltechlibrary.github.io/unified-search-box/presentation.html](http://caltechlibrary.github.io/unified-search-box/presentation.html)  

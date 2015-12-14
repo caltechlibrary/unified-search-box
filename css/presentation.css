@@ -15,3 +15,8 @@ a, a:link, a:visited, a:active, a:hover {
 code {
     color: yellow;
 }
+
+ul {
+    padding-left: 0.48em;
+}
+
