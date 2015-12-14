@@ -48,14 +48,14 @@ But not exactly suited to the current evolution of [library.caltech.edu](https:/
 
 # some constraints
 
-+ We are planning a complete website re-design but that is 6-12 months out
-    + this project is needed in the interum
++ We were planning a complete website re-design but that was 3 to 9 months out
+    + this project was needed in the interum
 + Our infrastructure is rather organic
-    + this suggests an evolutionary approach
-    + we can't simply assume Wordpress/Drupal at this stage
-    + we don't yet have a graded browser support list
-+ We need to support browsers which may have JS turned off 
-    + or out of support (I'm looking at you IE 6)
+    + this suggested an evolutionary approach
+    + but we couldn't assume Wordpress/Drupal at this stage
+    + I didn't know what browsers and versions we needed to support
++ I did know I needed to support browsers which may have JS turned off 
+    + or were just really stale (I'm looking at you IE 6)
 
 ---
 
