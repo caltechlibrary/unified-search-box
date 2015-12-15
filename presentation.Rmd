@@ -73,8 +73,8 @@ But not exactly suited to the current evolution of [library.caltech.edu](https:/
 # initial technical choices
 
 + given legacy nature of current website
-  + not implementing responsive design
-  + not taking a true progressive enhancement approach
+    + not implementing responsive design
+    + not taking a true progressive enhancement approach
 + simple enhancement from no-JS to evergreen browsers
     + Default links to individual search pages in NOSCRIPT element for no-JS
     + Use JS to load MIT like implementation
@@ -104,12 +104,13 @@ Our legacy implementation dated from the IE 6 era when graded browser support wa
 
 ---
 
-## A feature oriented variation
+# a feature oriented variation
 
-+ Inspired by progressive enhancement
-+ Picked the baseline (minimal feature set)
-+ Decided what is required for the enhanced features
-+ Verified what browsers supported those features based on [caniuse](http://caniuse.com)
+Inspired by progressive enhancement
+
++ Picked a baseline (minimal feature set)
++ Decided what was needed for enhanced features
++ Verified browsers supporting those features ([caniuse](http://caniuse.com))
 + Avoided explicit browser sniffing 
 + Still had the option of feature detection if necessary
 
@@ -175,18 +176,11 @@ I went through five [prototypes](http://caltechlibrary.github.io/unified-search-
 ## Browser side
 
 + My original plan to use data attributes to pass configuration was not reasonable
-    + I switched to a JavaScript data structure
-    + Configuration could also have been implemented as a JSON blob (might make sense if we generalize this widget)
+    + I switched to a JavaScript data structure, could have used a JSON blob
 + CSS can still be really painful thing to debug
     + Implementing the production version required re-working the CSS to work with the rest of the page
     + This left me with some ugly, long id and class names (CSS lacks namespacing)
     + In the future I'll take the [SMACSS](https://smacss.com/) approach
-
----
-
-# GOTCHAS!
-## Browser side
-
 + Each Browser security release triggers another round of browser testing
     + It would be good to automate as much of this as possible
     + I relied on a human readable test list
@@ -216,7 +210,6 @@ Thank you Betsy for coming to the rescue!!!
 
 ---
 
-
 # working code
 
 + [v1](https://library.caltech.edu/index.php) has been in use since early Fall
@@ -233,7 +226,6 @@ Thank you Betsy for coming to the rescue!!!
 + Fit as well with prototyping as with eventual retrofit of library's homepage
 
 ---
-
 
 # road map
 

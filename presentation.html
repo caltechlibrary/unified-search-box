@@ -75,9 +75,11 @@
 <div id="initial-technical-choices" class="slide section level1">
 <h1>initial technical choices</h1>
 <ul>
-<li>given legacy nature of current website</li>
+<li>given legacy nature of current website
+<ul>
 <li>not implementing responsive design</li>
 <li>not taking a true progressive enhancement approach</li>
+</ul></li>
 <li>simple enhancement from no-JS to evergreen browsers
 <ul>
 <li>Default links to individual search pages in NOSCRIPT element for no-JS</li>
@@ -108,14 +110,13 @@
 <li>Historically based on the browser versions/types identified accessing your website</li>
 </ul>
 </div>
-<div class="slide section level1">
-
-<h2 id="a-feature-oriented-variation">A feature oriented variation</h2>
+<div id="a-feature-oriented-variation" class="slide section level1">
+<h1>a feature oriented variation</h1>
+<p>Inspired by progressive enhancement</p>
 <ul>
-<li>Inspired by progressive enhancement</li>
-<li>Picked the baseline (minimal feature set)</li>
-<li>Decided what is required for the enhanced features</li>
-<li>Verified what browsers supported those features based on <a href="http://caniuse.com">caniuse</a></li>
+<li>Picked a baseline (minimal feature set)</li>
+<li>Decided what was needed for enhanced features</li>
+<li>Verified browsers supporting those features (<a href="http://caniuse.com">caniuse</a>)</li>
 <li>Avoided explicit browser sniffing</li>
 <li>Still had the option of feature detection if necessary</li>
 </ul>
@@ -178,8 +179,7 @@
 <ul>
 <li>My original plan to use data attributes to pass configuration was not reasonable
 <ul>
-<li>I switched to a JavaScript data structure</li>
-<li>Configuration could also have been implemented as a JSON blob (might make sense if we generalize this widget)</li>
+<li>I switched to a JavaScript data structure, could have used a JSON blob</li>
 </ul></li>
 <li>CSS can still be really painful thing to debug
 <ul>
@@ -202,8 +202,8 @@
 <ul>
 <li>wrapping pages in PHP to generate appropraite CORS header was easy short term fix</li>
 </ul></li>
-<li>I wanted SSL straight through vs. non-SSL for some searches in legacy implementation</li>
-<li>This required a new set of wild cards CERT in our proxy server
+<li>I wanted SSL everywhere vs. non-SSL for some searches in legacy implementation</li>
+<li>But this required strategy for our SSL Certs
 <ul>
 <li>without that some CSS and JavaScript inclusion was broken</li>
 <li>that change impacted other systems that also used the proxy</li>
