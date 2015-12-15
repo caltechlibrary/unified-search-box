@@ -14,7 +14,7 @@ Decemember 15, 2015
 R. S. Doiel, <rsdoiel@caltech.edu> / [rsdoiel.github.io](http://rsdoiel.github.io)  
 Application Development for  Caltech Library  
 
-Project:  [http://caltechlibrary.github.io/unified-search-box](http://caltechlibrary.github.io/unified-search-box)
+Project: [http://caltechlibrary.github.io/unified-search-box](http://caltechlibrary.github.io/unified-search-box)
 
 ---
 
@@ -57,48 +57,56 @@ But not exactly suited to the current evolution of [library.caltech.edu](https:/
 
 # some starting constraints
 
-
 + we were planning a complete website re-design
     + this project is interum
     + we're managing legacy
 + our infrastructure is rather organic
     + this suggested an evolutionary approach
-    + but I couldn't assume Wordpress/Drupal at this stage
-+ I didn't know what browsers variations common for our visitors
+    + so I couldn't assume Wordpress/Drupal at this stage
++ I didn't know what browsers variations to expect for our visitors
 + I did know I needed to support browsers which may have JS turned off 
-    + or were just really stale (I'm looking at you IE 6)
++ I might need to support ones that were really stale (I'm looking at you IE 6)
 
 ---
 
 # initial technical choices
 
 + given legacy nature of current website
-    + not implementing responsive design
-    + not taking a true progressive enhancement approach
+    + knew I was not implementing a responsive approach
+    + but wanted to take a progressive enhancement approach (more on that)
 + simple enhancement from no-JS to evergreen browsers
     + Default links to individual search pages in NOSCRIPT element for no-JS
     + Use JS to load MIT like implementation
-    + Come up with a browser support baseline
+        + put configuration into the HTML data attributes (more on that)
+    + rely on CSS as much as possible
+    + build staticly and iterate through prototyping
 
 ---
 
-# initial technical choices
+# browsers and content
 
-+ rely on CSS as much as possible
-+ build staticly and iterate through prototyping
-+ put configuration of the unified search box into the HTML data attributes 
-    + spoiler alert: this didn't work out as I expected
+Our legacy website implementation dated from the IE 6 era. I started to realize it was unreasonable to implement the full progressive enhancement treatment. This website was designed when graded browser support was the best practice. 
+
++ [Old Catalog Searchbox](http://library.caltech.edu/index-old.php)
 
 ---
 
-# browser experiences
+# As you would expect this leads the developer to
 
-Our legacy implementation dated from the IE 6 era when graded browser support was the best practice
+## call on the [Nac Mac Feegle](https://en.wikipedia.org/wiki/Nac_Mac_Feegle)  
+
+![Nac Mac Feegle](https://s-media-cache-ak0.pinimg.com/736x/8f/85/7f/8f857fa95369d42abe7e437cf6bef171.jpg)   
+
+Wring hands, pull hair, and wave arms while shouting, "oh wally, wally, I knean this would happen..."
+
+But I wound up with something very similar to progressive enhancement but without feature testing.
+
+---
 
 ## graded browser support
 
 + Approach was made popular at Yahoo many years ago
-+ It lets you breakdown the browser support challenges into something manageable list
++ It lets you breakdown the browser support challenges into something manageable
 + It can be revised moving forward
 + Historically based on the browser versions/types identified accessing your website
 
@@ -127,8 +135,7 @@ This lead to a ultra simple graded browser system use case.
 + Grade B, browsers have JS disabled (or not available, e.g. Lynx)
 + Grade C, everything else to be addressed as time permits
 
-Grade A was testable with the help of other staff (who had things like iPhones)
-
+Grade A was testable with the help of others (e.g. people who had iPhones)
 
 ---
 
@@ -138,7 +145,7 @@ Implement from lowest grade browser and progresses to highest
 
 1. Grade C, I punted (a highly technical software engineering fete)
 2. Grade B, implemented first 
-    + Quick and easy, just HTML and a dusting of CSS
+    + Quick and easy, just HTML (a NOSCRIPT element) and a dusting of CSS
 3. Grade A, this is where I spent most of my time 
     + start with one browser, moved to the next in the list
     + make time to revisit each browser with each new version released
@@ -146,21 +153,7 @@ Implement from lowest grade browser and progresses to highest
 
 ---
 
-# As you would expect this leads to
-
-## the [Nac Mac Feegle](https://en.wikipedia.org/wiki/Nac_Mac_Feegle)  
-
-![Nac Mac Feegle](https://s-media-cache-ak0.pinimg.com/736x/8f/85/7f/8f857fa95369d42abe7e437cf6bef171.jpg)   
-
-Wring your hands, pull your hair, and wave your arms while shouting, "oh wally, wally, I knean this would happen..."
-
-Because this is very similar to progressive enhancement but without feature testing.
-
----
-
 # 2. prototypes, why prototype?
-
-"All projects have at least one catch", Steve Doiel (1936 -- 2006)
 
 "Fail early when the costs are low", Silicon Valley ethos
 
