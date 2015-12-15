@@ -39,6 +39,8 @@ But I have been building things for the web for about 20 years. I am still learn
 + Useful for Librarians or to bookmark
 + But many patrons prefer a one-box search approach
 
+The starting point: [Catalog Searchbox](http://library.caltech.edu/index-old.php)
+
 ---
 
 # a solution?
@@ -58,8 +60,7 @@ But not exactly suited to the current evolution of [library.caltech.edu](https:/
 # some starting constraints
 
 + we were planning a complete website re-design
-    + this project is interum
-    + we're managing legacy
+    + this project is interum, we're managing legacy
 + our infrastructure is rather organic
     + this suggested an evolutionary approach
     + so I couldn't assume Wordpress/Drupal at this stage
@@ -72,7 +73,7 @@ But not exactly suited to the current evolution of [library.caltech.edu](https:/
 # initial technical choices
 
 + given legacy nature of current website
-    + knew I was not implementing a responsive approach
+    + I was skipping a responsive approach
     + but wanted to take a progressive enhancement approach (more on that)
 + simple enhancement from no-JS to evergreen browsers
     + Default links to individual search pages in NOSCRIPT element for no-JS
@@ -85,21 +86,19 @@ But not exactly suited to the current evolution of [library.caltech.edu](https:/
 
 # browsers and content
 
-Our legacy website implementation dated from the IE 6 era. I started to realize it was unreasonable to implement the full progressive enhancement treatment. This website was designed when graded browser support was the best practice. 
-
-+ [Old Catalog Searchbox](http://library.caltech.edu/index-old.php)
+Our legacy website implementation dated from the IE 6 era. I realize it was unreasonable to use normal progressive enhancement (e.g. test for [features](https://modernizr.com/), polyfils, etc). I did recognize website was designed when graded browser support was the best practice. 
 
 ---
 
 # As you would expect this leads the developer to
 
-## call on the [Nac Mac Feegle](https://en.wikipedia.org/wiki/Nac_Mac_Feegle)  
+## conjuring the [Nac Mac Feegle](https://en.wikipedia.org/wiki/Nac_Mac_Feegle)  
 
 ![Nac Mac Feegle](https://s-media-cache-ak0.pinimg.com/736x/8f/85/7f/8f857fa95369d42abe7e437cf6bef171.jpg)   
 
 Wring hands, pull hair, and wave arms while shouting, "oh wally, wally, I knean this would happen..."
 
-But I wound up with something very similar to progressive enhancement but without feature testing.
+But in the end I wound up with something similar to progressive enhancement but without feature testing and polyfils.
 
 ---
 
