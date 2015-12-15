@@ -20,11 +20,20 @@ Project:  [http://caltechlibrary.github.io/unified-search-box](http://caltechlib
 
 # backstory
 
-I am relatively new to Caltech Library and modern library systems (since April 2015). I have been building things for the web since Lynx, NCSA web server and Mosiac. I still have lots to learn (and that makes it fun).
+I am relatively new to Caltech Library and modern library systems (since April 2015).
+But I have been building things for the web for about 20 years. I am still learning (and that is what makes it fun).
 
 ---
 
-# the problem
+# a walkthrough in three acts
+
+1. the problem, constraints, finding the right solution path
+2. protoypes, discoveries and revisions
+3. implementation, benefits and what's next
+
+---
+
+# 1. the problem
 
 + The library has many search systems
 + Useful for Librarians or to bookmark
@@ -46,14 +55,16 @@ But not exactly suited to the current evolution of [library.caltech.edu](https:/
 
 ---
 
-# some constraints
+# some starting constraints
 
-+ We were planning a complete website re-design but that was 3 to 9 months out
-    + this project was needed in the interum
-+ Our infrastructure is rather organic
+
++ we were planning a complete website re-design
+    + this project is interum
+    + we're managing legacy
++ our infrastructure is rather organic
     + this suggested an evolutionary approach
-    + but we couldn't assume Wordpress/Drupal at this stage
-    + I didn't know what browsers and versions we needed to support
+    + but I couldn't assume Wordpress/Drupal at this stage
++ I didn't know what browsers variations common for our visitors
 + I did know I needed to support browsers which may have JS turned off 
     + or were just really stale (I'm looking at you IE 6)
 
@@ -61,68 +72,92 @@ But not exactly suited to the current evolution of [library.caltech.edu](https:/
 
 # initial technical choices
 
-+ Progressively enhance from no-JS to evergreen browsers
++ given legacy nature of current website
+  + not implementing responsive design
+  + not taking a true progressive enhancement approach
++ simple enhancement from no-JS to evergreen browsers
     + Default links to individual search pages in NOSCRIPT element for no-JS
     + Use JS to load MIT like implementation
     + Come up with a browser support baseline
-+ Rely on CSS as much as possible
-+ Build everything staticly
-+ Take an iterative approach through prototyping
-+ Put configuration of the unified search box into the HTML data attributes 
+
+---
+
+# initial technical choices
+
++ rely on CSS as much as possible
++ build staticly and iterate through prototyping
++ put configuration of the unified search box into the HTML data attributes 
     + spoiler alert: this didn't work out as I expected
 
 ---
 
-# graded browsers support
+# browser experiences
+
+Our legacy implementation dated from the IE 6 era when graded browser support was the best practice
+
+## graded browser support
 
 + Approach was made popular at Yahoo many years ago
-+ It lets you breakdown the browser support challenges into something manageable
++ It lets you breakdown the browser support challenges into something manageable list
 + It can be revised moving forward
 + Historically based on the browser versions/types identified accessing your website
-+ Today you decide based browser capabilities
-    + typically the minimum set of capabilities you need to implement
+
+---
+
+## A feature oriented variation
+
++ Inspired by progressive enhancement
++ Picked the baseline (minimal feature set)
++ Decided what is required for the enhanced features
++ Verified what browsers supported those features based on [caniuse](http://caniuse.com)
++ Avoided explicit browser sniffing 
++ Still had the option of feature detection if necessary
+
+This lead to a ultra simple graded browser system use case.
 
 ---
 
 # three browser grades
 
-+ Our Grade A browser have to support
++ Our Grade A browsers have to support
     + `document.querySelector()` and `document.querySelectorAll()`
         + Desktop: IE 10/Edge 13, Firefox 42, Chrome 47, Safari 9
         + Mobile: iOS Safari 9.2, Chrome for Android 47
-+ Grade B, browsers with JS disabled (or not available)
++ Grade B, browsers have JS disabled (or not available, e.g. Lynx)
 + Grade C, everything else to be addressed as time permits
+
+Grade A was testable with the help of other staff (who had things like iPhones)
+
 
 ---
 
-# impact on implementation
+# the planned approach
 
-1. Grade C leveraging this highly technical software secret... you punt
+Implement from lowest grade browser and progresses to highest
 
-Enter the [Nac Mac Feegle](https://en.wikipedia.org/wiki/Nac_Mac_Feegle)  
-![Nac Mac Feegle](https://s-media-cache-ak0.pinimg.com/736x/8f/85/7f/8f857fa95369d42abe7e437cf6bef171.jpg)   
-Wring your hands, pull your hair, and wave your arms while shouting, "oh wally, wally, I knean this would happen..." 
-
-2. You start by implementing Grade B 
+1. Grade C, I punted (a highly technical software engineering fete)
+2. Grade B, implemented first 
     + Quick and easy, just HTML and a dusting of CSS
-3. Then you then implement Grade A 
+3. Grade A, this is where I spent most of my time 
     + start with one browser, moved to the next in the list
     + make time to revisit each browser with each new version released
     + this takes a while
 
 ---
 
-# prototypes
+# As you would expect this leads to
 
-+ This project went through five [prototypes](http://caltechlibrary.github.io/unified-search-box/index.html)
-+ All hosted on Github
-    + Easy to share, edit and deploy
-    + Supports static file hosting which is nice for prototyping
-    + Did I say easy to share, edit and deploy from? 8^)
+## the [Nac Mac Feegle](https://en.wikipedia.org/wiki/Nac_Mac_Feegle)  
+
+![Nac Mac Feegle](https://s-media-cache-ak0.pinimg.com/736x/8f/85/7f/8f857fa95369d42abe7e437cf6bef171.jpg)   
+
+Wring your hands, pull your hair, and wave your arms while shouting, "oh wally, wally, I knean this would happen..."
+
+Because this is very similar to progressive enhancement but without feature testing.
 
 ---
 
-# why prototype?
+# 2. prototypes, why prototype?
 
 "All projects have at least one catch", Steve Doiel (1936 -- 2006)
 
@@ -132,25 +167,29 @@ Wring your hands, pull your hair, and wave your arms while shouting, "oh wally, 
 2. Gives you permission to really find out what the requirements are
 3. Provides a sense of progress and discovery for your client
 
+I went through five [prototypes](http://caltechlibrary.github.io/unified-search-box) before focusing on implementation.
+
 ---
 
 # GOTCHAS!
 ## Browser side
 
-+ My original plan to use data attributes to pass configuration was not reasonable (EBSCO I'm looking at you)
++ My original plan to use data attributes to pass configuration was not reasonable
     + I switched to a JavaScript data structure
     + Configuration could also have been implemented as a JSON blob (might make sense if we generalize this widget)
 + CSS can still be really painful thing to debug
     + Implementing the production version required re-working the CSS to work with the rest of the page
     + This left me with some ugly, long id and class names (CSS lacks namespacing)
     + In the future I'll take the [SMACSS](https://smacss.com/) approach
-+ Each Browser security release triggers another round of browser testing
-    + It would be good to automate as much of this as possible
-    + I relied on a human readable test list
 
 ---
 
-The prototypes can be viewed at http://caltechlibrary.github.io/unified-search-box
+# GOTCHAS!
+## Browser side
+
++ Each Browser security release triggers another round of browser testing
+    + It would be good to automate as much of this as possible
+    + I relied on a human readable test list
 
 ---
 
@@ -159,8 +198,8 @@ The prototypes can be viewed at http://caltechlibrary.github.io/unified-search-b
 
 + CORS now widely supported but not necessarily configured in systems
     + wrapping pages in PHP to generate appropraite CORS header was easy short term fix
-+ I wanted SSL straight through vs. non-SSL for some searches in legacy implementation
-+ This required a new set of wild cards CERT in our proxy server
++ I wanted SSL everywhere vs. non-SSL for some searches in legacy implementation
++ But this required strategy for our SSL Certs
     + without that some CSS and JavaScript inclusion was broken
     + that change impacted other systems that also used the proxy
     + that required coordination
@@ -169,7 +208,7 @@ Thank you Betsy for coming to the rescue!!!
 
 ---
 
-# revised implementation choices
+# 3. implementation
 
 + Configuration moved from data attributes in HTML to JavaScript data structure
 + Used a web components approach but implemented as old-school HTML+CSS+JS
@@ -177,13 +216,24 @@ Thank you Betsy for coming to the rescue!!!
 
 ---
 
-# Present project status
+
+# working code
 
 + [v1](https://library.caltech.edu/index.php) has been in use since early Fall
 + [v2](https://library.caltech.edu/index-beta.php) EDS support being tested now
     + Scheduled for general deployment Dec 21st after finals but before Winter break
 
 ---
+
+# Benefits
+
++ Very minimal JavaScript, CSS and HTML foot print added to homepage
++ Limited what had to be tested to a managable set of browsers
++ Can easily be re-factored for when we do go responsive via progressive enhancement
++ Fit as well with prototyping as with eventual retrofit of library's homepage
+
+---
+
 
 # road map
 
