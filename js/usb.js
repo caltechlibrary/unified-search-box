@@ -36,7 +36,7 @@
                     action: "",
                     input: [
                         {id: "ebscohostwindow", name: "ebscohostwindow", "type": "hidden", value: "0" },
-                        {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://clsproxy.library.caltech.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip"},
+                        {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&custid=s8984125&groupid=main&profid=eds&mode=bool&lang=en&authtype=ip,guest"},
                         {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", "type": "hidden", value: "db" },
                         {id: "ebscohostsearchmode", name: "ebscohostsearchmode", "type": "hidden", value: "+" },
                         {id: "ebscohostkeywords", name: "ebscohostkeywords", "type": "hidden", value: "" },
