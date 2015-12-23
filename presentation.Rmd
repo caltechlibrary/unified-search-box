@@ -90,18 +90,6 @@ Our legacy website implementation dated from the IE 6 era. I realize it was unre
 
 ---
 
-# As you would expect this leads the developer to
-
-## conjuring the [Nac Mac Feegle](https://en.wikipedia.org/wiki/Nac_Mac_Feegle)  
-
-![Nac Mac Feegle](https://s-media-cache-ak0.pinimg.com/736x/8f/85/7f/8f857fa95369d42abe7e437cf6bef171.jpg)   
-
-Wring hands, pull hair, and wave arms while shouting, "oh wally, wally, I knean this would happen..."
-
-But in the end I wound up with something similar to progressive enhancement but without feature testing and polyfils.
-
----
-
 ## graded browser support
 
 + Approach was made popular at Yahoo many years ago
