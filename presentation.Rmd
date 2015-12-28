@@ -221,4 +221,3 @@ Presentation:
 [caltechlibrary.github.io/unified-search-box/presentation.html](http://caltechlibrary.github.io/unified-search-box/presentation.html)  
 R. S. Doiel, <rsdoiel@caltech.edu>  
 [rsdoiel.github.io](http://rsdoiel.github.io)
-
