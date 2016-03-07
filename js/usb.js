@@ -103,10 +103,7 @@
                       action: "",
                       input: [
                           {id: "ebscohostwindow", name: "ebscohostwindow", "type": "hidden", value: "0" },
-                          {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&authtype=uid&user=s8984125&password=password&profile=eds&plp=1"},
-                          {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", "type": "hidden", value: "ejournal" },
-                          {id: "ebscohostsearchmode", name: "ebscohostsearchmode", "type": "hidden", value: "+" },
-                          {id: "ebscohostkeywords", name: "ebscohostkeywords", "type": "hidden", value: "" },
+                          {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://search.ebscohost.com/login.aspx?direct=true&site=eds-live&custid=s8984125&groupid=main&profid=eds&authtype=ip,guest&plp=1"},
                           {id: "usb-query-input", name: "ebscohostsearchtext", value: "", placeholder: "Search by journal title", "type": "text"}
                       ]
                   }
