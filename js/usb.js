@@ -90,36 +90,27 @@
                     ]
                 }
             },
-            "sfx": {
-                filter: [
-                    {
-                        label: "Title"
-                    }
-                ],
-                form: {
-                    method: "GET",
-                    action: "http://sfx.caltech.edu:8088/caltech/az",
-                    input: [
-
-                        {name: "param_letter_group_script_save", value: "", "type": "hidden"},
-                        {name: "param_current_view_save", value: "detail", "type": "hidden"},
-                        {name: "param_textSearchType_save", value: "startsWith", "type": "hidden"},
-                        {name: "param_lang_save", value: "eng", "type": "hidden"},
-                        {name: "param_chinese_checkbox_type_save", value: "Pinyin", "type": "hidden"},
-                        {name: "param_perform_save", value: "searchTitle", "type": "hidden"},
-                        {name: "param_letter_group_save", value: "", "type": "hidden"},
-                        {name: "param_chinese_checkbox_save", value: "0", "type": "hidden"},
-                        {name: "param_services2filter_save", value: "getFullTxt", "type": "hidden"},
-                        {name: "param_services2filter_save", value: "getSelectedFullTxt", "type": "hidden"},
-                        {name: "param_starts_with_browse_save", value : "0", "type": "hidden"},
-                        {name: "param_jumpToPage_save", value: "", "type": "hidden"},
-                        {name: "param_type_save", value: "textSearch", "type": "hidden"},
-                        {name: "param_langcode_save", value: "en", "type": "hidden"},
-                        {name: "param_ui_control_scripts_save", "value": "", "type": "hidden"},
-                        {name: "param_pattern_value", value: "", placeholder: "search by journal title", "type": "search", size: 64, maxlength: 128}
-                    ]
-                }
-            },
+            "ftf": {
+                  filter: [
+                      {
+                           label: "Title"
+                      }
+                  ],
+                  form: {
+                      id: "ebscohostCustomSearchBox",
+                      onSubmit: "return ebscoHostSearchGo(this);",
+                      method: "POST",
+                      action: "",
+                      input: [
+                          {id: "ebscohostwindow", name: "ebscohostwindow", "type": "hidden", value: "0" },
+                          {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&authtype=uid&user=s8984125&password=password&profile=eds&plp=1"},
+                          {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", "type": "hidden", value: "ejournal" },
+                          {id: "ebscohostsearchmode", name: "ebscohostsearchmode", "type": "hidden", value: "+" },
+                          {id: "ebscohostkeywords", name: "ebscohostkeywords", "type": "hidden", value: "" },
+                          {id: "usb-query-input", name: "ebscohostsearchtext", value: "", placeholder: "Search by journal title", "type": "text"}
+                      ]
+                  }
+              },
             "tindCourseReserves": {
                 filter: [
                     {

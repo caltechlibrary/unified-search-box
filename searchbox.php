@@ -38,7 +38,7 @@ function searchboxHTML($basepath = "") {
     <ul class="usb-no-js">
       <li><a href="https://library.caltech.edu/index-eds.php">Seach books, articles &amp; more</a></li>
       <li><a href="https://caltech.tind.io">Library Catalog</a></li>
-      <li><a href="http://sfx.caltech.edu:8088/caltech/az">Find eJournals</a></li>
+      <li><a href="http://search.ebscohost.com/login.aspx?direct=true&site=eds-live&authtype=uid&user=s8984125&password=password&profile=eds&plp=1">Find eJournals</a></li>
       <li><a href="https://caltech.tind.io/search?ln=en&cc=Course+Reserves&p=&f=&action_search=Search">Course Reserves</a></li>
       <li><a href="http://libguides.caltech.edu/CODA">Caltech CODA</a></li>
       <li><a href="https://cse.google.com/cse/home?cx=005709273917748521174:po9fevg5ksw&ie=UTF-8&sa=Search+Site#gsc.tab=0&gsc.q=test&gsc.page=1">Search Website</a></li>
@@ -56,7 +56,7 @@ function searchboxHTML($basepath = "") {
             <ul id="usb-resource-ul">
                 <li data-resource="eds"><span data-resource="eds" class="usb-menu-item-primary"><a data-resource="eds" id="eds" href="#">LibSearch</a></span><span data-resource="eds" class="usb-menu-item-secondary">Search books, articles &amp; more</span></li>
                 <li data-resource="tind"><span data-resource="tind" class="usb-menu-item-primary"><a data-resource="tind" id="tind" href="#">Library Catalog</a></span><span data-resource="tind" class="usb-menu-item-secondary">Books and Print Journals</span></li>
-                <li data-resource="sfx"><span data-resource="sfx" class="usb-menu-item-primary"><a data-resource="sfx" id="sfx" href="#">Find eJournals</a></span> <span data-resource="sfx" class="usb-menu-item-secondary">Access by Title</span></li>
+                <li data-resource="ftf"><span data-resource="ftf" class="usb-menu-item-primary"><a data-resource="ftf" id="ftf" href="#">Find eJournals</a></span> <span data-resource="ftf" class="usb-menu-item-secondary">Access by Title</span></li>
                 <li data-resource="tindCourseReserves"><span data-resource="tindCourseReserves" class="usb-menu-item-primary"><a data-resource="tindCourseReserves" id="tindCourseReserves" href="#">Course Reserves</a></span></li>
                 <li data-resource="coda"><span data-resource="coda" class="usb-menu-item-primary"><a data-resource="coda" id="coda" href="#">Caltech CODA</a></span> <span data-resource="coda" class="usb-menu-item-secondary">Collection of Open Digital Archives, Institutional Repository</span></li>
                 <li data-resource="website"><span data-resource="website" class="usb-menu-item-primary"><a data-resource="website" id="website" href="#">Search Website</a></span> <span data-resource="website" class="usb-menu-item-secondary">Library website and LibGuides</span></li>
