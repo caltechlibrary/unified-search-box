@@ -205,6 +205,9 @@ function ebscoHostSearchGo(form) {
 			case 'SU':
 				ebscohosturl+='&bquery=SU+('+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode)+')';
 				break;
+			case 'SO':
+				ebscohosturl+='&bquery=SO+('+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode)+')';
+				break;
 			default:
 				ebscohosturl+='&bquery='+ebscohostkeywords+ebscoHostSearchParse(ebscohostsearchtext,ebscohostsearchmode);
 				break;
