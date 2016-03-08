@@ -10,6 +10,8 @@
         searchQueryForm = doc.getElementById("usb-query-form"),
         searchQueryInput = doc.getElementById("usb-query-input"),
         searchWidget = {
+            /* NOTE: this code was derived from looking at the Search Box Builder results and adapting it.
+             * Goto http://support.epnet.com/eit/sbb.php and select "interface" for "EBSCO Discovery Service" */
             "eds": {
                 filter: [
                     {
@@ -27,10 +29,6 @@
                     {
                         label: "Subject",
                         input: {name: "searchFieldSelector", value: "SU", "type": "hidden"}
-                    },
-                    {
-                        label: "Journal Title/Source",
-                        input: {name: "searchFieldSelector", value: "SO", "type": "hidden"}
                     }
                 ],
                 form: {
@@ -94,6 +92,8 @@
                     ]
                 }
             },
+            /* NOTE: EBSCO's Full Text Finder is called "Publication Finder" in the Search Box Builder tool.
+             * http://support.epnet.com/eit/sbb.php */
             "ftf": {
                   filter: [
                       {
@@ -107,7 +107,10 @@
                       action: "",
                       input: [
                           {id: "ebscohostwindow", name: "ebscohostwindow", "type": "hidden", value: "0" },
-                          {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://search.ebscohost.com/login.aspx?direct=true&site=eds-live&custid=s8984125&groupid=main&profid=eds&authtype=ip,guest&plp=1"},
+                          {id: "ebscohosturl", name: "ebscohosturl", "type": "hidden", value: "https://search.ebscohost.com/login.aspx?direct=true&site=eds-live&custid=s8984125&groupid=main&profid=eds&type=44&db=edspub&authtype=ip,guest"},
+                          {id: "ebscohostsearchsrc", name: "ebscohostsearchsrc", type: "hidden", value: "db"},
+                          {id: "ebscohostsearchmode", name: "ebscohostsearchmode", type: "hidden", value: "+"},
+                          {id: "ebscohostkeywords", name: "ebscohostkeywords", type: "hidden", value: ""},
                           {id: "usb-query-input", name: "ebscohostsearchtext", value: "", placeholder: "Search by journal title", "type": "text"}
                       ]
                   }
