@@ -27,6 +27,10 @@
                     {
                         label: "Subject",
                         input: {name: "searchFieldSelector", value: "SU", "type": "hidden"}
+                    },
+                    {
+                        label: "Journal Title/Source",
+                        input: {name: "searchFieldSelector", value: "SO", "type": "hidden"}
                     }
                 ],
                 form: {
